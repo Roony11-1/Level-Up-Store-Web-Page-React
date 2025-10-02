@@ -4,6 +4,9 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./index.css";
 import App from "./App.tsx";
 
+// Paginas
+import { Index } from "./pages/Index.tsx";
+
 // Componente para manejar rutas no encontradas
 function NotFound() {
   return (
@@ -19,6 +22,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/app" element={<App />} />
+        <Route path="/" element={<Index />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
