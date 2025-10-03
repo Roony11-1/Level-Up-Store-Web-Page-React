@@ -2,6 +2,7 @@ import { Header } from '../Header/Header';
 import { Outlet } from "react-router-dom";
 
 import '../../assets/css/Layout/layout.css';
+import { UserPanel } from '../UserPanel/UserPanel';
 
 export function Layout() 
 {
@@ -9,6 +10,7 @@ export function Layout()
     <>
       <Header />
       <main>
+        <UserPanel />
         <Outlet />
       </main>
     </>

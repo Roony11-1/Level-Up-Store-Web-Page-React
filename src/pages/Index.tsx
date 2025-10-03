@@ -1,7 +1,9 @@
+import '../assets/css/index/index.css';
+
 export function Index() 
 {
   return(
-    <section>
+    <section className="main-section">
       Main Page
     </section>
   )
