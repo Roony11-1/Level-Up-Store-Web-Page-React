@@ -6,7 +6,7 @@ import App from "./App.tsx";
 import "./assets/css/index.css";
 
 // Paginas
-import { Index } from "./pages/Index.tsx";
+import { Home } from "./pages/home.tsx";
 
 // Componente para manejar rutas no encontradas
 function NotFound() {
@@ -23,7 +23,7 @@ createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Index />} />
+          <Route index element={<Home />} />
           <Route path="app" element={<App />} />
           <Route path="*" element={<NotFound />} />
         </Route>
