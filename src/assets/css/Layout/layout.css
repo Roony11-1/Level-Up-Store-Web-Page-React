@@ -3,6 +3,8 @@ main {
     text-align: center;
     display: flex;
     flex-direction: row;
+    height: 100vh;
+    flex: 1;
 }
 
 .outlet-container {
