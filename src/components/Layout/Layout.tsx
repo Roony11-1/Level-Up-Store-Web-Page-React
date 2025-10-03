@@ -11,7 +11,9 @@ export function Layout()
       <Header />
       <main>
         <UserPanel />
-        <Outlet />
+        <div className="outlet-container">
+          <Outlet />
+        </div>
       </main>
     </>
   )

@@ -4,3 +4,9 @@ main {
     display: flex;
     flex-direction: row;
 }
+
+.outlet-container {
+    padding: 20px;
+    text-align: center;
+    background-color: aqua;
+}
