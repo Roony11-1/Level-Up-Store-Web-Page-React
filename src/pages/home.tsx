@@ -1,6 +1,6 @@
-import '../assets/css/index/index.css';
+import '../assets/css/home/home.css';
 
-export function Index() 
+export function Home() 
 {
   return(
     <section className="main-section">
