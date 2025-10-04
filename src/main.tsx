@@ -6,17 +6,9 @@ import App from "./App.tsx";
 import "./assets/css/index.css";
 
 // Paginas
-import { Home } from "./pages/home.tsx";
-
-// Componente para manejar rutas no encontradas
-function NotFound() {
-  return (
-    <div>
-      <h1>404</h1>
-      <p>Página no encontrada</p>
-    </div>
-  );
-}
+import { Home } from "./pages/Home.tsx";
+import { NotFound } from "./pages/NotFound.tsx";
+import { PruebaApi } from "./pages/PruebaApi.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -25,6 +17,7 @@ createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="app" element={<App />} />
+          <Route path="testapi" element={<PruebaApi />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
