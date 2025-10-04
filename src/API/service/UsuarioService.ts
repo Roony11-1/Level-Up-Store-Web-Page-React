@@ -24,4 +24,9 @@ export class UsuarioService
     {
         return this.usuarioRepository.save(usuario);
     }
+
+    deleteById(id: number): boolean
+    {
+        return this.usuarioRepository.deleteById(id);
+    }
 }

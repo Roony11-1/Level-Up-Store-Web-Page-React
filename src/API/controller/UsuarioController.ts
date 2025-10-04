@@ -23,4 +23,9 @@ export class UsuarioController
     {
         return this.usuarioService.save(usuario);
     }
+
+    deleteById(id: number): boolean
+    {
+        return this.usuarioService.deleteById(id);
+    }
 }

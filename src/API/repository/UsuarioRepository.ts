@@ -34,4 +34,19 @@ export class UsuarioRepository implements RepositoryInterface<Usuario>
 
         return true;
     }
+
+    deleteById(id: any): boolean 
+    {
+        const usuariosActual = this.findAll();
+        const indice = usuariosActual.findIndex((u: any) => u.id === id);
+
+        if (indice !== -1) 
+        {
+            usuariosActual.splice(indice, 1);
+            this.storage.guardar(usuariosActual);
+            return true;
+        }
+        
+        return false;
+    }
 }
