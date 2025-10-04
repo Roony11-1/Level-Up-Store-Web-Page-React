@@ -1,3 +1,4 @@
+import type { Usuario } from "../../model/Usuario";
 import { type UsuarioRepository } from "../repository/UsuarioRepository";
 
 export class UsuarioService 
@@ -9,8 +10,18 @@ export class UsuarioService
         this.usuarioRepository = usuarioRepository;
     }
 
-    async findAll()
+    findAll(): Usuario[]
     {
         return this.usuarioRepository.findAll();
+    }
+
+    findById(id: number): Usuario | null
+    {
+        return this.usuarioRepository.findById(id);
+    }
+
+    save(usuario: Usuario): boolean
+    {
+        return this.usuarioRepository.save(usuario);
     }
 }
