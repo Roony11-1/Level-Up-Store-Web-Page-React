@@ -118,11 +118,13 @@ const handleBuscarUsuario = async () => {
   return (
     <section>
       <h2>Probaremos la consulta de datos a una API simulada desde LocalStorage</h2>
-      {usuarios.map((u) => (
-        <div key={u.getId()} style={{ display: "flex", alignItems: "center" }}>
-          <DisplayUser usuario={u} />
-        </div>
-      ))}
+      <div style={{ flexWrap: "wrap", display: "flex", gap: "10px", marginBottom: "20px", flexDirection: "row" }}>
+        {usuarios.map((u) => (
+          <div key={u.getId()} style={{ display: "flex", alignItems: "center" }}>
+            <DisplayUser usuario={u} />
+          </div>
+        ))}
+      </div>
 
       <div>
         <h1>Registro</h1>
