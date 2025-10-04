@@ -121,12 +121,6 @@ const handleBuscarUsuario = async () => {
       {usuarios.map((u) => (
         <div key={u.getId()} style={{ display: "flex", alignItems: "center" }}>
           <DisplayUser usuario={u} />
-          <button
-            style={{ marginLeft: "10px" }}
-            onClick={() => handleBorrarUsuario(u.getId())}
-          >
-            Borrar
-          </button>
         </div>
       ))}
 
@@ -211,11 +205,16 @@ const handleBuscarUsuario = async () => {
           <div style={{ marginTop: "10px" }}>
             <h3>Usuario encontrado:</h3>
             <DisplayUser usuario={usuarioEncontrado} />
+            <div>
+              <h1>Borrar</h1>
+              <button
+                style={{ marginLeft: "10px" }}
+                onClick={() => handleBorrarUsuario(usuarioEncontrado.getId())}>
+                Borrar
+              </button>
+            </div>
           </div>
         )}
-      </div>
-      <div>
-        <h1>Borrar</h1>
       </div>
     </section>
   );
