@@ -92,6 +92,20 @@ const handleBuscarUsuario = async () => {
     }
   };
 
+  const handleBorrarUsuario = async (id: number) => {
+  const confirmado = window.confirm("¿Seguro que quieres borrar este usuario?");
+  if (!confirmado) return;
+
+  const ok = await usuarioService.deleteById(id);
+  if (ok) {
+    alert("Usuario eliminado correctamente");
+    setUsuarios((prev) => prev.filter(u => u.getId() !== id));
+    if (usuarioEncontrado?.getId() === id) setUsuarioEncontrado(null);
+  } else {
+    alert("No se pudo eliminar el usuario");
+  }
+};
+
   useEffect(() => {
     const fetchUsuarios = async () => {
       const datos = await usuarioService.fetchAll();
@@ -105,7 +119,15 @@ const handleBuscarUsuario = async () => {
     <section>
       <h2>Probaremos la consulta de datos a una API simulada desde LocalStorage</h2>
       {usuarios.map((u) => (
-        <DisplayUser key={u.getId()} usuario={u} />
+        <div key={u.getId()} style={{ display: "flex", alignItems: "center" }}>
+          <DisplayUser usuario={u} />
+          <button
+            style={{ marginLeft: "10px" }}
+            onClick={() => handleBorrarUsuario(u.getId())}
+          >
+            Borrar
+          </button>
+        </div>
       ))}
 
       <div>

@@ -1,6 +1,6 @@
 export class Usuario 
 {
-    private id: number | null;
+    private id: number;
     private nombreUsuario: string | null;
     private email: string | null;
     private contraseña: string | null;
@@ -11,7 +11,7 @@ export class Usuario
 
     constructor() 
     {
-        this.id = null;
+        this.id = 0;
         this.nombreUsuario = null;
         this.email = null;
         this.contraseña = null;
@@ -21,7 +21,7 @@ export class Usuario
         this.tipo = "usuario";
     }
 
-    setId(id: number | null) { this.id = id; return this; }
+    setId(id: number) { this.id = id; return this; }
     setNombreUsuario(nombre: string | null) { this.nombreUsuario = nombre; return this; }
     setEmail(email: string | null) { this.email = email; return this; }
     setContraseña(pass: string | null) { this.contraseña = pass; return this; }
@@ -30,7 +30,7 @@ export class Usuario
     setComuna(comuna: string | null) { this.comuna = comuna; return this; }
     setTipo(tipo: string) { this.tipo = tipo; return this; }
 
-    getId(): number | null { return this.id; }
+    getId(): number { return this.id; }
     getNombreUsuario(): string | null { return this.nombreUsuario; }
     getEmail(): string | null { return this.email; }
     getContraseña(): string | null { return this.contraseña; }
