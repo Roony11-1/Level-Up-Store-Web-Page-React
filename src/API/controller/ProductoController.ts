@@ -1,0 +1,32 @@
+import type { Producto } from "../../model/Producto";
+import { type ProductoService } from "../service/ProductoService";
+
+export class ProductoController
+{
+    private productoService: ProductoService;
+
+    constructor(productoService: ProductoService)
+    {
+        this.productoService = productoService;
+    }
+
+    findAll(): Producto[]
+    {
+        return this.productoService.findAll();
+    }
+
+    findById(id: number): Producto | null
+    {
+        return this.productoService.findById(id);
+    }
+
+    save(usuario: Producto): boolean
+    {
+        return this.productoService.save(usuario);
+    }
+
+    deleteById(id: number): boolean
+    {
+        return this.productoService.deleteById(id);
+    }
+}

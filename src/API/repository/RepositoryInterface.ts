@@ -1,7 +1,7 @@
 export interface RepositoryInterface<T>
 {
     findAll(): T[];
-    findById(id: any): T | null;
+    findById(id: number): T | null;
     save(entity: T): boolean;
     deleteById(id: any): boolean;
 }
