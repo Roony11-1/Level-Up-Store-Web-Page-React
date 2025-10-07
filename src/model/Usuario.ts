@@ -1,4 +1,6 @@
-export class Usuario 
+import { ModeloBase } from "./ModeloBase";
+
+export class Usuario extends ModeloBase
 {
     private id: number;
     private nombreUsuario: string | null;
@@ -11,6 +13,7 @@ export class Usuario
 
     constructor() 
     {
+        super();
         this.id = 0;
         this.nombreUsuario = null;
         this.email = null;
@@ -38,18 +41,4 @@ export class Usuario
     getRegion(): string | null { return this.region; }
     getComuna(): string | null { return this.comuna; }
     getTipo(): string | null { return this.tipo; }
-
-    // Método estático para convertir JSON a instancia de Usuario
-    static fromJSON(obj: Usuario): Usuario 
-    {
-        return new Usuario()
-            .setId(obj.id ?? null)
-            .setNombreUsuario(obj.nombreUsuario ?? null)
-            .setEmail(obj.email ?? null)
-            .setContraseña(obj.contraseña ?? null)
-            .setTelefono(obj.telefono ?? null)
-            .setRegion(obj.region ?? null)
-            .setComuna(obj.comuna ?? null)
-            .setTipo(obj.tipo ?? null);
-    }
 }
