@@ -10,7 +10,7 @@ export function ProductosFalsos()
             .setDescripcion("Un clásico juego de estrategia donde los jugadores compiten por colonizar y expandirse en la isla de Catan. Ideal para 3-4 jugadores y perfecto para noches de juego en familia o con amigos.")
             .setCategoria("Juegos de Mesa")
             .setPrecio(29990)
-            .setImagen("img/catan.png")
+            .setImagen("../../../public/productos/catan.png")
             .setCantidad(10),
 
         new Producto()
@@ -20,7 +20,7 @@ export function ProductosFalsos()
             .setDescripcion("Un juego de colocación de fichas donde los jugadores construyen el paisaje alrededor de la fortaleza medieval de Carcassonne. Ideal para 2-5 jugadores y fácil de aprender.")
             .setCategoria("Juegos de Mesa")
             .setPrecio(24990)
-            .setImagen("img/carcassonne.png")
+            .setImagen("../../../public/productos/carcassonne.png")
             .setCantidad(10),
 
         new Producto()
@@ -30,7 +30,7 @@ export function ProductosFalsos()
             .setDescripcion("Ofrece una experiencia de juego cómoda con botones mapeables y una respuesta táctil mejorada. Compatible con consolas Xbox y PC.")
             .setCategoria("Accesorios")
             .setPrecio(59990)
-            .setImagen("img/control_xbox.png")
+            .setImagen("../../../public/productos/control_xbox.png")
             .setDestacado(true)
             .setCantidad(10),
             
@@ -42,7 +42,7 @@ export function ProductosFalsos()
             .setDescripcion("Proporcionan un sonido envolvente de calidad con un micrófono desmontable y almohadillas de espuma viscoelástica para mayor comodidad durante largas sesiones de juego.")
             .setCategoria("Accesorios")
             .setPrecio(79990)
-            .setImagen("img/audifonosCloud.png")
+            .setImagen("../../../public/productos/audifonosCloud.png")
             .setCantidad(10),
 
         new Producto()
@@ -52,7 +52,7 @@ export function ProductosFalsos()
             .setDescripcion("La consola de última generación de Sony, que ofrece gráficos impresionantes y tiempos de carga ultrarrápidos para una experiencia de juego inmersiva.")
             .setCategoria("Consolas")
             .setPrecio(549990)
-            .setImagen("img/ps5.png")
+            .setImagen("../../../public/productos/ps5.png")
             .setCantidad(10),
 
         new Producto()
@@ -62,7 +62,7 @@ export function ProductosFalsos()
             .setDescripcion("Un potente equipo diseñado para los gamers más exigentes, equipado con los últimos componentes para ofrecer un rendimiento excepcional en cualquier juego.")
             .setCategoria("Computadores Gamers")
             .setPrecio(1299990)
-            .setImagen("img/pcAsus.png")
+            .setImagen("../../../public/productos/pcAsus.png")
             .setDestacado(true)
             .setCantidad(10),
 
@@ -73,7 +73,7 @@ export function ProductosFalsos()
             .setDescripcion("Diseñada para el máximo confort, esta silla ofrece un soporte ergonómico y personalización ajustable para sesiones de juego prolongadas.")
             .setCategoria("Sillas Gamers")
             .setPrecio(349990)
-            .setImagen("img/sillaGamer.png")
+            .setImagen("../../../public/productos/sillaGamer.png")
             .setCantidad(10),
 
         new Producto()
@@ -83,7 +83,7 @@ export function ProductosFalsos()
             .setDescripcion("Con sensor de alta precisión y botones personalizables, este mouse es ideal para gamers que buscan un control preciso y personalización.")
             .setCategoria("Mouse")
             .setPrecio(49990)
-            .setImagen("img/mouseLogitech.png")
+            .setImagen("../../../public/productos/mouseLogitech.png")
             .setCantidad(10),
 
         new Producto()
@@ -93,7 +93,7 @@ export function ProductosFalsos()
             .setDescripcion("Ofrece un área de juego amplia con iluminación RGB personalizable, asegurando una superficie suave y uniforme para el movimiento del mouse.")
             .setCategoria("Mousepad")
             .setPrecio(29990)
-            .setImagen("img/mousepad.png")
+            .setImagen("../../../public/productos/mousepad.png")
             .setCantidad(10),
 
         new Producto()
@@ -103,7 +103,7 @@ export function ProductosFalsos()
             .setDescripcion("Una camiseta cómoda y estilizada, con la posibilidad de personalizarla con tu gamer tag o diseño favorito.")
             .setCategoria("Ropa")
             .setPrecio(19990)
-            .setImagen("img/Polera-personalizada.png")
+            .setImagen("../../../public/productos/Polera-personalizada.png")
             .setDestacado(true)
             .setCantidad(10),
 
@@ -115,8 +115,8 @@ export function ProductosFalsos()
             .setCategoria("TCG")
             .setPrecio(99990)
             .setDestacado(true)
-            .setImagen("img/cohette.jpg")
-            .setListaImagen(["img/cohette-monster.jpg", "img/cohette-spell.jpg", "img/cohette-extra.jpg"])
+            .setImagen("../../../public/productos/cohette.jpg")
+            .setListaImagen(["../../../public/productos/cohette-monster.jpg", "../../../public/productos/cohette-spell.jpg", "../../../public/productos/cohette-extra.jpg"])
             .setCantidad(1)
     ];
 }
