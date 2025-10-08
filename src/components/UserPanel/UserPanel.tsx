@@ -6,6 +6,7 @@ export function UserPanel()
   return(
     <section className="user-panel">
       <h1>Panel Usuario</h1>
+      <Link to={'/login'}><h2>Iniciar Sesión</h2></Link>
       <hr /><br />
       <div>
         <Link to={'/'}><h2>Inicio</h2></Link>
