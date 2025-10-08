@@ -1,4 +1,29 @@
 :root {
-  padding: 0;
   background-color: #fff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+p, span, a, li, div {
+  font-family: 'Roboto', sans-serif;
+}
+
+.texto-principal {
+  color: #fff;
+}
+
+.texto-secundario {
+  color: #d3d3d3;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+}
+
+a h2:hover {
+  color: #fff;
+  background-color: #1e90ff;
 }

@@ -9,7 +9,7 @@ export function UserPanel()
       <hr /><br />
       <div>
         <Link to={'/'}><h2>Inicio</h2></Link>
-        <Link to={'/productos'}><h2>Productos</h2></Link>
+        <Link to={'/catalogo'}><h2>Catálogo</h2></Link>
         <Link to={'/nosotros'}><h2>Nosotros</h2></Link>
         <Link to={'/blogs'}><h2>Blogs</h2></Link>
         <Link to={'/contactos'}><h2>Contactos</h2></Link>
