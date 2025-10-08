@@ -5,12 +5,17 @@ import { Usuario } from "../model/Usuario";
 import { Producto } from "../model/Producto";
 import { ProductoApiService } from "../services/ProductoApiService";
 
+import { Blog } from "../model/Blog";
+import { BlogApiService } from "../services/BlogApiService";
+
 import { DisplayUser } from "../components/DisplayUser/DisplayUser";
 import { DisplayProduct } from "../components/DisplayProduct/DisplayProduct";
+import { DisplayBlog } from "../components/DisplayBlog/DisplayBlog";
 
 export function PruebaApi() {
   const [usuarios, setUsuarios] = useState<Usuario[]>([]);
   const [productos, setProductos] = useState<Producto[]>([]);
+  const [blogs, setBlogs] = useState<Blog[]>([])
 
   // Form state
   const [formData, setFormData] = useState({
@@ -29,6 +34,7 @@ export function PruebaApi() {
 
   const usuarioService = new UsuarioApiService();
   const productoService = new ProductoApiService();
+  const blogService = new BlogApiService();
 
 const handleBuscarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
   setBuscarId(e.target.value);
@@ -112,6 +118,20 @@ const handleBuscarUsuario = async () => {
   }
 };
 
+  const handleBorrarBlog = async (id: number) => {
+  const confirmado = window.confirm("¿Seguro que quieres borrar este blog?");
+  if (!confirmado) return;
+
+  const ok = await blogService.deleteById(id);
+  if (ok) 
+  {
+    alert("Blog eliminado correctamente");
+    setBlogs((prev) => prev.filter((p) => p.getId() !== id));
+  } else {
+    alert("No se pudo eliminar el blog");
+  }
+};
+
   const handleBorrarUsuario = async (id: number) => {
   const confirmado = window.confirm("¿Seguro que quieres borrar este usuario?");
   if (!confirmado) return;
@@ -132,6 +152,11 @@ const handleBuscarUsuario = async () => {
       setUsuarios(datos);
     };
 
+    const fetchBlogs = async () => {
+      const datos = await blogService.fetchAll();
+      setBlogs(datos);
+    };
+
     const fetchProductos = async () => {
       const datos = await productoService.fetchAll();
       setProductos(datos);
@@ -139,6 +164,7 @@ const handleBuscarUsuario = async () => {
 
     fetchUsuarios();
     fetchProductos();
+    fetchBlogs();
   }, []);
 
   return (
@@ -252,6 +278,16 @@ const handleBuscarUsuario = async () => {
           <div key={p.getId()} style={{ display: "flex", alignItems: "center" }}>
             <DisplayProduct producto={p} />
             <button onClick={() => handleBorrarProducto(p.getId())}>Borrar</button>
+          </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <div style={{ flexWrap: "wrap", display: "flex", gap: "10px", marginBottom: "20px" }}>
+          {blogs.map((p) => (
+          <div key={p.getId()} style={{ display: "flex", alignItems: "center" }}>
+            <DisplayBlog blog={p} />
+            <button onClick={() => handleBorrarBlog(p.getId())}>Borrar</button>
           </div>
           ))}
         </div>

@@ -23,7 +23,7 @@ export class Producto extends ModeloBase
         this.categoria = "Ninguno";
         this.precio = 0;
         this.cantidad = 0;
-        this.imagen = "img/istockphoto-1396814518-612x612.jpg";
+        this.imagen = "../../public/productos/istockphoto-1396814518-612x612.jpg";
         this.listaImagen = [];
         this.destacado = false;
     }

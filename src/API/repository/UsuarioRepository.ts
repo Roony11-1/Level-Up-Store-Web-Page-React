@@ -35,7 +35,7 @@ export class UsuarioRepository implements RepositoryInterface<Usuario>
         return true;
     }
 
-    deleteById(id: any): boolean 
+    deleteById(id: number): boolean 
     {
         const usuariosActual = this.findAll();
         const indice = usuariosActual.findIndex((u: any) => u.id === id);
