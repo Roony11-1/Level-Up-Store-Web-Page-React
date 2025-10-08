@@ -10,14 +10,19 @@ export class UsuarioService
         this.usuarioRepository = usuarioRepository;
     }
 
-    findAll(): Usuario[]
+    findAll(): any[]
     {
         return this.usuarioRepository.findAll();
     }
 
-    findById(id: number): Usuario | null
+    findById(id: number): any | null
     {
         return this.usuarioRepository.findById(id);
+    }
+
+    findByEmail(email: string): any | null
+    {
+        return this.usuarioRepository.findByEmail(email);
     }
 
     save(usuario: Usuario): boolean
@@ -29,4 +34,14 @@ export class UsuarioService
     {
         return this.usuarioRepository.deleteById(id);
     }
+
+    login(email: string, password: string): any | null
+    {
+        const usuario = this.findByEmail(email);
+
+        if (usuario && usuario.contraseña === password) 
+            return usuario;
+
+        return null;
+    }   
 }

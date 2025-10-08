@@ -1,4 +1,5 @@
-import type { Usuario } from "../../model/Usuario";
+import { Usuario } from "../../model/Usuario";
+import { LoginRequest } from "../../model/LoginRequest";
 import { type UsuarioService } from "../service/UsuarioService";
 
 export class UsuarioController
@@ -9,12 +10,12 @@ export class UsuarioController
         this.usuarioService = usuarioService;
     }
 
-    findAll(): Usuario[]
+    findAll(): any[]
     {
         return this.usuarioService.findAll();
     }
 
-    findById(id: number): Usuario | null
+    findById(id: number): any | null
     {
         return this.usuarioService.findById(id);
     }
@@ -27,5 +28,10 @@ export class UsuarioController
     deleteById(id: number): boolean
     {
         return this.usuarioService.deleteById(id);
+    }
+
+    login(loginRequest: LoginRequest): any | null
+    {
+        return this.usuarioService.login(loginRequest.getEmail(), loginRequest.getPassword());
     }
 }

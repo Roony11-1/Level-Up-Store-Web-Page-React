@@ -25,6 +25,12 @@ export class UsuarioRepository implements RepositoryInterface<Usuario>
         return usuariosJson.find((u: any) => u.id === id) || null;
     }
 
+    findByEmail(email: string): any | null
+    {
+        const usuariosJson = this.findAll();
+        return usuariosJson.find((u: any) => u.email === email) || null;
+    }
+
     save(usuario: Usuario): boolean
     {
         const usuariosActual = this.findAll();
