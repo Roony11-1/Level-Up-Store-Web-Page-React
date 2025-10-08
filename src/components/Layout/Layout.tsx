@@ -1,4 +1,5 @@
 import { Header } from '../Header/Header';
+import { Footer } from '../Footer/Footer';
 import { Outlet } from "react-router-dom";
 
 import '../../assets/css/Layout/layout.css';
@@ -15,6 +16,7 @@ export function Layout()
           <Outlet />
         </div>
       </main>
+      <Footer />  
     </>
   )
 }

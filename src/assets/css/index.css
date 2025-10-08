@@ -26,11 +26,11 @@ p, span, a, li, div {
 }
 
 a {
-  color: #000;
+  color: #fff;
   text-decoration: none;
 }
 
 a h2:hover {
-  color: #fff;
-  background-color: #1e90ff;
+  color: #000;
+  background-color: #fff;
 }
