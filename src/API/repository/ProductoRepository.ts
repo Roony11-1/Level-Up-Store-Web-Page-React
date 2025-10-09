@@ -25,6 +25,12 @@ export class ProductoRepository implements RepositoryInterface<Producto>
         return usuariosJson.find((u: any) => u.id === id) || null;
     }
 
+    findByDestacado(): any[]
+    {
+        const productosJsonDestacado = this.findAll();
+        return productosJsonDestacado.filter((p:any) => p.destacado === true) || null;
+    }
+
     save(producto: Producto): boolean
     {
         const productosActual = this.findAll();

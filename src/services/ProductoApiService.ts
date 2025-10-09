@@ -8,4 +8,9 @@ export class ProductoApiService extends BaseApiService<Producto>
   {
     super(productoController, Producto);
   }
+
+  async fetchByDestacado(): Promise<Producto[]>
+  {
+    return await this.controller.findByDestacado();
+  }
 }

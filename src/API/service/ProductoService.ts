@@ -20,6 +20,11 @@ export class ProductoService
         return this.productoRepository.findById(id);
     }
 
+    findByDestacado(): Producto[]
+    {
+        return this.productoRepository.findByDestacado();
+    }
+
     save(usuario: Producto): boolean
     {
         return this.productoRepository.save(usuario);

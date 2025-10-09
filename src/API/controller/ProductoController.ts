@@ -20,6 +20,11 @@ export class ProductoController
         return this.productoService.findById(id);
     }
 
+    findByDestacado(): Producto[]
+    {
+        return this.productoService.findByDestacado();
+    }
+
     save(usuario: Producto): boolean
     {
         return this.productoService.save(usuario);
