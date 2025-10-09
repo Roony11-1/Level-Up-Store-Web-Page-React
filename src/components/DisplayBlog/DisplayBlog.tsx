@@ -1,9 +1,9 @@
 import { Blog } from "../../model/Blog";
-
+import "../../assets/css/Blogs/DisplayBlog.css"
 
 export function DisplayBlog({ blog }: { blog: Blog }) {
     return (
-        <div style={{ border: "1px solid black", margin: "10px", padding: "10px" }}>
+        <div className="blogContainer">
             <p>Id: {blog.getId()}</p>
             <p>Titulo: {blog.getTitulo()}</p>
             <p>Descripcion: {blog.getDescripcion()}</p>
