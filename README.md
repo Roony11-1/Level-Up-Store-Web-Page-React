@@ -10,5 +10,7 @@ Para iniciar el entorno de desarrollo<br>
 
 Cosas instaladas<br><br>
 
-npm install react-router-dom
--- Enrrutamiento de las páginas
+npm install react-router-dom<br>
+-- Enrrutamiento de las páginas<br>
+npm install react-bootstrap bootstrap<br>
+-- React Boostrap<br>
