@@ -11,6 +11,7 @@ import { NotFound } from "./pages/NotFound.tsx";
 import { PruebaApi } from "./pages/PruebaApi.tsx";
 import { Productos } from "./pages/Productos.tsx";
 import { Login } from "./pages/Login.tsx";
+import { Registro } from "./pages/Registro.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -22,6 +23,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="catalogo" element={<Productos />} />
           <Route path="testapi" element={<PruebaApi />} />
           <Route path="login" element={<Login />} />
+          <Route path="registrarse" element={<Registro />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
