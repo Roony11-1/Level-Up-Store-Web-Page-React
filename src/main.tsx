@@ -14,6 +14,7 @@ import { Login } from "./pages/Login.tsx";
 import { Nosotros } from "./pages/Nosotros.tsx";
 import { Registro } from "./pages/Registro.tsx";
 import { Blogs } from "./pages/Blogs.tsx";
+import Contacto from "./pages/Contacto.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -29,6 +30,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="registrarse" element={<Registro />} />
           <Route path="*" element={<NotFound />} />
           <Route path="Nosotros" element={<Nosotros />} />
+          <Route path='/contactos' element={<Contacto/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
