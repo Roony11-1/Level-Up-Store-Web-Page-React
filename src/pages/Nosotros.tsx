@@ -2,9 +2,7 @@ import "../css/nosotros.css"
 
 export function Nosotros() {
     return (
-        <main className="principal">
-            <div className="sidepanel" id="sidepanel-header"></div>
-            <section>
+            <div>
                 <div className="about-us">
                     <h1 className="titulo1 texto-principal">Sobre Nosotros</h1>
                     <p className="parrafo texto-principal">Level-Up Gamer es una tienda online dedicada a satisfacer las necesidades de los entusiastas de los
@@ -25,8 +23,6 @@ export function Nosotros() {
                         al cliente excepcional, y un programa de fidelización basado en gamificación que recompense a
                         nuestros clientes más fieles.</p>
                 </div>
-            </section>
-            <div className="sidepanel" id="sidepanel-carrito"></div>
-        </main>
+            </div>
     )
 }

@@ -4,6 +4,7 @@ import '../assets/css/home/home.css';
 import "../css/inicio.css"
 import type { Producto } from "../model/Producto";
 import { ProductoApiService } from "../services/ProductoApiService";
+import { NavLink } from "react-router-dom";
 
 export function Home() {
   const [productosDestacados, setProductosDestacados] = useState<Producto[]>([])
@@ -21,9 +22,7 @@ export function Home() {
   console.log(productosDestacados);
 
   return (
-    <main className="principal">
-      <div className="sidepanel" id="sidepanel-header"></div>
-      <section>
+      <div>
         <div className="ini">
 
           <div className="text">
@@ -32,7 +31,7 @@ export function Home() {
               Nuestro catálogo ofrece productos de la mejor calidad y precio.
               Descubre nuestras guías y productos exclusivos disponibles ahora.
             </p>
-            <a href="productos.html" className="btn">Ver productos</a>
+            <NavLink to="/catalogo" className={"btn"}>Ver Productos</NavLink>
           </div>
 
 
@@ -52,9 +51,7 @@ export function Home() {
             </div>
           </div>
         </div>
-      </section>
-      <div className="sidepanel" id="sidepanel-carrito"></div>
-    </main>
+      </div>
 
   )
 }
