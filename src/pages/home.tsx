@@ -1,7 +1,25 @@
+import { useEffect } from "react";
+import { useState } from "react";
 import '../assets/css/home/home.css';
 import "../css/inicio.css"
+import type { Producto } from "../model/Producto";
+import { ProductoApiService } from "../services/ProductoApiService";
 
 export function Home() {
+  const [productosDestacados, setProductosDestacados] = useState<Producto[]>([])
+  const productoService = new ProductoApiService();
+
+  useEffect(() => {
+    const fetchProductosDestacados = async () => {
+      const datos = await productoService.fetchByDestacado();
+      setProductosDestacados(datos);
+    };
+      
+    fetchProductosDestacados();
+  }, []);
+
+  console.log(productosDestacados);
+
   return (
     <main className="principal">
       <div className="sidepanel" id="sidepanel-header"></div>
