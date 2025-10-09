@@ -6,11 +6,12 @@ import App from "./App.tsx";
 import "./assets/css/index.css";
 
 // Paginas
-import { Home } from "./pages/Home.tsx";
+import { Home } from "./pages/home.tsx";
 import { NotFound } from "./pages/NotFound.tsx";
 import { PruebaApi } from "./pages/PruebaApi.tsx";
 import { Productos } from "./pages/Productos.tsx";
 import { Login } from "./pages/Login.tsx";
+import { Nosotros } from "./pages/Nosotros.tsx";
 import { Registro } from "./pages/Registro.tsx";
 
 createRoot(document.getElementById("root")!).render(
@@ -25,6 +26,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="login" element={<Login />} />
           <Route path="registrarse" element={<Registro />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="Nosotros" element={<Nosotros />} />
         </Route>
       </Routes>
     </BrowserRouter>
