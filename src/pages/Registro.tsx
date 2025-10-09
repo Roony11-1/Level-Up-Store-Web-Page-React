@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import "../assets/css/Registro/registro.css"
 
 export function Registro() 
 {
