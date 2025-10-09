@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import '../../assets/css/Header/header.css';
 
 import { HeaderLogo } from './HeaderLogo/HeaderLogo';
-import { HeaderMenu } from './HeaderLogo/HeaderMenu';
 import { IniciarSesion } from './IniciaSesion/IniciarSesion';
+import { UserPanel } from '../UserPanel/UserPanel';
 
 export function Header() 
 {
@@ -12,10 +12,9 @@ export function Header()
       <div className="parent">
           <div className="izquierda">
             <HeaderLogo />
-            <HeaderMenu />
+            <UserPanel/>
           </div>
           <div className="central">
-            <Link to={'/Login'}><h2>Inicio Secion</h2></Link>
           </div>
           <div className="derecha">
             <IniciarSesion />

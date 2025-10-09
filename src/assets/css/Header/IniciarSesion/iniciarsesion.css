@@ -4,45 +4,29 @@
 }
 
 .sesion-panel {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    min-width: 175px;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-    z-index: 10;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #d3d3d3;
+  min-width: 175px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 10;
 }
 
-.sesion-panel h2 {
-    color: black;
+.sesion-panel p {
+  color: black;
 }
 
-.sesion-panel h2:hover {
-    background-color: gray;
-    cursor: pointer;
+.sesion-panel p:hover {
+  background-color: gray;
+  cursor: pointer;
 }
 
 .sesion-header:hover .sesion-panel {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
-}
-
-.sesion-panel ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.sesion-panel li {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-.sesion-panel li:hover {
-  background-color: #f0f0f0;
 }

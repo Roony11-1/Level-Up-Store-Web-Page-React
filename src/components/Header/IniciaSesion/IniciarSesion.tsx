@@ -8,12 +8,10 @@ export function IniciarSesion()
             <h2>Hola!</h2>
             <p>Ingresa a tu cuenta!</p>
 
-        <div className="sesion-panel">
-            <ul>
-            <Link to={'/login'}><h2>Iniciar Sesión</h2></Link>
-            <Link to={'/registrarse'}><h2>Registrarse</h2></Link>
-            </ul>
-        </div>
+            <div className="sesion-panel">
+                <Link to={'/login'}><p>Iniciar Sesión</p></Link>
+                <Link to={'/registrarse'}><p>Registrarse</p></Link>
+            </div>
         </div>
     )
 }

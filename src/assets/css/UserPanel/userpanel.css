@@ -1,16 +1,27 @@
 .user-panel {
-    width: 20%;
-    background-color: #1e90ff;
-    border: 1px solid black;
-    margin-right: 10px;
-    border-radius: 5px;
-    overflow: hidden;
-    transition: width 0.3s ease-out;
+    position: relative;
+    cursor: pointer;
+}
+
+.user-links {
+    position: absolute;
+    z-index: 10;
+    background-color: #d3d3d3d3;
+    min-width: 175px;
+    opacity: 0;
+    visibility: hidden;
+    top: 100%;
     left: 0;
-    height: auto;
+    transform: translateY(-20px);
+    transition: all 0.3s ease;
 }
 
 .user-panel:hover {
-    width: 20%;
-    transition: width 0.3s ease-in-out;
+    color: #fff;
+}
+
+.user-panel:hover .user-links {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
