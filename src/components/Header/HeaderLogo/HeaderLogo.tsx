@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
-import '../../assets/css/Header/headerlogo.css';
+import '../../../assets/css/Header/HeaderLogo/headerlogo.css';
 
-import imagenFondo from '../../assets/img/Header/Logo_level-Up-sin-fondo.png';
+import imagenFondo from '../../../assets/img/Header/Logo_level-Up-sin-fondo.png';
 
 export function HeaderLogo()
 {

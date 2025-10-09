@@ -17,6 +17,10 @@ header {
 }
 
 .izquierda {
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     grid-column-start: 1;
     grid-row-start: 1;
 }
