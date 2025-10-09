@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LoginRequest } from "../model/LoginRequest";
 import { UsuarioApiService } from "../services/UsuarioApiService";
 
+import "../assets/css/Login/login.css"
+
 export function Login() 
 {
     const [email, setEmail] = useState("");
@@ -25,32 +27,36 @@ export function Login()
     return (
         <div>
             <h1>Iniciar Sesión</h1>
-            <form onSubmit={handleSubmit}>
-                <table>
-                    <tr>
-                        <td>Email: </td>
-                        <td>
-                            <input
-                                placeholder="Correo Electrónico"
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Contraseña: </td>
-                        <td>
-                            <input
-                                type="password"
-                                placeholder="Contraseña"
-                                onChange={(e) => setPassword(e.target.value)}
-                                value={password}/>
-                        </td>
-                    </tr>
-                </table>
-                <td>
-                    <button type="submit">Iniciar Sesión</button>
-                </td>
-            </form>
+            <div className="login-container">
+                <form onSubmit={handleSubmit}>
+                    <table>
+                        <tr>
+                            <td>Email: </td>
+                            <td>
+                                <input
+                                    placeholder="Correo Electrónico"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    value={email}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Contraseña: </td>
+                            <td>
+                                <input
+                                    type="password"
+                                    placeholder="Contraseña"
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    value={password}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colSpan={2}>
+                                <button type="submit">Iniciar Sesión</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
         </div>
     );
 }

@@ -24,6 +24,7 @@ export function Registro()
         <form onSubmit={handleSubmit}>
                 <table>
                     <tr>
+                        <td>Nombre de Usuario:</td>
                         <td>
                             <input 
                                 placeholder="Nombre de Usuario"
@@ -32,6 +33,7 @@ export function Registro()
                         </td>
                     </tr>
                     <tr>
+                        <td>Correo:</td>
                         <td>
                             <input
                                 placeholder="Correo"
@@ -40,6 +42,7 @@ export function Registro()
                         </td>
                     </tr>
                     <tr>
+                        <td>Confirmar Correo:</td>
                         <td>
                             <input
                                 placeholder="Confirmar Correo"
@@ -48,6 +51,7 @@ export function Registro()
                         </td>
                     </tr>
                     <tr>
+                        <td>Contraseña:</td>
                         <td>
                             <input
                                 placeholder="Contraseña"
@@ -56,6 +60,7 @@ export function Registro()
                         </td>
                     </tr>
                     <tr>
+                        <td>Confirmar Contraseña:</td>
                         <td>
                             <input
                                 placeholder="Confirmar Contraseña"
@@ -64,6 +69,7 @@ export function Registro()
                         </td>
                     </tr>
                     <tr>
+                        <td>Telefono (Opcional):</td>
                         <td>
                             <input
                                 placeholder="Telefono (Opcional)"
