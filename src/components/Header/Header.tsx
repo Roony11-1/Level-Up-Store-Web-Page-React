@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import '../../assets/css/Header/header.css';
 
 import { HeaderLogo } from './HeaderLogo/HeaderLogo';
