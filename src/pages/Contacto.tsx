@@ -1,12 +1,10 @@
 import '../css/contacto.css'
 function Contacto() {
     return (
-        <main className="principal">
-            <div className="sidepanel" id="sidepanel-header"></div>
-            <section>
+            <div>
                 <div>
                     <h1 className="texto-principal">LEVEL UP</h1>
-                    <img src="../../public/Logo_level-Up.png" alt="nuestra empresa" width="150px" height="150px" />
+                    <img src="/Logo_level-Up.png" alt="nuestra empresa" width="150px" height="150px" />
                     <form method="post" id="form-contacto">
                         <table>
                             <tr>
@@ -46,10 +44,8 @@ function Contacto() {
                         </table>
                     </form>
                 </div>
-            </section>
-            <div className="sidepanel" id="sidepanel-carrito"></div>
-        </main>
-    );
+            </div>
+    )
 }
 
 export default Contacto;
