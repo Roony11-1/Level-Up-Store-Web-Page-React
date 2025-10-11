@@ -12,7 +12,7 @@ export class Blog extends ModeloBase
     {
         super();
         this.id = 0;
-        this.titulo = 'Sin Titulo';
+        this.titulo = `Noticia de la semana! N°${this.id}`;
         this.descripcion = 'Sin Descripción'
         this.imagen = "../../public/productos/istockphoto-1396814518-612x612.jpg";
         this.url = "Sin URL";
@@ -20,6 +20,7 @@ export class Blog extends ModeloBase
 
     setId(id: number) {this.id = id; return this;}
     setTitulo(titulo: string) {this.titulo = titulo; return this;}
+    setTituloAutomatico() { this.titulo = `Noticia de la semana! N°${this.id}`; return this;}
     setDescripcion(descripcion: string) {this.descripcion = descripcion; return this;}
     setImagen(imagen: string) {this.imagen = imagen; return this;}
     setUrl(url: string) {this.url = url; return this;}
