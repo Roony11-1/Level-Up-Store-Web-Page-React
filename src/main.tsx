@@ -15,6 +15,7 @@ import { Nosotros } from "./pages/Nosotros.tsx";
 import { Registro } from "./pages/Registro.tsx";
 import { Blogs } from "./pages/Blogs.tsx";
 import Contacto from "./pages/Contacto.tsx";
+import { SingingCat } from "./pages/SingingCat.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -29,8 +30,9 @@ createRoot(document.getElementById("root")!).render(
           <Route path="blogs" element={<Blogs />} />
           <Route path="registrarse" element={<Registro />} />
           <Route path="*" element={<NotFound />} />
-          <Route path="Nosotros" element={<Nosotros />} />
+          <Route path="nosotros" element={<Nosotros />} />
           <Route path='/contactos' element={<Contacto/>}/>
+          <Route path="gato" element={<SingingCat />} />
         </Route>
       </Routes>
     </BrowserRouter>
