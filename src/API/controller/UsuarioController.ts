@@ -20,7 +20,7 @@ export class UsuarioController
         return this.usuarioService.findById(id);
     }
 
-    save(usuario: Usuario): boolean
+    save(usuario: Usuario): { success: boolean; message: string } 
     {
         return this.usuarioService.save(usuario);
     }
@@ -30,7 +30,7 @@ export class UsuarioController
         return this.usuarioService.deleteById(id);
     }
 
-    login(loginRequest: LoginRequest): any | null
+    login(loginRequest: LoginRequest): { success: boolean; message: string }
     {
         return this.usuarioService.login(loginRequest.getEmail(), loginRequest.getPassword());
     }

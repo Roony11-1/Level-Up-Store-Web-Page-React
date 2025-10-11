@@ -12,6 +12,11 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
     this.modelClass = modelClass;
   }
 
+  getModelClass()
+  {
+    return this.modelClass;
+  }
+
   async fetchAll(): Promise<T[]> 
   {
     const datosJson = await this.controller.findAll();
@@ -24,9 +29,9 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
     return datoJson ? this.modelClass.fromJSON(datoJson) : null;
   }
 
-  async save(entity: T): Promise<boolean> 
+  async save(entity: T): Promise<{ success: boolean; message: string }> 
   {
-    return this.controller.save(entity);
+      return this.controller.save(entity);
   }
 
   async deleteById(id: number): Promise<boolean>
