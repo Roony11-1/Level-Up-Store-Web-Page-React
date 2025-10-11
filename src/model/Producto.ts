@@ -4,7 +4,8 @@ export class Producto extends ModeloBase
 {
     id: number;
     codigo: string;
-    nombre: string
+    nombre: string;
+    marca: string;
     descripcion: string;
     categoria: string
     precio: number;
@@ -19,6 +20,7 @@ export class Producto extends ModeloBase
         this.id = 0;
         this.codigo = "Ninguno";
         this.nombre = "Ninguno";
+        this.marca = "Ninguno"
         this.descripcion = "Ninguno";
         this.categoria = "Ninguno";
         this.precio = 0;
@@ -31,6 +33,7 @@ export class Producto extends ModeloBase
     setId(id: number) { this.id = id; return this; }
     setCodigo(codigo: string) { this.codigo = codigo; return this; }
     setNombre(nombre: string) { this.nombre = nombre; return this; }
+    setMarca(marca: string) { this.marca = marca; return this; }
     setDescripcion(descripcion: string) { this.descripcion = descripcion; return this; }
     setCategoria(categoria: string) { this.categoria = categoria; return this; }
     setPrecio(precio: number) { this.precio = precio; return this; }
@@ -42,6 +45,7 @@ export class Producto extends ModeloBase
     getId(): number { return this.id; }
     getCodigo(): string { return this.codigo; }
     getNombre(): string { return this.nombre; }
+    getMarca(): string { return this.marca; }
     getDescripcion(): string { return this.descripcion; }
     getCategoria(): string { return this.categoria; }
     getPrecio(): number { return this.precio; }

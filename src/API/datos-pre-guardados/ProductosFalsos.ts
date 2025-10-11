@@ -11,7 +11,8 @@ export function ProductosFalsos()
             .setCategoria("Juegos de Mesa")
             .setPrecio(29990)
             .setImagen("/productos/catan.png")
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Kosmos"),
 
         new Producto()
             .setId(2)
@@ -21,7 +22,8 @@ export function ProductosFalsos()
             .setCategoria("Juegos de Mesa")
             .setPrecio(24990)
             .setImagen("/productos/carcassonne.png")
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Hans im Glueck"),
 
         new Producto()
             .setId(3)
@@ -32,7 +34,8 @@ export function ProductosFalsos()
             .setPrecio(59990)
             .setImagen("/productos/control_xbox.png")
             .setDestacado(true)
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Microsoft"),
             
 
         new Producto()
@@ -43,7 +46,8 @@ export function ProductosFalsos()
             .setCategoria("Accesorios")
             .setPrecio(79990)
             .setImagen("/productos/audifonosCloud.png")
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("HyperX"),
 
         new Producto()
             .setId(5)
@@ -53,18 +57,20 @@ export function ProductosFalsos()
             .setCategoria("Consolas")
             .setPrecio(549990)
             .setImagen("/productos/ps5.png")
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Sony"),
 
         new Producto()
             .setId(6)
             .setCodigo("CG001")
-            .setNombre("PC Gamer ASUS ROG Strix")
+            .setNombre("Notebook Gamer ASUS ROG Strix")
             .setDescripcion("Un potente equipo diseñado para los gamers más exigentes, equipado con los últimos componentes para ofrecer un rendimiento excepcional en cualquier juego.")
             .setCategoria("Computadores Gamers")
             .setPrecio(1299990)
             .setImagen("/productos/pcAsus.png")
             .setDestacado(true)
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Asus"),
 
         new Producto()
             .setId(7)
@@ -74,7 +80,8 @@ export function ProductosFalsos()
             .setCategoria("Sillas Gamers")
             .setPrecio(349990)
             .setImagen("/productos/sillaGamer.png")
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Secretlab"),
 
         new Producto()
             .setId(8)
@@ -84,7 +91,8 @@ export function ProductosFalsos()
             .setCategoria("Mouse")
             .setPrecio(49990)
             .setImagen("/productos/mouseLogitech.png")
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Logitech"),
 
         new Producto()
             .setId(9)
@@ -94,7 +102,8 @@ export function ProductosFalsos()
             .setCategoria("Mousepad")
             .setPrecio(29990)
             .setImagen("/productos/mousepad.png")
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Razer"),
 
         new Producto()
             .setId(10)
@@ -105,7 +114,8 @@ export function ProductosFalsos()
             .setPrecio(19990)
             .setImagen("/productos/Polera-personalizada.png")
             .setDestacado(true)
-            .setCantidad(10),
+            .setCantidad(10)
+            .setMarca("Propia"),
 
         new Producto()
             .setId(11)
@@ -118,5 +128,6 @@ export function ProductosFalsos()
             .setImagen("/productos/cohette.jpg")
             .setListaImagen(["../../../public/productos/cohette-monster.jpg", "../../../public/productos/cohette-spell.jpg", "../../../public/productos/cohette-extra.jpg"])
             .setCantidad(1)
+            .setMarca("Propia")
     ];
 }
