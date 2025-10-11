@@ -3,30 +3,37 @@
   cursor: pointer;
 }
 
+.sesion-header:hover {
+  cursor: pointer;
+  color: #fff;
+}
+
 .sesion-panel {
   position: absolute;
   top: 100%;
   left: 0;
   background-color: #d3d3d3;
-  min-width: 175px;
+  min-width: 250px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
   transition: all 0.3s ease;
   z-index: 10;
+  border-radius: 10px;
 }
 
-.sesion-panel p {
-  color: black;
+.sesion-panel h1 {
+  color: #fff;
 }
 
-.sesion-panel p:hover {
+.sesion-panel h1:hover {
   background-color: gray;
+  color: #000;
   cursor: pointer;
 }
 
 .sesion-header:hover .sesion-panel {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
+  transform: translateY(15px);
 }
