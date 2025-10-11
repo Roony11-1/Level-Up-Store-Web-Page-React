@@ -11,10 +11,10 @@ interface FormSelectProps
 export function FormSelect({ name, label, value, options, onChange, required=false }: FormSelectProps) 
 {
   return (
-    <tr>
-      <td>{label}:</td>
-      <td>
-        <select 
+    <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
+      <p>{label}:</p>
+        <select
+            className="formselect"
             name={name}
             value={value} 
             onChange={onChange} 
@@ -22,13 +22,12 @@ export function FormSelect({ name, label, value, options, onChange, required=fal
             <option 
                 value="">Seleccione {label.toLowerCase()}
             </option>
-          {options.map((opt) => (
+            {options.map((opt) => (
             <option key={opt.value} value={opt.value}>
               {opt.label}
             </option>
           ))}
         </select>
-      </td>
-    </tr>
+    </div>
   );
 }

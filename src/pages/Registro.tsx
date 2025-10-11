@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
-import "../assets/css/Registro/registro.css"
+import "../assets/css/Formulario/formulario.css"
 import { UsuarioApiService } from '../services/UsuarioApiService';
 import { FormSelect } from '../components/Formularios/FormSelect/FormSelect';
-import { FormInput } from '../components/Formularios/FormInput/Forminput';
+import { FormInput } from '../components/Formularios/FormInput/FormInput';
 
 import { UbicacionService } from "../utilities/RegionComuna"
 import { Usuario } from '../model/Usuario';
+import { Boton } from '../components/Boton/Boton';
 
 export function Registro() 
 {
@@ -132,62 +133,54 @@ export function Registro()
         <div>
             <h1>Página de Registro</h1>
 
-        <div className='registroContainer'>
-        <form onSubmit={handleSubmit}>
-                <table>
-                    <tbody>
-                        <FormInput 
-                            name='nombreUsuario'
-                            label='Nombre de Usuario'
-                            onChange={handleChange}
-                            value={formData.nombreUsuario} />
-                        <FormInput 
-                            name='email'
-                            label='Correo'
-                            onChange={handleChange}
-                            value={formData.email} />
-                        <FormInput 
-                            name='confirmarEmail'
-                            label='Confirmar Correo'
-                            onChange={handleChange}
-                            value={formData.confirmarEmail} />
-                        <FormInput 
-                            name='contraseña'
-                            label='Contraseña'
-                            onChange={handleChange}
-                            value={formData.contraseña} />
-                        <FormInput 
-                            name='confirmarContraseña'
-                            label='Confirmar Contraseña'
-                            onChange={handleChange}
-                            value={formData.confirmarContraseña} />
-                        <FormInput
-                            name='telefono'
-                            label='Telefono (Opcional)'
-                            placeholder='9XXXXXXXX'
-                            onChange={handleChange}
-                            value={formData.telefono} />
-                        <FormSelect
-                            name="region"
-                            label='Región'
-                            value={formData.region}
-                            options={regiones.map(r => ({ value: r, label: r }))}
-                            onChange={handleSelectChange} />
-                        <FormSelect
-                            name="comuna"
-                            label='Comuna'
-                            value={formData.comuna}
-                            options={comunas.map(c => ({ value: c, label: c }))}
-                            onChange={handleSelectChange} />
-                        <tr>
-                            <td colSpan={2}>
-                                <button>Registrar</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <form onSubmit={handleSubmit}>
+                <div className='formularioContainer'>
+                    <FormInput 
+                        name='nombreUsuario'
+                        label='Nombre de Usuario'
+                        onChange={handleChange}
+                        value={formData.nombreUsuario} />
+                    <FormInput 
+                        name='email'
+                        label='Correo'
+                        onChange={handleChange}
+                        value={formData.email} />
+                    <FormInput 
+                        name='confirmarEmail'
+                        label='Confirmar Correo'
+                        onChange={handleChange}
+                        value={formData.confirmarEmail} />
+                    <FormInput 
+                        name='contraseña'
+                        label='Contraseña'
+                        onChange={handleChange}
+                        value={formData.contraseña} />
+                    <FormInput 
+                        name='confirmarContraseña'
+                        label='Confirmar Contraseña'
+                        onChange={handleChange}
+                        value={formData.confirmarContraseña} />
+                    <FormInput
+                        name='telefono'
+                        label='Telefono (Opcional)'
+                        placeholder='9XXXXXXXX'
+                        onChange={handleChange}
+                        value={formData.telefono} />
+                    <FormSelect
+                        name="region"
+                        label='Región'
+                        value={formData.region}
+                        options={regiones.map(r => ({ value: r, label: r }))}
+                        onChange={handleSelectChange} />
+                    <FormSelect
+                        name="comuna"
+                        label='Comuna'
+                        value={formData.comuna}
+                        options={comunas.map(c => ({ value: c, label: c }))}
+                        onChange={handleSelectChange} />
+                    <Boton>Registrarse</Boton>
+                </div>
             </form>
-        </div>
         </div>
     )
 }

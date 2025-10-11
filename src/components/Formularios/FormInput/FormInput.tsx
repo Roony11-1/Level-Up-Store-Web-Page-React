@@ -13,10 +13,10 @@ interface FormInputProps
 export function FormInput({ name, label, type = "text", placeholder, value, onChange, required = false,}: FormInputProps) 
   {
   return (
-    <tr>
-      <td>{label}:</td>
-      <td>
+    <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
+      <p>{label}:</p>
         <input
+          className="forminput"
           name={name}
           value={value}
           type={type}
@@ -24,7 +24,6 @@ export function FormInput({ name, label, type = "text", placeholder, value, onCh
           onChange={onChange}
           required={required}
         />
-      </td>
-    </tr>
+    </div>
   );
 }

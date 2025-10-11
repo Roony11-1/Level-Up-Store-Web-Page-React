@@ -2,8 +2,9 @@ import { useState } from "react";
 import { LoginRequest } from "../model/LoginRequest";
 import { UsuarioApiService } from "../services/UsuarioApiService";
 
-import "../assets/css/Login/login.css"
+import "../assets/css/Formulario/formulario.css"
 import { FormInput } from "../components/Formularios/FormInput/FormInput";
+import { Boton } from "../components/Boton/Boton";
 
 export function Login() 
 {
@@ -68,29 +69,21 @@ export function Login()
     return (
         <div>
             <h1>Iniciar Sesión</h1>
-            <div className="login-container">
-                <form onSubmit={handleSubmit}>
-                    <table>
-                        <tbody>
-                            <FormInput 
-                                name='email'
-                                label='Correo Electrónico'
-                                onChange={handleChange}
-                                value={formData.email} />
-                            <FormInput 
-                                name='password'
-                                label='Contraseña'
-                                onChange={handleChange}
-                                value={formData.password} />
-                                <tr>
-                                    <td colSpan={2}>
-                                        <button type="submit">Iniciar Sesión</button>
-                                    </td>
-                                </tr>
-                        </tbody>
-                    </table>
-                </form>
-            </div>
+            <form onSubmit={handleSubmit}>
+                <div className="formularioContainer">
+                    <FormInput 
+                        name='email'
+                        label='Correo Electrónico'
+                        onChange={handleChange}
+                        value={formData.email} />
+                    <FormInput 
+                        name='password'
+                        label='Contraseña'
+                        onChange={handleChange}
+                        value={formData.password} />
+                    <Boton>Iniciar Sesión</Boton>
+                </div>
+            </form>
         </div>
     );
 }
