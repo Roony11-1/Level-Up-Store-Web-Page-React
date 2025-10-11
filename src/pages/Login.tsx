@@ -3,7 +3,7 @@ import { LoginRequest } from "../model/LoginRequest";
 import { UsuarioApiService } from "../services/UsuarioApiService";
 
 import "../assets/css/Login/login.css"
-import { FormInput } from "../components/Formularios/FormInput/Forminput";
+import { FormInput } from "../components/Formularios/FormInput/FormInput";
 
 export function Login() 
 {
@@ -12,11 +12,6 @@ export function Login()
         password: ""
     })
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
-    {
-        const { name, value } = e.target;
-        setFormData((prev) => ({ ...prev, [name]: value }));
-    };
 
     function validarFormRegistro(formData: any): string[] 
     {
