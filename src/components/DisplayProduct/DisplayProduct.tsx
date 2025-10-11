@@ -15,6 +15,5 @@ export function DisplayProduct({ producto }: { producto: Producto }) {
                 Detalles
             </Boton>
         </div>
-        
     );
 }
