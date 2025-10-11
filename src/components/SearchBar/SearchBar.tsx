@@ -1,10 +1,37 @@
+import React, { useState } from "react";
 import "../../assets/css/SearchBar/searchbar.css"
+import { Boton } from "../Boton/Boton";
 
 export function SearchBar()
 {
+    const [texto, setTexto] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent) =>
+    {
+        e.preventDefault();
+        
+        if (!texto)
+            alert("Debes ingresar algo que buscar!")
+        else
+        {
+            alert(`Has buscado: ${texto}`)
+        }
+    }
+
     return(
         <div className="searchbar-container">
-            <input type="text" className="searchbar"/>
+            <form className="searchbar" onSubmit={handleSubmit}>
+                <input 
+                    type="text" 
+                    className="searchbar" 
+                    value={texto} 
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTexto(e.target.value)}
+                    placeholder="Buscar productos" />
+
+                <Boton>
+                    Buscar
+                </Boton>
+            </form>
         </div>
     );
 }
