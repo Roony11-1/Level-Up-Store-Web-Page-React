@@ -6,8 +6,8 @@ export function SingingCat()
         <video 
             src={videoGato} 
             controls 
-            autoPlay={false} 
-            loop={false} 
+            autoPlay={true} 
+            loop={true} 
             muted={false} 
         />
     );
