@@ -1,7 +1,21 @@
+.catalogo-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 .contenedor-productos {
     display: flex; 
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
 
+.contenedor-filtros {
+    display: flex;
+
+    justify-content: center;
+
+    border-radius: 10px;
+    background-color: #d3d3d3;
 }
