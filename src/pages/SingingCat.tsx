@@ -5,7 +5,6 @@ export function SingingCat()
     return (
         <video 
             src={videoGato} 
-            controls 
             autoPlay={true} 
             loop={true} 
             muted={false} 
