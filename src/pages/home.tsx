@@ -5,6 +5,7 @@ import "../css/inicio.css"
 import type { Producto } from "../model/Producto";
 import { ProductoApiService } from "../services/ProductoApiService";
 import { NavLink } from "react-router-dom";
+import { Boton } from "../components/Boton/Boton";
 
 export function Home() 
 {
@@ -30,7 +31,7 @@ export function Home()
         Nuestro catálogo ofrece productos de la mejor calidad y precio.
         Descubre nuestras guías y productos exclusivos disponibles ahora.
       </p>
-      <NavLink to="/catalogo" className={"btn"}>Ver Productos</NavLink>
+      <NavLink to="/catalogo"><Boton>Ver Productos</Boton></NavLink>
     </div>
     <div className="div2">
       <div className="destacados">
