@@ -60,7 +60,7 @@ export function Login()
             });
             
             // Recibimos el usuario ya veremos que hacemos con el
-            const usuario = usuarioService.getModelClass().fromJSON(resultado.usuario)
+            //const usuario = usuarioService.getModelClass().fromJSON(resultado.usuario)
         }
 
         alert(resultado.message);
