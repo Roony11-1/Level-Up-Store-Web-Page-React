@@ -1,0 +1,14 @@
+.searchbar-container {
+    display: flex;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #fff;
+    height: 45px;
+    width: 75%;
+}
+
+.searchbar {
+    border-radius: 5px;
+    display: flex;
+    width: 75%;
+}

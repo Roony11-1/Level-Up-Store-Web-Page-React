@@ -1,44 +1,13 @@
-html, body {
-    height: 100%;
-    margin: 0;
-    display: flex;      
-    flex-direction: column;
-
-    font-family: 'Roboto', sans-serif;
-}
-/* Fondo general */
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: #1e1e1e; /* Fondo oscuro */
-}
-
-/* Contenedor principal */
-.ini {
+.home-container {
     display: flex;
+    flex-direction: row;
+    flex: 1;
+
     align-items: center;
-    justify-content: space-between;
-    padding: 40px;
-    gap: 30px;
-    flex-wrap: wrap; /* Para que se acomode en móviles */
-}
+    justify-items: center;
 
-/* texto */
-.text {
-    max-width: 40%;
-    color: white;
-}
-
-.text h1 {
-    margin: 0 0 10px 0;
-    font-size: 2.5rem;
-    color: #ffffff;
-}
-
-.text p {
-    margin: 0 0 20px 0;
-    line-height: 1.5;
-    font-size: 1.1rem;
+    gap: 5px;
+    padding: 5px;
 }
 
 /* boton */
@@ -59,8 +28,7 @@ body {
     color: #fff;
 }
 
-/* imagen */
-.img {
+.destacados {
     width: 50%;
     min-height: 300px;
     border: 2px solid black;
@@ -71,26 +39,25 @@ body {
     border-radius: 8px;
 }
 
-.img img {
+.destacados img {
     max-width: 100%;
     max-height: 280px;
     object-fit: contain;
 }
 
-/* responsivo */
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .hero-text {
-        max-width: 100%;
-    }
-
-    .hero-img {
-        width: 80%;
-    }
+.parent {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 1px;
+}
+    
+.div1 {
+    grid-column: span 2 / span 2;
+    grid-row: span 3 / span 3;
 }
 
-
+.div2 {
+    grid-row: span 3 / span 3;
+    grid-column-start: 3;
+}

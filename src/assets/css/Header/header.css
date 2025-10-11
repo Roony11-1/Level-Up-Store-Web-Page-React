@@ -5,9 +5,12 @@ header {
     margin-bottom: 5px;
     border: 1px solid #000;
 
+    top: 0px;
     position: sticky;
-    top: 0;
-    z-index: 1000;
+
+    width: 100%;
+    box-sizing: border-box;
+    max-height: 125px;
 }
 
 /* Grid */
