@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import '../assets/css/home/home.css';
-import "../css/inicio.css"
 import type { Producto } from "../model/Producto";
 import { ProductoApiService } from "../services/ProductoApiService";
 import { NavLink } from "react-router-dom";
@@ -24,8 +23,8 @@ export function Home()
   console.log(productosDestacados);
 
   return (
-  <div className="parent">
-    <div className="div1">
+  <div className="home-container">
+    <div className="titulo-home">
       <h1>TIENDA ONLINE</h1>
       <p>
         Nuestro catálogo ofrece productos de la mejor calidad y precio.
@@ -33,7 +32,7 @@ export function Home()
       </p>
       <NavLink to="/catalogo"><Boton>Ver Productos</Boton></NavLink>
     </div>
-    <div className="div2">
+    <div className="imagenes-home">
       <div className="destacados">
         <p>Hola</p>
       </div>

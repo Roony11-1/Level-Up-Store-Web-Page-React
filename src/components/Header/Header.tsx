@@ -9,7 +9,7 @@ export function Header()
 {
   return(
     <header>
-      <div className="parent">
+      <div className="contenedor-header">
           <div className="izquierda">
             <HeaderLogo />
             <UserPanel/>

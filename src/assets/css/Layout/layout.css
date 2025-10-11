@@ -15,7 +15,6 @@ main {
     padding: 20px;
     text-align: center;
     align-items: center;
-    justify-content: flex-start;
     background-color: #1e90ff;
     min-height: 100%;
 }

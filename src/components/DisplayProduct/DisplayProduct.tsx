@@ -1,6 +1,7 @@
 import "../../assets/css/DisplayProduct/displayproduct.css"
 
 import { Producto } from "../../model/Producto";
+import { Boton } from "../Boton/Boton";
 
 
 export function DisplayProduct({ producto }: { producto: Producto }) {
@@ -10,9 +11,9 @@ export function DisplayProduct({ producto }: { producto: Producto }) {
             <h1>{producto.getNombre()}</h1>
             <p>${producto.getPrecio().toLocaleString("es-CL")}</p>
 
-            <button type="button" className="btn btn-primary" data-toggle="modal" data-target="#${modalId}">
+            <Boton>
                 Detalles
-            </button>
+            </Boton>
         </div>
         
     );
