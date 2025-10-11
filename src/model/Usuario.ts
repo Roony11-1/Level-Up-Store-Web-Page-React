@@ -41,4 +41,5 @@ export class Usuario extends ModeloBase
     getRegion(): string | null { return this.region; }
     getComuna(): string | null { return this.comuna; }
     getTipo(): string | null { return this.tipo; }
+    isAdmin(): boolean { return this.tipo.toLowerCase() === "admin"; }
 }
