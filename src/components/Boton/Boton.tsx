@@ -10,8 +10,8 @@ interface BotonProps
 export function Boton( {children}:BotonProps )
 {
     return(
-        <div className="btn">
+        <button className="btn">
             {children}
-        </div>
+        </button>
     );
 }
