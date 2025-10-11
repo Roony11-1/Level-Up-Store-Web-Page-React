@@ -5,10 +5,10 @@ import type { Producto } from "../model/Producto";
 import { ProductoApiService } from "../services/ProductoApiService";
 import { NavLink } from "react-router-dom";
 import { Boton } from "../components/Boton/Boton";
-import { DisplayBlog } from "../components/DisplayBlog/DisplayBlog";
 import { Blog } from "../model/Blog";
 import { BlogApiService } from "../services/BlogApiService";
 import { DisplayMarkedProduct } from "../components/Home/DisplayMarkedProduct/DisplayMarkedProduct";
+import { DisplayMarkedBlogs } from "../components/Home/DisplayMarkedBlog/DisplayMarkedBlog";
 
 export function Home() 
 {
@@ -44,11 +44,12 @@ export function Home()
         </p>
         <NavLink to="/catalogo"><Boton>Ver Productos</Boton></NavLink>
       </div>
-      <div>
+      <div className="blogs-container">
         <h1>Noticias de esta semana</h1>
         <div className="blogs">
-          {blogs[0] && <DisplayBlog blog={blogs[0]} />}
+          {blogs[0] && <DisplayMarkedBlogs blog={blogs[0]} />}
         </div>
+        <NavLink to="/blogs"><Boton>Ver Blogs</Boton></NavLink>
       </div>
     </div>
     <div className="imagenes-home">
