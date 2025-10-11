@@ -1,19 +1,92 @@
 import { useState } from 'react';
 import "../assets/css/Registro/registro.css"
+import { UsuarioApiService } from '../services/UsuarioApiService';
+import { FormSelect } from '../components/Formularios/FormSelect/FormSelect';
+import { FormInput } from '../components/Formularios/FormInput/Forminput';
 
 export function Registro() 
 {
-    const [nombreUsuario, setNombreUsuario] = useState("");
-    const [email, setEmail] = useState("");
-    const [confirmarEmail, setConfirmarEmail] = useState("");
-    const [contraseña, setContraseña] = useState("");
-    const [confirmarContraseña, setConfirmarContraseña] = useState("");
-    const [telefono, setTelefono] = useState("");
+    const [formData, setFormData] = useState({
+        nombreUsuario: "",
+        email: "",
+        confirmarEmail: "",
+        contraseña: "",
+        confirmarContraseña: "",
+        telefono: "",
+        region: "",
+        comuna: ""
+    });
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
+    {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        const { id, value } = e.target;
+        setFormData((prev) => ({ ...prev, [id]: value }));
+    };
+
+    function validarFormRegistro(formData: any): string[] 
+    {
+        const errores: string[] = [];
+
+        if (!formData.nombreUsuario.trim())
+            errores.push("El nombre de usuario es obligatorio.");
+
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email))
+            errores.push("El correo electrónico no es válido.");
+
+        if (formData.email !== formData.confirmarEmail)
+            errores.push("Los correos no coinciden.");
+
+        if (formData.contraseña.length < 6)
+            errores.push("La contraseña debe tener al menos 6 caracteres.");
+
+        if (formData.contraseña !== formData.confirmarContraseña)
+            errores.push("Las contraseñas no coinciden.");
+
+
+        if (formData.telefono)
+            if (!/^\d{8}$/.test(formData.telefono))
+                errores.push("El teléfono debe tener 9 dígitos.");
+
+        return errores;
+    }
 
     const handleSubmit = async (e: React.FormEvent) => 
     {
         e.preventDefault();
-        alert("Mira soy una alerta!");
+        
+        const errores = validarFormRegistro(formData);
+
+        if (errores.length > 0) 
+        {
+            alert("Errores:\n" + errores.join("\n"));
+            return;
+        }
+
+        const usuarioService = new UsuarioApiService();
+        const usuario = usuarioService.getModelClass().fromJSON(formData)
+
+        const resultado = await usuarioService.save(usuario);
+
+        if (resultado.success)
+        {
+            setFormData({
+                nombreUsuario: "",
+                email: "",
+                confirmarEmail: "",
+                contraseña: "",
+                confirmarContraseña: "",
+                telefono: "",
+                region: "",
+                comuna: ""
+            });
+        }
+
+        alert(resultado.message);
     };
 
     return (
@@ -23,76 +96,49 @@ export function Registro()
         <div className='registroContainer'>
         <form onSubmit={handleSubmit}>
                 <table>
-                    <tr>
-                        <td>Nombre de Usuario:</td>
-                        <td>
-                            <input 
-                                placeholder="Nombre de Usuario"
-                                onChange={(e) => setNombreUsuario(e.target.value)}
-                                value={nombreUsuario}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Correo:</td>
-                        <td>
-                            <input
-                                placeholder="Correo"
-                                onChange={(e) => setEmail(e.target.value)}
-                                value={email}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Confirmar Correo:</td>
-                        <td>
-                            <input
-                                placeholder="Confirmar Correo"
-                                onChange={(e) => setConfirmarEmail(e.target.value)}
-                                value={confirmarEmail}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Contraseña:</td>
-                        <td>
-                            <input
-                                placeholder="Contraseña"
-                                onChange={(e) => setContraseña(e.target.value)}
-                                value={contraseña}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Confirmar Contraseña:</td>
-                        <td>
-                            <input
-                                placeholder="Confirmar Contraseña"
-                                onChange={(e) => setConfirmarContraseña(e.target.value)}
-                                value={confirmarContraseña}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Telefono (Opcional):</td>
-                        <td>
-                            <input
-                                placeholder="Telefono (Opcional)"
-                                onChange={(e) => setTelefono(e.target.value)}
-                                value={telefono}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Región:</td>
-                        <td>
-                            <select id="region" required>
-                            <option value="">Seleccione región</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Comuna:</td>
-                        <td>
-                            <select id="comuna" required>
-                            <option value="">Seleccione comuna</option>
-                            </select>
-                        </td>
-                    </tr>
+                    <FormInput 
+                        name='nombreUsuario'
+                        label='Nombre de Usuario'
+                        onChange={handleChange}
+                        value={formData.nombreUsuario} />
+                    <FormInput 
+                        name='email'
+                        label='Confirmar Correo'
+                        onChange={handleChange}
+                        value={formData.confirmarEmail} />
+                    <FormInput 
+                        name='confirmarEmail'
+                        label='Confirmar Correo'
+                        onChange={handleChange}
+                        value={formData.confirmarEmail} />
+                    <FormInput 
+                        name='contraseña'
+                        label='Contraseña'
+                        onChange={handleChange}
+                        value={formData.contraseña} />
+                    <FormInput 
+                        name='confirmarContraseña'
+                        label='Confirmar Contraseña'
+                        onChange={handleChange}
+                        value={formData.confirmarContraseña} />
+                    <FormInput
+                        name='telefono'
+                        label='Telefono (Opcional)'
+                        placeholder='9XXXXXXXX'
+                        onChange={handleChange}
+                        value={formData.telefono} />
+                    <FormSelect
+                        name="region"
+                        label='Región'
+                        value={formData.region}
+                        options={[]}
+                        onChange={handleSelectChange} />
+                    <FormSelect
+                        name="comuna"
+                        label='Comuna'
+                        value={formData.comuna}
+                        options={[]}
+                        onChange={handleSelectChange} />
                     <tr>
                         <td colSpan={2}>
                             <button>Registrar</button>
