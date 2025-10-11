@@ -5,36 +5,56 @@ import type { Producto } from "../model/Producto";
 import { ProductoApiService } from "../services/ProductoApiService";
 import { NavLink } from "react-router-dom";
 import { Boton } from "../components/Boton/Boton";
+import { DisplayBlog } from "../components/DisplayBlog/DisplayBlog";
+import { Blog } from "../model/Blog";
+import { BlogApiService } from "../services/BlogApiService";
+import { DisplayMarkedProduct } from "../components/Home/DisplayMarkedProduct/DisplayMarkedProduct";
 
 export function Home() 
 {
   const [productosDestacados, setProductosDestacados] = useState<Producto[]>([])
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+
   const productoService = new ProductoApiService();
+  const blogService = new BlogApiService();
 
   useEffect(() => {
     const fetchProductosDestacados = async () => {
       const datos = await productoService.fetchByDestacado();
       setProductosDestacados(datos);
     };
+
+    const fetchBlogs = async () => {
+      const datos = await blogService.fetchAll();
+      setBlogs(datos);
+    };
       
     fetchProductosDestacados();
+    fetchBlogs();
   }, []);
-
-  console.log(productosDestacados);
 
   return (
   <div className="home-container">
     <div className="titulo-home">
-      <h1>TIENDA ONLINE</h1>
-      <p>
-        Nuestro catálogo ofrece productos de la mejor calidad y precio.
-        Descubre nuestras guías y productos exclusivos disponibles ahora.
-      </p>
-      <NavLink to="/catalogo"><Boton>Ver Productos</Boton></NavLink>
+      <div className="banner">
+        <h1>La mejor página para Gamers de verdad</h1>
+        <p>
+          Nuestro catálogo ofrece productos de la mejor calidad y precio.
+          Descubre nuestras guías y productos exclusivos disponibles ahora.
+        </p>
+        <NavLink to="/catalogo"><Boton>Ver Productos</Boton></NavLink>
+      </div>
+      <div>
+        <h1>Noticias de esta semana</h1>
+        <div className="blogs">
+          {blogs[0] && <DisplayBlog blog={blogs[0]} />}
+        </div>
+      </div>
     </div>
     <div className="imagenes-home">
+      <h1>Productos Destacados</h1>
       <div className="destacados">
-        <p>Hola</p>
+        {productosDestacados[0] && <DisplayMarkedProduct producto={productosDestacados[0]} />}
       </div>
     </div>
   </div>
