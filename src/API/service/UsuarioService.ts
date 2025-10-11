@@ -47,7 +47,7 @@ export class UsuarioService
     {
         return this.usuarioRepository.deleteById(id);
     }
-
+    
     login(email: string, password: string): { success: boolean; message: string; usuario?: Usuario } 
     {
         if (!email || !password)
@@ -61,6 +61,6 @@ export class UsuarioService
         if (usuario.contraseña !== password)
             return { success: false, message: "Contraseña incorrecta" };
 
-        return { success: true, message: "Inicio de sesión exitoso" };
+        return { success: true, message: "Inicio de sesión exitoso", usuario: usuario };
     }
 }

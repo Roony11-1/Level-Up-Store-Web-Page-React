@@ -10,7 +10,7 @@ export class UsuarioApiService extends BaseApiService<Usuario>
     super(usuarioController, Usuario);
   }
 
-  async login(loginRequest: LoginRequest): Promise<{ success: boolean; message: string }> 
+  async login(loginRequest: LoginRequest): Promise<{ success: boolean; message: string; usuario?: Usuario } > 
   {
     return await this.controller.login(loginRequest);
 

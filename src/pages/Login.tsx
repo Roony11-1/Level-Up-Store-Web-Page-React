@@ -58,8 +58,10 @@ export function Login()
                 password: ""
             });
             
+            // Recibimos el usuario ya veremos que hacemos con el
+            const usuario = usuarioService.getModelClass().fromJSON(resultado.usuario)
         }
-        
+
         alert(resultado.message);
     };
 
@@ -69,21 +71,23 @@ export function Login()
             <div className="login-container">
                 <form onSubmit={handleSubmit}>
                     <table>
-                    <FormInput 
-                        name='email'
-                        label='Correo Electrónico'
-                        onChange={handleChange}
-                        value={formData.email} />
-                    <FormInput 
-                        name='password'
-                        label='Contraseña'
-                        onChange={handleChange}
-                        value={formData.password} />
-                        <tr>
-                            <td colSpan={2}>
-                                <button type="submit">Iniciar Sesión</button>
-                            </td>
-                        </tr>
+                        <tbody>
+                            <FormInput 
+                                name='email'
+                                label='Correo Electrónico'
+                                onChange={handleChange}
+                                value={formData.email} />
+                            <FormInput 
+                                name='password'
+                                label='Contraseña'
+                                onChange={handleChange}
+                                value={formData.password} />
+                                <tr>
+                                    <td colSpan={2}>
+                                        <button type="submit">Iniciar Sesión</button>
+                                    </td>
+                                </tr>
+                        </tbody>
                     </table>
                 </form>
             </div>

@@ -30,7 +30,7 @@ export class UsuarioController
         return this.usuarioService.deleteById(id);
     }
 
-    login(loginRequest: LoginRequest): { success: boolean; message: string }
+    login(loginRequest: LoginRequest): { success: boolean; message: string; usuario?: Usuario } 
     {
         return this.usuarioService.login(loginRequest.getEmail(), loginRequest.getPassword());
     }
