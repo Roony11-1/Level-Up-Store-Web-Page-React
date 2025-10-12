@@ -1,5 +1,5 @@
 import '../css/contacto.css'
-function Contacto() {
+export function Contacto() {
     return (
             <div>
                 <div>
@@ -47,5 +47,3 @@ function Contacto() {
             </div>
     )
 }
-
-export default Contacto;

@@ -6,16 +6,16 @@ import App from "./App.tsx";
 import "./assets/css/index.css";
 
 // Paginas
-import { Home } from "./pages/Home.tsx";
-import { NotFound } from "./pages/NotFound.tsx";
-import { PruebaApi } from "./pages/PruebaApi.tsx";
-import { Productos } from "./pages/Productos.tsx";
-import { Login } from "./pages/Login.tsx";
-import { Nosotros } from "./pages/Nosotros.tsx";
-import { Registro } from "./pages/Registro.tsx";
-import { Blogs } from "./pages/Blogs.tsx";
-import Contacto from "./pages/Contacto.tsx";
-import { SingingCat } from "./pages/SingingCat.tsx";
+import { Home } from "./pages/Home";
+import { NotFound } from "./pages/NotFound";
+import { PruebaApi } from "./pages/PruebaApi";
+import { Productos } from "./pages/Productos";
+import { Login } from "./pages/Login";
+import { Nosotros } from "./pages/Nosotros";
+import { Registro } from "./pages/Registro";
+import { Blogs } from "./pages/Blogs";
+import { Contacto } from "./pages/Contacto";
+import { SingingCat } from "./pages/SingingCat";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
