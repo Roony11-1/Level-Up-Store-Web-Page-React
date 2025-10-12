@@ -6,7 +6,7 @@ import App from "./App.tsx";
 import "./assets/css/index.css";
 
 // Paginas principales
-import { Home } from "./pages/home.tsx";
+import { Home } from "./pages/home";
 import { NotFound } from "./pages/NotFound";
 import { PruebaApi } from "./pages/PruebaApi";
 import { Productos } from "./pages/Productos";

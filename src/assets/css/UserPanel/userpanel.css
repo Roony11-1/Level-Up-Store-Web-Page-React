@@ -20,7 +20,7 @@
     transform: translateY(-10px);
     transform: translateX(0);
     transition: all 0.3s ease;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .user-panel:hover .user-links {
