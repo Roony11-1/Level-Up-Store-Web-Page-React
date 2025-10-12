@@ -5,21 +5,6 @@
     color: #000;
 }
 
-.user-panel h1 {
-    font-size: 1.2rem;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    padding: 10px 16px;
-    border-radius: 12px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.user-panel h1:hover {
-    color: #fff;
-    transform: scale(1.05);
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
-}
-
 .user-links {
     position: absolute;
     top: 110%;
@@ -68,4 +53,20 @@
     border-bottom: 1px solid #eee;
     margin-bottom: 5px;
     padding-bottom: 5px;
+}
+
+/* Menu */
+.user-panel h1 {
+    font-size: 1.2rem;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    padding: 10px 16px;
+    border-radius: 12px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-panel h1:hover {
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
 }
