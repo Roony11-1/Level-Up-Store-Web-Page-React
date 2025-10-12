@@ -23,7 +23,7 @@ export function SearchBar()
             <form className="searchbar" onSubmit={handleSubmit}>
                 <input 
                     type="text" 
-                    className="searchbar" 
+                    className="searchbar-text" 
                     value={texto} 
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTexto(e.target.value)}
                     placeholder="Buscar productos" />
