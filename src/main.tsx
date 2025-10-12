@@ -5,7 +5,7 @@ import { Layout } from "./components/Layout/Layout.tsx";
 import App from "./App.tsx";
 import "./assets/css/index.css";
 
-// Paginas
+// Paginas principales
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { PruebaApi } from "./pages/PruebaApi";
