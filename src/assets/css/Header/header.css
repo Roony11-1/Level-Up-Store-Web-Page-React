@@ -48,7 +48,7 @@ header {
     display: none;
     padding: 12px 24px;
     border: 2px solid #fff;
-    background: #fff;
+    background: linear-gradient(-45deg, #6a11cb, #2575fc);
     color: #000;
     font-weight: bold;
     border-radius: 5px;
@@ -58,6 +58,7 @@ header {
 
 .btnhamburguesa:hover {
     background: transparent;
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: #fff;
 }
 
@@ -87,5 +88,6 @@ header {
 .derecha.abierto {
     max-height: 450px;
     margin-top: 5px;
+    overflow: visible;
 }
 }
