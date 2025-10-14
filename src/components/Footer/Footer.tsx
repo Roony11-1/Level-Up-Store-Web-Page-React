@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import '../../assets/css/Footer/footer.css';
-import'../../css/estilos.css'
+
 
 
 export function Footer() {
