@@ -31,6 +31,47 @@ footer {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     width: 70%;
 }
+/* Nueva estructura en fila */
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  /* Columnas individuales dentro del footer */
+  .footer-col {
+    flex: 1;
+    min-width: 250px;
+  }
+  
+  /* Estilo de títulos e información */
+  .footer-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+  }
+  
+  .footer-text {
+    font-size: 14px;
+    color: #e0e0e0;
+    margin: 4px 0;
+  }
+  
+  /* Input de email */
+  .footer-input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    font-size: 14px;
+    width: 180px;
+  }
+  .div3{
+    display: flex;
+    flex-direction: row;
+  }
     
 
         
