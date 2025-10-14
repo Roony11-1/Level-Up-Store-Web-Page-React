@@ -10,7 +10,7 @@ export function Footer() {
       <div className="Footer">
         <div className="div2">
         <NavLink to="nosotros" ><h2>Nosotros</h2></NavLink>
-        <NavLink to="/contacto" ><h2>Contacto</h2></NavLink>
+        <NavLink to="contactos" ><h2>Contacto</h2></NavLink>
         </div>
 
         <div className="div3">
