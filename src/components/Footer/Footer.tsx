@@ -11,9 +11,6 @@ export function Footer() {
         <div className="div2">
         <NavLink to="nosotros" ><h2>Nosotros</h2></NavLink>
         <NavLink to="contactos" ><h2>Contacto</h2></NavLink>
-        </div>
-
-        <div className="div3">
         {/* Columna izquierda: Título y descripción */}
         <div className="footer-col">
           <h3 className="footer-title">Level-Up Store © 2025</h3>
@@ -21,6 +18,10 @@ export function Footer() {
             Tu tienda de confianza para todo lo relacionado con videojuegos.
           </p>
         </div>
+        </div>
+
+        <div className="div3">
+        
 
         {/* Columna central: Categorías y enlaces */}
         <div className="footer-col">
