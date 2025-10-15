@@ -8,7 +8,8 @@ export function UsuariosFalsos()
                     .setNombreUsuario("Admin")
                     .setEmail("admin@levelup.com")
                     .setContraseña("123456")
-                    .setTipo("admin"),
+                    .setTipo("admin")
+                    .setProfilePhoto("/profilePhotos/adminfoto.png"),
                 new Usuario()
                     .setId(2)
                     .setNombreUsuario("User")
