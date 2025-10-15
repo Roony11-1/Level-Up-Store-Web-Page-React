@@ -8,72 +8,48 @@ export function LoginStatus()
 {
     const { sesion, sesionLogout } = useSesion();
 
+    const usuarioActivo = sesion.getUsuarioActivo();
+
+    // No esta Logeado
+    if (!usuarioActivo)
+        return(
+            <div className="sesion-header">
+                <div>
+                    <h2>Hola!</h2>
+                    <p>No estás usando una cuenta</p>
+                </div>
+                <div className="sesion-panel"> 
+                    <Link to={'/login'}><h3>Iniciar Sesión</h3></Link> 
+                    <Link to={'/registrarse'}><h3>Registrarse</h3></Link> 
+                </div>
+            </div>
+        );
+
+    // Logeado
     return(
         <div className="sesion-header">
+            <div>
+                <ProfilePhoto
+                    profilePhoto={usuarioActivo.getProfilePhoto()} />
+            </div>
+            <div className="sesion-panel">
+                {/* Atajos a paneles de administración */}
+                {usuarioActivo.isAdmin() &&
+                    <div>
+                        <h2>Panel de Administración</h2>
+                        <Link to={'/admin-usuario'}><h3>Administrar Usuarios</h3></Link> 
+                        <hr />
+                    </div>
+                }
+                <h2>Panel de Usuario</h2>
+                <Link to={'/panel-usuario'}><h3>Ver Perfil</h3></Link>
 
-        {!sesion.getUsuarioActivo() ? <NoLogeado /> : 
-            <Logeado 
-                nombreUsuario={sesion.getUsuarioActivo()?.getNombreUsuario() || ""}
-                cerrarSesion={sesionLogout}
-                profilePhoto={sesion.getUsuarioActivo()?.getProfilePhoto()} />}
-        </div>
-    )
-}
-
-function NoLogeado()
-{
-    return (
-        <div>
-            <h2>Hola!</h2>
-            <p>Ingresa a tu cuenta!</p>
-
-            <PanelNoLogeado />
-        </div>
-    );
-}
-
-interface PanelLogeadoProps 
-{
-    nombreUsuario: string;
-    cerrarSesion: () => void;
-    profilePhoto?: string;
-}
-
-function Logeado({ nombreUsuario, cerrarSesion, profilePhoto }: PanelLogeadoProps)
-{
-    return(
-        <div>
-            <ProfilePhoto 
-                profilePhoto={profilePhoto} />
-
-            <PanelLogeado 
-                nombreUsuario={nombreUsuario || ""} 
-                cerrarSesion={cerrarSesion}/>
-        </div>
-    );
-}
-
-function PanelNoLogeado()
-{
-    return(
-        <div className="sesion-panel">
-            <Link to={'/login'}><h1>Iniciar Sesión</h1></Link>
-            <Link to={'/registrarse'}><h1>Registrarse</h1></Link>
-        </div>
-    );
-}
-
-function PanelLogeado({ nombreUsuario, cerrarSesion }: PanelLogeadoProps)
-{
-    return(
-        <div className="sesion-panel">
-            <h2>Bienvenido {nombreUsuario}</h2>
-            <Link to={'/panel-usuario'}><h3>Panel de Usuario</h3></Link>
-            <hr />
-            <Boton
-                onClick={cerrarSesion}>
+                <hr />
+                <Boton
+                    onClick={sesionLogout}>
                     Cerrar Sesión
                 </Boton>
+            </div>
         </div>
     );
 }
