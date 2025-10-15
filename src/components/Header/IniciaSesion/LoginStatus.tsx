@@ -68,6 +68,8 @@ function PanelLogeado({ nombreUsuario, cerrarSesion }: PanelLogeadoProps)
     return(
         <div className="sesion-panel">
             <h2>Bienvenido {nombreUsuario}</h2>
+            <Link to={'/panel-usuario'}><h3>Panel de Usuario</h3></Link>
+            <hr />
             <Boton
                 onClick={cerrarSesion}>
                     Cerrar Sesión

@@ -23,11 +23,11 @@
   border-radius: 10px;
 }
 
-.sesion-panel h1 {
+.sesion-panel h1, .sesion-panel h3 {
   color: #fff;
 }
 
-.sesion-panel h1:hover {
+.sesion-panel h1:hover, .sesion-panel h3:hover {
   background-color: gray;
   color: #000;
   cursor: pointer;
