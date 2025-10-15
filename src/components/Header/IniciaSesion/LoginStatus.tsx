@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import "../../../assets/css/Header/IniciarSesion/iniciarsesion.css"
 import { useSesion } from "../../../context/SesionContext/SesionContext"
 import { Boton } from "../../Boton/Boton";
+import { ProfilePhoto } from "../../ProfilePhoto/ProfilePhoto";
 
 export function LoginStatus()
 {
@@ -10,11 +11,11 @@ export function LoginStatus()
     return(
         <div className="sesion-header">
 
-
         {!sesion.getUsuarioActivo() ? <NoLogeado /> : 
             <Logeado 
                 nombreUsuario={sesion.getUsuarioActivo()?.getNombreUsuario() || ""}
-                cerrarSesion={sesionLogout} />}
+                cerrarSesion={sesionLogout}
+                profilePhoto={sesion.getUsuarioActivo()?.getProfilePhoto()} />}
         </div>
     )
 }
@@ -31,11 +32,19 @@ function NoLogeado()
     );
 }
 
-function Logeado({ nombreUsuario, cerrarSesion }: PanelLogeadoProps)
+interface PanelLogeadoProps 
+{
+    nombreUsuario: string;
+    cerrarSesion: () => void;
+    profilePhoto?: string;
+}
+
+function Logeado({ nombreUsuario, cerrarSesion, profilePhoto }: PanelLogeadoProps)
 {
     return(
         <div>
-            <h2>Bienvenido: {nombreUsuario} </h2>
+            <ProfilePhoto 
+                profilePhoto={profilePhoto} />
 
             <PanelLogeado 
                 nombreUsuario={nombreUsuario || ""} 
@@ -52,12 +61,6 @@ function PanelNoLogeado()
             <Link to={'/registrarse'}><h1>Registrarse</h1></Link>
         </div>
     );
-}
-
-interface PanelLogeadoProps 
-{
-    nombreUsuario: string;
-    cerrarSesion: () => void;
 }
 
 function PanelLogeado({ nombreUsuario, cerrarSesion }: PanelLogeadoProps)
