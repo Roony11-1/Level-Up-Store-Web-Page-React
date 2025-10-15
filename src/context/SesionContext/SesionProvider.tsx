@@ -1,5 +1,5 @@
 import { useState, type ReactNode } from "react";
-import { SesionContext } from "./SesionContext";
+import { SesionContext } from "./UseSesion";
 import { Sesion } from "../../model/Sesion";
 import type { Usuario } from "../../model/Usuario";
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { LoginRequest } from "../model/LoginRequest";
 import { UsuarioApiService } from "../services/UsuarioApiService";
 // Manejo de la sesion
-import { useSesion } from "../context/SesionContext/SesionContext";
+import { useSesion } from "../context/SesionContext/UseSesion";
 
 import "../assets/css/Formulario/formulario.css"
 import { FormInput } from "../components/Formularios/FormInput/FormInput";
