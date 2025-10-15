@@ -16,7 +16,8 @@
   min-width: 250px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(-10px);
+  transform: translateY(-100px);
+  transform: translateX(-50px);
   transition: all 0.3s ease;
   z-index: 1001;
   border-radius: 10px;
@@ -35,5 +36,6 @@
 .sesion-header:hover .sesion-panel {
   opacity: 1;
   visibility: visible;
-  transform: translateY(15px);
+  transform: translateY(100px);
+  transform: translateX(-60px);
 }

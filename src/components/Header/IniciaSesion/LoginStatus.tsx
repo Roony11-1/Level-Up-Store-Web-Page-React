@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "../../../assets/css/Header/IniciarSesion/iniciarsesion.css"
+import "../../../assets/css/Header/LoginStatus/loginstatus.css"
 import { useSesion } from "../../../context/SesionContext/SesionContext"
 import { Boton } from "../../Boton/Boton";
 import { ProfilePhoto } from "../../ProfilePhoto/ProfilePhoto";
