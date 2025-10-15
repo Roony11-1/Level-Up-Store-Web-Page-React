@@ -11,6 +11,11 @@ export interface SesionContextType
 
 export const SesionContext = createContext<SesionContextType | undefined>(undefined);
 
-export const useSesion = () => {
-  return useContext(SesionContext);
+export const useSesion = (): SesionContextType => 
+{
+  const context = useContext(SesionContext);
+  if (!context)
+    throw new Error("useSesion debe usarse dentro de un SesionProvider");
+  
+  return context;
 };
