@@ -29,9 +29,9 @@ export function Productos()
             <h1>Filtros</h1>
         </div>
         <div className="contenedor-productos">
-          {productos.map((p) => (
-            <DisplayProduct producto={p} />
-          ))}
+          {productos.length > 0 ? 
+            (productos.map((p) => <DisplayProduct key={p.id} producto={p} />)) : 
+            (<p>No hay productos disponibles.</p>)}
         </div>
       </div>
 
