@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { LoginRequest } from "../model/LoginRequest";
 import { UsuarioApiService } from "../services/UsuarioApiService";
+// Manejo de la sesion
+import { useSesion } from "../context/SesionContext/SesionContext";
 
 import "../assets/css/Formulario/formulario.css"
 import { FormInput } from "../components/Formularios/FormInput/FormInput";
@@ -12,6 +14,8 @@ export function Login()
         email: "",
         password: ""
     })
+
+    const { sesion, sesionLogin } = useSesion();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -52,19 +56,30 @@ export function Login()
 
         const resultado = await usuarioService.login(loginRequest);
 
-        if (resultado.success) 
+        if (resultado.success && resultado.usuario) 
         {
             setFormData({
                 email: "",
                 password: ""
             });
-            
-            // Recibimos el usuario ya veremos que hacemos con el
-            //const usuario = usuarioService.getModelClass().fromJSON(resultado.usuario)
+
+            sesionLogin(resultado.usuario);
         }
 
         alert(resultado.message);
     };
+
+    const usuarioSesion = sesion.getUsuarioActivo();
+
+    if (usuarioSesion) 
+    {
+        return (
+        <div>
+            <h1>¡Ya estás logeado!</h1>
+            <p>Bienvenido, {usuarioSesion.getNombreUsuario()}</p>
+        </div>
+        );
+    }
 
     return (
         <div>
