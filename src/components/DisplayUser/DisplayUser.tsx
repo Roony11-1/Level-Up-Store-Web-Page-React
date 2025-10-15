@@ -1,5 +1,6 @@
 import { Usuario } from "../../model/Usuario";
 import "../../assets/css/DisplayUser/displayuser.css"
+import { ProfilePhoto } from "../ProfilePhoto/ProfilePhoto";
 
 export function DisplayUser({ usuario }: { usuario: Usuario }) {
     return (
@@ -36,6 +37,7 @@ export function DisplayUserTable({ usuarios }: { usuarios: Usuario[] })
             <thead>
                 <tr>
                     <th>ID</th>
+                    <th>Imagen</th>
                     <th>Nombre</th>
                     <th>Contraseña</th>
                     <th>Email</th>
@@ -51,6 +53,7 @@ export function DisplayUserTable({ usuarios }: { usuarios: Usuario[] })
                 (
                     <tr key={u.getId()}>
                         <td>{u.getId()}</td>
+                        <td><ProfilePhoto profilePhoto={u.getProfilePhoto()}/></td>
                         <td><p onClick={handleClick}>{u.getNombreUsuario()}</p></td>
                         <td><p onClick={handleClick}>{u.getContraseña()}</p></td>
                         <td><p onClick={handleClick}>{u.getEmail()}</p></td>
