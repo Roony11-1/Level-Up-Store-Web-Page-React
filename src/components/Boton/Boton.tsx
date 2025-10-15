@@ -12,7 +12,7 @@ interface BotonProps
 export function Boton( {children, className="", onClick}:BotonProps )
 {
     return(
-        <button className={`btn${className}`} onClick={onClick}>
+        <button className={`btn ${className}`} onClick={onClick}>
             {children}
         </button>
     );
