@@ -96,7 +96,8 @@ export function Login()
                         label='Contraseña'
                         onChange={handleChange}
                         value={formData.password} />
-                    <Boton>Iniciar Sesión</Boton>
+                    <Boton
+                        className='formulario'>Iniciar Sesión</Boton>
                 </div>
             </form>
         </div>

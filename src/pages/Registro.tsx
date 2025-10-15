@@ -178,7 +178,8 @@ export function Registro()
                         value={formData.comuna}
                         options={comunas.map(c => ({ value: c, label: c }))}
                         onChange={handleSelectChange} />
-                    <Boton>Registrarse</Boton>
+                    <Boton
+                        className='formulario'>Registrarse</Boton>
                 </div>
             </form>
         </div>
