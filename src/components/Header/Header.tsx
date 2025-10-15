@@ -1,7 +1,7 @@
 import '../../assets/css/Header/header.css';
 
 import { HeaderLogo } from './HeaderLogo/HeaderLogo';
-import { IniciarSesion } from './IniciaSesion/IniciarSesion';
+import { LoginStatus } from './IniciaSesion/LoginStatus';
 import { UserPanel } from '../UserPanel/UserPanel';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { useState } from 'react';
@@ -30,7 +30,7 @@ export function Header()
           </div>
 
           <div className={`derecha ${menuAbierto ? 'abierto' : ''}`}>
-            <IniciarSesion />
+            <LoginStatus />
           </div>
       </div>
     </header>

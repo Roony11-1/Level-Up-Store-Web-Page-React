@@ -3,21 +3,45 @@ import "../../../assets/css/Header/IniciarSesion/iniciarsesion.css"
 import { useSesion } from "../../../context/SesionContext/SesionContext"
 import { Boton } from "../../Boton/Boton";
 
-export function IniciarSesion()
+export function LoginStatus()
 {
     const { sesion, sesionLogout } = useSesion();
 
     return(
         <div className="sesion-header">
+
+
+        {!sesion.getUsuarioActivo() ? <NoLogeado /> : 
+            <Logeado 
+                nombreUsuario={sesion.getUsuarioActivo()?.getNombreUsuario() || ""}
+                cerrarSesion={sesionLogout} />}
+        </div>
+    )
+}
+
+function NoLogeado()
+{
+    return (
+        <div>
             <h2>Hola!</h2>
             <p>Ingresa a tu cuenta!</p>
 
-        {!sesion.getUsuarioActivo() ? <PanelNoLogeado /> : 
-        <PanelLogeado 
-            nombreUsuario={sesion.getUsuarioActivo()?.getNombreUsuario() || ""} 
-            cerrarSesion={sesionLogout}/>}
+            <PanelNoLogeado />
         </div>
-    )
+    );
+}
+
+function Logeado({ nombreUsuario, cerrarSesion }: PanelLogeadoProps)
+{
+    return(
+        <div>
+            <h2>Bienvenido: {nombreUsuario} </h2>
+
+            <PanelLogeado 
+                nombreUsuario={nombreUsuario || ""} 
+                cerrarSesion={cerrarSesion}/>
+        </div>
+    );
 }
 
 function PanelNoLogeado()
