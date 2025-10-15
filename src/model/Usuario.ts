@@ -10,6 +10,7 @@ export class Usuario extends ModeloBase
     private region: string | null;
     private comuna: string | null;
     private tipo: string;
+    private profilePhoto: string;
 
     constructor() 
     {
@@ -22,6 +23,7 @@ export class Usuario extends ModeloBase
         this.region = null;
         this.comuna = null;
         this.tipo = "usuario";
+        this.profilePhoto = "/profilePhotos/nofoto.jpg";
     }
 
     setId(id: number) { this.id = id; return this; }
@@ -32,6 +34,7 @@ export class Usuario extends ModeloBase
     setRegion(region: string | null) { this.region = region; return this; }
     setComuna(comuna: string | null) { this.comuna = comuna; return this; }
     setTipo(tipo: string) { this.tipo = tipo; return this; }
+    setProfilePhoto(photo: string) { this.profilePhoto = photo; return this; }
 
     getId(): number { return this.id; }
     getNombreUsuario(): string | null { return this.nombreUsuario; }
@@ -42,4 +45,5 @@ export class Usuario extends ModeloBase
     getComuna(): string | null { return this.comuna; }
     getTipo(): string | null { return this.tipo; }
     isAdmin(): boolean { return this.tipo.toLowerCase() === "admin"; }
+    getProfilePhoto(): string { return this.profilePhoto; }
 }
