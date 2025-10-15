@@ -1,5 +1,6 @@
 import { ProfilePhoto } from "../components/ProfilePhoto/ProfilePhoto";
 import { useSesion } from "../context/SesionContext/SesionContext";
+import { useState } from "react";
 
 export function PanelUsuario()
 {
@@ -7,14 +8,35 @@ export function PanelUsuario()
 
     const usuarioActivo = sesion.getUsuarioActivo();
 
+    const imagen = !usuarioActivo ? "/profilePhotos/nofoto.jpg" : usuarioActivo.getProfilePhoto();
+
+    const [preview, setPreview] = useState<string>(imagen);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
+    {
+        const foto = e.target.files?.[0];
+        if (foto) 
+        {
+            const url = URL.createObjectURL(foto);
+            setPreview(url);
+        }
+    };
+
     if (!usuarioActivo)
         return <h1>No estás logeado</h1>;
 
     return (
         <div>
             <div>
-                <ProfilePhoto profilePhoto={usuarioActivo.getProfilePhoto()} />
-                <h2>{usuarioActivo.getNombreUsuario() || "Usuario"}</h2>
+                <ProfilePhoto profilePhoto={preview} />
+                <h5>
+                    Editar foto de perfil<br /><br />
+                    <input 
+                        type="file"
+                        accept="image/*"
+                        onChange={handleChange}>
+                    </input>
+                </h5>
             </div>
 
             <div>
