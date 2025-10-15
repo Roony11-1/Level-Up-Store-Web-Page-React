@@ -11,11 +11,11 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.btn {
+button.formulario {
     background-color: #1e90ff;
 }
 
-.btn:hover {
+button.formulario:hover {
     background-color: #0f6cd4;
     transform: scale(1.02);
 }

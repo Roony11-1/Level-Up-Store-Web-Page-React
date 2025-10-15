@@ -45,7 +45,7 @@ header {
 }
 /* -- */
 
-.btnhamburguesa {
+button.hamburguesa {
     display: none;
     padding: 12px 24px;
     border: 2px solid #fff;
@@ -57,7 +57,7 @@ header {
     transition: 0.3s;
 }
 
-.btnhamburguesa:hover {
+.hamburguesa:hover {
     background: transparent;
     background: linear-gradient(135deg, #6a11cb, #2575fc);
     color: #fff;
@@ -71,8 +71,8 @@ header {
         align-items: center;
     }
 
-    .btnhamburguesa {
-        display: block;
+    button.hamburguesa {
+        display: inline-block;
         margin: 5px 0;
     }
 

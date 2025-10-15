@@ -1,8 +1,8 @@
 .btn {
+    background: linear-gradient(45, #6a11cb, #2575fc);
     display: inline-block;
     padding: 12px 24px;
     border: 2px solid #fff;
-    background: #fff;
     color: #000;
     font-weight: bold;
     border-radius: 5px;
