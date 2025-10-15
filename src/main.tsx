@@ -1,6 +1,7 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { SesionProvider } from "./context/SesionContext/SesionProvider.tsx";
 import { Layout } from "./components/Layout/Layout.tsx";
 import App from "./App.tsx";
 import "./assets/css/index.css";
@@ -19,22 +20,24 @@ import { SingingCat } from "./pages/SingingCat";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="app" element={<App />} />
-          <Route path="catalogo" element={<Productos />} />
-          <Route path="testapi" element={<PruebaApi />} />
-          <Route path="login" element={<Login />} />
-          <Route path="blogs" element={<Blogs />} />
-          <Route path="registrarse" element={<Registro />} />
-          <Route path="*" element={<NotFound />} />
-          <Route path="nosotros" element={<Nosotros />} />
-          <Route path='/contactos' element={<Contacto/>}/>
-          <Route path="gato" element={<SingingCat />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <SesionProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="app" element={<App />} />
+            <Route path="catalogo" element={<Productos />} />
+            <Route path="testapi" element={<PruebaApi />} />
+            <Route path="login" element={<Login />} />
+            <Route path="blogs" element={<Blogs />} />
+            <Route path="registrarse" element={<Registro />} />
+            <Route path="*" element={<NotFound />} />
+            <Route path="nosotros" element={<Nosotros />} />
+            <Route path='/contactos' element={<Contacto/>}/>
+            <Route path="gato" element={<SingingCat />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </SesionProvider>
   </StrictMode>
 );
