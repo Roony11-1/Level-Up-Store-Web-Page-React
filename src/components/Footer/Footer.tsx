@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../../assets/css/Footer/footer.css';
 
 
@@ -9,8 +9,8 @@ export function Footer() {
     <footer>
       <div className="Footer">
         <div className="div2">
-        <NavLink to="nosotros" ><h2>Nosotros</h2></NavLink>
-        <NavLink to="contactos" ><h2>Contacto</h2></NavLink>
+        <Link to="nosotros" ><h2>Nosotros</h2></Link>
+        <Link to="contactos" ><h2>Contacto</h2></Link>
         {/* Columna izquierda: Título y descripción */}
         <div className="footer-col">
           <h3 className="footer-title">Level-Up Store © 2025</h3>
