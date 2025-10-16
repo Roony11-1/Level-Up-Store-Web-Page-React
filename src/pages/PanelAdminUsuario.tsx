@@ -3,7 +3,6 @@ import "../assets/css/PanelAdmin/paneladmin.css"
 
 import { UsuarioApiService } from "../services/UsuarioApiService";
 import { DisplayUserTable } from "../components/DisplayUser/DisplayUser";
-import { useSesion } from "../context/SesionContext/UseSesion";
 
 import type { Usuario } from "../model/Usuario";
 import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
