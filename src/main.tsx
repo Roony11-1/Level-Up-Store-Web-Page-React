@@ -19,6 +19,7 @@ import { Contacto } from "./pages/Contacto";
 import { SingingCat } from "./pages/SingingCat";
 import { PanelUsuario } from "./pages/PanelUsuario.tsx";
 import { PanelAdminUsuario } from "./pages/PanelAdminUsuario.tsx";
+import { ProductoPagina } from "./pages/ProductoPagina.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -30,6 +31,7 @@ createRoot(document.getElementById("root")!).render(
             <Route path="app" element={<App />} />
             <Route path="catalogo" element={<Productos />} />
             <Route path="catalogo/search" element={<Productos />} />
+            <Route path="producto" element={<ProductoPagina />} />
             <Route path="testapi" element={<PruebaApi />} />
             <Route path="login" element={<Login />} />
             <Route path="blogs" element={<Blogs />} />
