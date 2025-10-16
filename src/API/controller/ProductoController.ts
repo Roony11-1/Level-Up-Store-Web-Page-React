@@ -30,6 +30,11 @@ export class ProductoController
         return this.productoService.findByCategoria(categoria);
     }
 
+    findByMarca(marca: string): Producto[]
+    {
+        return this.productoService.findByMarca(marca);
+    }
+
     findByNombre(nombre: string): Producto
     {
         return this.productoService.findByNombre(nombre);
