@@ -21,7 +21,7 @@ export function SearchBar()
         else
         {
             alert(`Has buscado: ${texto}`)
-            navigate(`/catalogo/${texto}`);
+            navigate(`/catalogo/search?filtro=${texto}`);
         }
     }
 
