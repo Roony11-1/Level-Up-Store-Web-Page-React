@@ -30,6 +30,11 @@ export class ProductoService
         return this.productoRepository.findByCategoria(categoria);
     }
 
+    findAllByNombre(nombre: string): Producto[]
+    {
+        return this.productoRepository.findAllByNombre(nombre);
+    }
+
     findByNombre(nombre: string): Producto
     {
         return this.productoRepository.findByNombre(nombre);
@@ -44,7 +49,7 @@ export class ProductoService
     {
         const productos = [
             ...this.findByCategoria(filtro),
-            ...this.findByNombre(filtro),
+            ...this.findAllByNombre(filtro),
             ...this.findByMarca(filtro)
         ];
     

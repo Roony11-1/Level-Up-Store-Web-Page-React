@@ -37,6 +37,12 @@ export class ProductoRepository implements RepositoryInterface<Producto>
         return productosJsonCategoria.filter((p: any) => p.categoria.toLowerCase().includes(categoria.toLowerCase())) || null;
     }
 
+    findAllByNombre(nombre: string): any[]
+    {
+        const productosJsonCategoria = this.findAll();
+        return productosJsonCategoria.filter((p: any) => p.nombre.toLowerCase().includes(nombre.toLowerCase())) || null;
+    }
+
     findByNombre(nombre: string): any
     {
         const productoJsonNombre = this.findAll();
