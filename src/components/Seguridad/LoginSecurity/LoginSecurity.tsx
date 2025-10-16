@@ -5,19 +5,19 @@ import { Navigate } from "react-router-dom";
 interface LoginSecurityProps 
 {
     children: ReactNode;
-    loginNeeded?: boolean;
+    invitado?: boolean;
 }
 
-export function LoginSecurity({ children, loginNeeded = false }: LoginSecurityProps)
+export function LoginSecurity({ children, invitado = false }: LoginSecurityProps) 
 {
     const { sesion } = useSesion();
-
     const usuarioActivo = sesion.getUsuarioActivo();
 
-    if (!usuarioActivo && loginNeeded) 
+    if (!usuarioActivo && !invitado)
         return <Navigate to="/login" replace />;
-    else if (loginNeeded)
+
+    if (usuarioActivo && invitado)
         return <Navigate to="/" replace />;
-    
+
     return <>{children}</>;
 }

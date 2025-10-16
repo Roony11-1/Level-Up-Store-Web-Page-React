@@ -131,7 +131,7 @@ export function Registro()
     };
 
     return (
-        <LoginSecurity loginNeeded={false}>
+        <LoginSecurity invitado>
             <h1>Página de Registro</h1>
 
             <form onSubmit={handleSubmit}>

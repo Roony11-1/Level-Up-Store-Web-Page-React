@@ -71,7 +71,7 @@ export function Login()
     };
 
     return (
-        <LoginSecurity loginNeeded={false}>
+        <LoginSecurity invitado>
             <h1>Iniciar Sesión</h1>
             <form onSubmit={handleSubmit}>
                 <div className="formularioContainer">
