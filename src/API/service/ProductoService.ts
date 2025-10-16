@@ -25,6 +25,11 @@ export class ProductoService
         return this.productoRepository.findByDestacado();
     }
 
+    findByCategoria(categoria: string): any | null
+    {
+        return this.productoRepository.findByCategoria(categoria);
+    }
+
     save(usuario: Producto): boolean
     {
         return this.productoRepository.save(usuario);
