@@ -2,7 +2,13 @@ import type { ReactNode } from "react";
 import { useSesion } from "../../../context/SesionContext/UseSesion";
 import { Navigate } from "react-router-dom";
 
-export function LoginSecurity({ children, loginNeeded=true }: { children: ReactNode; loginNeeded?: boolean })
+interface LoginSecurityProps 
+{
+    children: ReactNode;
+    loginNeeded?: boolean;
+}
+
+export function LoginSecurity({ children, loginNeeded = true }: LoginSecurityProps)
 {
     const { sesion } = useSesion();
 
