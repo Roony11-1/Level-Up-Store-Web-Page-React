@@ -1,7 +1,6 @@
 import { ProfilePhoto } from "../components/ProfilePhoto/ProfilePhoto";
 import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
 import { useSesion } from "../context/SesionContext/UseSesion";
-import { useState } from "react";
 
 export function PanelUsuario()
 {
@@ -9,35 +8,12 @@ export function PanelUsuario()
 
     const usuarioActivo = sesion.getUsuarioActivo();
 
-    const imagen = !usuarioActivo ? "/profilePhotos/nofoto.jpg" : usuarioActivo.getProfilePhoto();
-
-    const [preview, setPreview] = useState<string>(imagen);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
-    {
-        const foto = e.target.files?.[0];
-        if (foto) 
-        {
-            const url = URL.createObjectURL(foto);
-            setPreview(url);
-        }
-    };
-
-
     return (
         <LoginSecurity>
             {usuarioActivo && (
                 <>
                     <div>
-                        <ProfilePhoto profilePhoto={preview} />
-                        <h5>
-                            Editar foto de perfil<br /><br />
-                            <input 
-                                type="file"
-                                accept="image/*"
-                                onChange={handleChange}
-                            />
-                        </h5>
+                        <ProfilePhoto profilePhoto={usuarioActivo.getProfilePhoto()} />
                     </div>
 
                     <div>
