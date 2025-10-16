@@ -14,4 +14,10 @@ export class ProductoApiService extends BaseApiService<Producto>
     const datos = await this.controller.findByDestacado();
     return datos ? datos.map((d: any) => this.modelClass.fromJSON(d)) : [];
   }
+
+  async fetchByCategoria(categoria: string): Promise<Producto[]>
+  {
+    const datos = await this.controller.findByCategoria(categoria);
+    return datos ? datos.map((d: any) => this.modelClass.fromJSON(d)) : [];
+  }
 }

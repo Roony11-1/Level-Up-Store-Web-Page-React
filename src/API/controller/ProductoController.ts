@@ -25,6 +25,11 @@ export class ProductoController
         return this.productoService.findByDestacado();
     }
 
+    findByCategoria(categoria: string): Producto[]
+    {
+        return this.productoService.findByCategoria(categoria);
+    }
+
     save(usuario: Producto): boolean
     {
         return this.productoService.save(usuario);
