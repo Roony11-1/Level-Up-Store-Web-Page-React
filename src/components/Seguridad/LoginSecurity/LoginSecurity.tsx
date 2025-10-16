@@ -8,7 +8,7 @@ interface LoginSecurityProps
     loginNeeded?: boolean;
 }
 
-export function LoginSecurity({ children, loginNeeded = true }: LoginSecurityProps)
+export function LoginSecurity({ children, loginNeeded = false }: LoginSecurityProps)
 {
     const { sesion } = useSesion();
 
@@ -16,7 +16,7 @@ export function LoginSecurity({ children, loginNeeded = true }: LoginSecurityPro
 
     if (!usuarioActivo && loginNeeded) 
         return <Navigate to="/login" replace />;
-    else if (!loginNeeded)
+    else if (loginNeeded)
         return <Navigate to="/" replace />;
     
     return <>{children}</>;
