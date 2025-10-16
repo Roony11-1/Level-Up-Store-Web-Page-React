@@ -6,17 +6,11 @@ import { DisplayUserTable } from "../components/DisplayUser/DisplayUser";
 import { useSesion } from "../context/SesionContext/UseSesion";
 
 import type { Usuario } from "../model/Usuario";
+import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
+import { AdminSecurity } from "../components/Seguridad/AdminSecurity/AdminSecurity";
 
 export function PanelAdminUsuario()
 {
-    const { sesion } = useSesion();
-
-    const usuarioAdmin = sesion.getUsuarioActivo()?.isAdmin();
-
-    if (!usuarioAdmin)
-        return(
-            <h1>No tienes permiso de ver esto</h1>
-        );
     // Carguemos los usuarios
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
 
@@ -34,8 +28,12 @@ export function PanelAdminUsuario()
     }, []);
 
     return(
-        <div className="contenedor-admin">
-            <DisplayUserTable usuarios={usuarios} />
-        </div>
+        <LoginSecurity>
+            <AdminSecurity>
+                <div className="contenedor-admin">
+                    <DisplayUserTable usuarios={usuarios} />
+                </div>
+            </AdminSecurity>
+        </LoginSecurity>
     );
 }
