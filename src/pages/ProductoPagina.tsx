@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { ProductoApiService } from "../services/ProductoApiService";
 import { Producto } from "../model/Producto";
 
@@ -19,6 +19,8 @@ export function ProductoPagina()
 
     useEffect(() => 
     {
+        window.scrollTo(0, 0);
+
         if (!nombre) 
             return;
 
@@ -68,6 +70,9 @@ export function ProductoPagina()
                     ) : (
                         <p>No hay productos relacionados</p>
                     )}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <Link to={"/catalogo"}><Boton>Volver al catálogo</Boton></Link>
+                    </div>
                 </div>
             </div>
             <div className="displayer-imagenes">
