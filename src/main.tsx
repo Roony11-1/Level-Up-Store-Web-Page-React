@@ -29,7 +29,7 @@ createRoot(document.getElementById("root")!).render(
             <Route index element={<Home />} />
             <Route path="app" element={<App />} />
             <Route path="catalogo" element={<Productos />} />
-            <Route path="catalogo/:categoria" element={<Productos />} />
+            <Route path="catalogo/search" element={<Productos />} />
             <Route path="testapi" element={<PruebaApi />} />
             <Route path="login" element={<Login />} />
             <Route path="blogs" element={<Blogs />} />
