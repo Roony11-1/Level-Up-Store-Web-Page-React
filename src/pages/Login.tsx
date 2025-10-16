@@ -7,6 +7,7 @@ import { useSesion } from "../context/SesionContext/UseSesion";
 import "../assets/css/Formulario/formulario.css"
 import { FormInput } from "../components/Formularios/FormInput/FormInput";
 import { Boton } from "../components/Boton/Boton";
+import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
 
 export function Login() 
 {
@@ -15,7 +16,7 @@ export function Login()
         password: ""
     })
 
-    const { sesion, sesionLogin } = useSesion();
+    const { sesionLogin } = useSesion();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
     {
@@ -69,20 +70,8 @@ export function Login()
         alert(resultado.message);
     };
 
-    const usuarioSesion = sesion.getUsuarioActivo();
-
-    if (usuarioSesion) 
-    {
-        return (
-        <div>
-            <h1>¡Ya estás logeado!</h1>
-            <p>Bienvenido, {usuarioSesion.getNombreUsuario()}</p>
-        </div>
-        );
-    }
-
     return (
-        <div>
+        <LoginSecurity loginNeeded={false}>
             <h1>Iniciar Sesión</h1>
             <form onSubmit={handleSubmit}>
                 <div className="formularioContainer">
@@ -100,6 +89,6 @@ export function Login()
                         className='formulario'>Iniciar Sesión</Boton>
                 </div>
             </form>
-        </div>
+        </LoginSecurity>
     );
 }

@@ -7,6 +7,7 @@ import { FormInput } from '../components/Formularios/FormInput/FormInput';
 import { UbicacionService } from "../utilities/RegionComuna"
 import { Usuario } from '../model/Usuario';
 import { Boton } from '../components/Boton/Boton';
+import { LoginSecurity } from '../components/Seguridad/LoginSecurity/LoginSecurity';
 
 export function Registro() 
 {
@@ -130,7 +131,7 @@ export function Registro()
     };
 
     return (
-        <div>
+        <LoginSecurity loginNeeded={false}>
             <h1>Página de Registro</h1>
 
             <form onSubmit={handleSubmit}>
@@ -182,6 +183,6 @@ export function Registro()
                         className='formulario'>Registrarse</Boton>
                 </div>
             </form>
-        </div>
+        </LoginSecurity>
     )
 }
