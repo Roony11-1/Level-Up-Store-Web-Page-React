@@ -34,7 +34,7 @@ export class ProductoRepository implements RepositoryInterface<Producto>
     findByCategoria(categoria: string): any[]
     {
         const productosJsonCategoria = this.findAll();
-        return productosJsonCategoria.filter((p:any) => p.categoria === categoria) || null;
+        return productosJsonCategoria.filter((p: any) => p.categoria.toLowerCase().includes(categoria.toLowerCase())) || null;
     }
 
     save(producto: Producto): boolean
