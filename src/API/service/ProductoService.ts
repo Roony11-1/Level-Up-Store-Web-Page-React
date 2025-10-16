@@ -30,7 +30,7 @@ export class ProductoService
         return this.productoRepository.findByCategoria(categoria);
     }
 
-    findByNombre(nombre: string): Producto[]
+    findByNombre(nombre: string): Producto
     {
         return this.productoRepository.findByNombre(nombre);
     }

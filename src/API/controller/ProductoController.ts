@@ -30,6 +30,11 @@ export class ProductoController
         return this.productoService.findByCategoria(categoria);
     }
 
+    findByNombre(nombre: string): Producto
+    {
+        return this.productoService.findByNombre(nombre);
+    }
+
     findProducto(filtro: string): Producto[]
     {
         return this.productoService.findProducto(filtro);
