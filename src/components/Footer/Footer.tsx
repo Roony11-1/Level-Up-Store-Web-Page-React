@@ -1,9 +1,31 @@
 import { Link } from 'react-router-dom';
 import '../../assets/css/Footer/footer.css';
+import { useState } from 'react';
 
 
 
 export function Footer() {
+  const [email, setEmail] = useState('');
+  const [isSubscribed, setIsSubscribed] = useState(false);
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    // Verificar si la tecla presionada es "Enter"
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (email) {
+        setIsSubscribed(true);
+      }
+      setTimeout(() => {
+        setIsSubscribed(false); // Ocultar el mensaje
+        setEmail(''); 
+      }, 4000); //4000 ms = 4 segundos
+    }
+  }
+
   return (
 
     <footer>
@@ -36,8 +58,12 @@ export function Footer() {
             <p className="footer-text">Suscríbete a nuestra newsletter</p>
             <label className="footer-text">
               Tu Email:
-              <input type="email" placeholder="email@example.com" className="footer-input" />
+              <input type="email" placeholder="email@example.com" className="footer-input"
+               value={email} onChange={handleEmailChange}  onKeyDown={handleKeyPress}/>
             </label>
+            {isSubscribed && (
+              <p className="subscription-message">¡Te has suscrito a nuestra  newsletter!</p>
+            )}
           </div>
           </div>
           </div>
