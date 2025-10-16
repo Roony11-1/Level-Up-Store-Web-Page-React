@@ -5,7 +5,8 @@ import { DisplayProduct } from "../components/DisplayProduct/DisplayProduct";
 import { ProductoApiService } from "../services/ProductoApiService"; 
 
 import "../assets/css/Productos/productos.css"
-import { useParams } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
+
 
 export function Productos() 
 {
@@ -13,7 +14,8 @@ export function Productos()
 
   const productoService = useMemo(() => new ProductoApiService(), []);
 
-  const { categoria } = useParams();
+  const [searchParams] = useSearchParams();
+  const categoria = searchParams.get("filtro");
     
   useEffect(() => 
     {
@@ -35,7 +37,7 @@ export function Productos()
       <div className="catalogo-container">
         <div className="contenedor-filtros">
             <h1>Filtros</h1>
-            <p>Buscando: {categoria}</p>
+            <Link to={"/catalogo"}>Quitar Filtros</Link>
         </div>
         <div className="contenedor-productos">
           {productos.length > 0 ? 
