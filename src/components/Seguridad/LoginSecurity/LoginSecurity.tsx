@@ -14,8 +14,10 @@ export function LoginSecurity({ children, loginNeeded = true }: LoginSecurityPro
 
     const usuarioActivo = sesion.getUsuarioActivo();
 
-    if (!usuarioActivo && loginNeeded)
+    if (!usuarioActivo && loginNeeded) 
         return <Navigate to="/login" replace />;
-
+    else if (!loginNeeded)
+        return <Navigate to="/" replace />;
+    
     return <>{children}</>;
 }
