@@ -13,6 +13,7 @@ export function DisplayUser({ usuario }: { usuario: Usuario }) {
             <p>Teléfono: {usuario.getTelefono()}</p>
             <p>Región: {usuario.getRegion()}</p>
             <p>Comuna: {usuario.getComuna()}</p>
+            <p>Foto: {usuario.getProfilePhoto()}</p>
         </div>
     );
 }
