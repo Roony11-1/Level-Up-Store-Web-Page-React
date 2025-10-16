@@ -22,6 +22,7 @@ export function SearchBar()
         {
             alert(`Has buscado: ${texto}`)
             navigate(`/catalogo/search?filtro=${texto}`);
+            setTexto("");
         }
     }
 
