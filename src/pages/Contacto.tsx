@@ -1,53 +1,36 @@
 import '../css/contacto.css'
+import {useState} from "react";
 export function Contacto() {
-    return (
+    const [nombre,setNombre]=useState('')
+    const [mensaje,setMensaje]=useState('')
+    const [correo,setCorreo]=useState('')
+    const [respuesta,setRespuesta]=useState('')
 
-        <div className="contacto">
-            <div className='contenedor-logo'>
-                
-            <img src="/Logo_level-Up.png" alt="nuestra empresa" width="150px" height="150px" />
-            </div>
-            <form method="post" id="form-contacto">
-                <div className='contenedor-tabla'>
-                    <table>
-                        <tr>
-                            <td colSpan={2} style={{ textAlign: "center", fontSize: "18px", fontWeight: "bold" }}>
-                                Formulario de contactos
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="contacto td">
-                                <label htmlFor="nombre">NOMBRE COMPLETO:</label>
-                            </td>
-                            <td>
-                                <input type="text" name="nombre" id="nombre" required />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="contacto td">
-                                <label htmlFor="correo">CORREO</label>
-                            </td>
-                            <td>
-                                <input type="email" name="Correo" id="correo" required />
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="contacto td">
-                                <label htmlFor="contenido">CONTENIDO DEL MENSAJE</label>
-                            </td>
-                            <td>
-                                <textarea className="contacto textarea" name="contenido" id="contenido" rows={4} required></textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colSpan={2} style={{ textAlign: "center" }}>
-                                <input type="submit" value="ENVIAR MENSAJE" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </form>
-        </div>
+    const enviarForm=(e) =>{
+        e.prevenDefault()
+        console.log(mensaje)
+        setRespuesta(mensaje)
+    }
+    return (
+        
+        <form onSubmit={enviarForm}>
+            <h1>FORMULARIO DE CONTACTO</h1>
+            <label htmlFor="nombre">Nombre:</label>
+            <input type="text" name='nombre' id='nombre' 
+            value={nombre} onChange={(e)=>setNombre(e.target.value)}/>
+
+            <label htmlFor="correo">Correo:</label>
+            <input type="text" name='correo' id='correo'
+            value={correo} onChange={(e)=>setCorreo(e.target.value)}/>
+
+            <label htmlFor="mensaje">Mensaje:</label>
+            <input type="text" name='mensaje' id='mensaje' 
+            value={mensaje} onChange={(e)=>setMensaje(e.target.value)}/>
+            <input type="submit" value="enviar" />
+            {respuesta && <p role="alert">{respuesta}</p>}
+        </form>
+
 
     )
 }
+export default Contacto
