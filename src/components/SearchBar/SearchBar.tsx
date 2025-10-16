@@ -20,7 +20,6 @@ export function SearchBar()
         }
         else
         {
-            alert(`Has buscado: ${texto}`)
             navigate(`/catalogo/search?filtro=${texto}`);
             setTexto("");
         }
