@@ -6,8 +6,8 @@ export function Contacto() {
     const [correo,setCorreo]=useState('')
     const [respuesta,setRespuesta]=useState('')
 
-    const enviarForm=(e) =>{
-        e.prevenDefault()
+    const enviarForm=(e: React.FormEvent<HTMLFormElement>) =>{
+        e.preventDefault()
         console.log(mensaje)
         setRespuesta(mensaje)
     }
