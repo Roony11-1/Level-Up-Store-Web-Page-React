@@ -73,6 +73,11 @@ footer {
     flex-direction: row
     ;
   }
-    
+  .subscription-message {
+    color: rgb(14, 13, 13);
+    font-size: 1.2em;
+    margin-top: 10px;
+    font-weight: bold;
+  }
 
         

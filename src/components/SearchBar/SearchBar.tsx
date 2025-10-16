@@ -1,20 +1,27 @@
 import React, { useState } from "react";
 import "../../assets/css/SearchBar/searchbar.css"
 import { Boton } from "../Boton/Boton";
+import { useNavigate } from "react-router-dom";
 
 export function SearchBar()
 {
     const [texto, setTexto] = useState("");
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) =>
     {
         e.preventDefault();
         
         if (!texto)
+        {
             alert("Debes ingresar algo que buscar!")
+            return;
+        }
         else
         {
             alert(`Has buscado: ${texto}`)
+            navigate(`/catalogo/${texto}`);
         }
     }
 
