@@ -5,4 +5,5 @@
 
 .blog-destacado:hover {
     transform: scale(1.02);
+    background-color: #d3d3d3;
 }
