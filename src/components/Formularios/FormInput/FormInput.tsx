@@ -6,10 +6,11 @@ interface FormInputProps
   placeholder?: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
   required?: boolean;
 }
 
-export function FormInput({ name, label, type = "text", placeholder, value, onChange, required = false,}: FormInputProps) 
+export function FormInput({ name, label, type = "text", placeholder, value, onChange, onBlur, required = false,}: FormInputProps) 
 {
   return (
     <div style={{ display: "flex", flexDirection: "row", gap: "5px" }}>
@@ -21,6 +22,7 @@ export function FormInput({ name, label, type = "text", placeholder, value, onCh
         type={type}
         placeholder={placeholder || label}
         onChange={onChange}
+        onBlur={onBlur}
         required={required}
       />
     </div>
