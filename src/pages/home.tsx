@@ -13,23 +13,22 @@ export function Home()
 {
   const [productosDestacados, setProductosDestacados] = useState<Producto[]>([])
   const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [loading, setLoading] = useState(true);
 
   const productoService = new ProductoApiService();
   const blogService = new BlogApiService();
 
   useEffect(() => {
-    const fetchProductosDestacados = async () => {
-      const datos = await productoService.fetchByDestacado();
-      setProductosDestacados(datos);
-    };
+    const fetchDestacados = async () => 
+    {
+      const productosD = await productoService.fetchByDestacado();
+      setProductosDestacados(productosD);
+      const blogsD = await blogService.fetchAll();
+      setBlogs(blogsD);
 
-    const fetchBlogs = async () => {
-      const datos = await blogService.fetchAll();
-      setBlogs(datos);
+      setLoading(false)
     };
-      
-    fetchProductosDestacados();
-    fetchBlogs();
+    fetchDestacados();
   }, []);
 
   return (
@@ -46,7 +45,13 @@ export function Home()
       <div className="blogs-container">
         <h1>Noticias de esta semana</h1>
         <div className="blogs">
-          {blogs[0] && <CarruselDestacado item={blogs} interval={6000} />}
+        {
+            loading ? (
+                <p>Cargando blogs...</p>
+            ) : (
+                blogs[0] && <CarruselDestacado item={blogs} interval={6000} />
+            )
+        }
         </div>
         <Link to="/blogs"><Boton>Ver Blogs</Boton></Link>
       </div>
@@ -54,7 +59,15 @@ export function Home()
     <div className="destacado-home">
       <h1>Productos Destacados</h1>
       <div className="destacados">
-        {productosDestacados[0] && <CarruselDestacado item={productosDestacados} interval={3000} />}
+        {
+            !loading ? (
+                productosDestacados[0] ? (
+                    <CarruselDestacado item={productosDestacados} interval={3000} />
+                ) : null
+            ) : (
+                <p>Cargando productos...</p>
+            )
+        }
       </div>
     </div>
   </div>

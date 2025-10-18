@@ -11,6 +11,7 @@ export function ProductoPagina()
 {
     const [producto, setProducto] = useState<Producto | null>();
     const [productosRelacionados, setProductosRelacionados] = useState<Producto[]>();
+    const [loading, setLoading] = useState(true);
 
     const productoService = useMemo(() => new ProductoApiService(), []);
 
@@ -19,8 +20,6 @@ export function ProductoPagina()
 
     useEffect(() => 
     {
-        window.scrollTo(0, 0);
-
         if (!nombre) 
             return;
 
@@ -30,8 +29,11 @@ export function ProductoPagina()
         {
             setProducto(producto);
             setProductosRelacionados(relacionados);
+            setLoading(false)
         });
     }, [nombre, productoService]);
+
+    if (loading) return <p>Cargando Producto...</p>;
 
     if (!producto)
         return(

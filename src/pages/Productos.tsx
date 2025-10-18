@@ -11,6 +11,7 @@ import { Link, useSearchParams } from "react-router-dom";
 export function Productos() 
 {
   const [productos, setProductos] = useState<Producto[]>([])
+  const [loading, setLoading] = useState(true);
 
   const productoService = useMemo(() => new ProductoApiService(), []);
 
@@ -28,10 +29,15 @@ export function Productos()
           datos = await productoService.fetchAll();
 
         setProductos(datos);
+        setLoading(false)
       };
             
     fetchProductos();
     }, [categoria, productoService]);
+
+    if (loading) return <p>Cargando...</p>;
+
+    if (productos.length === 0) return <p>No hay productos disponibles.</p>;
 
     return (
       <div className="catalogo-container">
@@ -40,9 +46,7 @@ export function Productos()
             <Link to={"/catalogo"}>Quitar Filtros</Link>
         </div>
         <div className="contenedor-productos">
-          {productos.length > 0 ? 
-            (productos.map((p) => <DisplayProduct key={p.id} producto={p} />)) : 
-            (<p>No hay productos disponibles.</p>)}
+          {productos.map((p) => <DisplayProduct key={p.id} producto={p} />)}
         </div>
       </div>
 

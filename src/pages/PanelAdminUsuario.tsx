@@ -12,6 +12,7 @@ export function PanelAdminUsuario()
 {
     // Carguemos los usuarios
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
+    const [loading, setLoading] = useState(true);
 
     const usuarioService = new UsuarioApiService();
 
@@ -21,10 +22,13 @@ export function PanelAdminUsuario()
         {
             const datos = await usuarioService.fetchAll();
             setUsuarios(datos);
+            setLoading(false)
         };
 
         fetchUsuarios();
     }, []);
+
+    if (loading) return <p>Cargando usuarios...</p>;
 
     return(
         <LoginSecurity>

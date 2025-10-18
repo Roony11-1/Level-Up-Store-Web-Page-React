@@ -11,6 +11,7 @@ export function LoginStatus()
 {
     const { sesion, sesionLogout } = useSesion();
     const [usuario, setUsuario] = useState<Usuario | null>(null);
+    const [loading, setLoading] = useState(true);
 
     const usuarioService = new UsuarioApiService();
 
@@ -27,10 +28,14 @@ export function LoginStatus()
             }
             else
                 setUsuario(null);
+
+            setLoading(false)
         };
 
         fetchUsuario();
     }, [sesion]);
+
+    if (loading) return <p>Cargando estado...</p>;
 
     // No esta Logeado
     if (!usuario)
