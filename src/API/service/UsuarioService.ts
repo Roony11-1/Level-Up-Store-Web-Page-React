@@ -50,9 +50,9 @@ export class UsuarioService
         if (!usuarioUpdatear)
                 return { success: false, message: "No se ha encotnrado el usuario" };
         
-        const existente = this.findByEmail(usuarioUpdatear.getEmail());
+        const existente = this.findByEmail(usuarioUpdatear.email);
 
-        if (existente)
+        if (existente && existente.id ==! id)
             return { success: false, message: "Correo ya registrado" };
 
         if (this.usuarioRepository.update(id, usuario))
