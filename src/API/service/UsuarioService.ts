@@ -43,6 +43,24 @@ export class UsuarioService
         return { success: false, message: "No se ha podido registrar el usuario" };
     }
 
+    update(id: number, usuario: Usuario): { success: boolean; message: string }
+    {
+        const usuarioUpdatear = this.findById(id)
+
+        if (!usuarioUpdatear)
+                return { success: false, message: "No se ha encotnrado el usuario" };
+        
+        const existente = this.findByEmail(usuarioUpdatear.getEmail());
+
+        if (existente)
+            return { success: false, message: "Correo ya registrado" };
+
+        if (this.usuarioRepository.update(id, usuario))
+            return { success: true, message: "Usuario actualizado correctamente" };
+
+        return { success: false, message: "No se ha podido actualizar el usuario" };
+    }
+
     deleteById(id: number): boolean
     {
         return this.usuarioRepository.deleteById(id);

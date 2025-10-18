@@ -25,6 +25,11 @@ export class UsuarioController
         return this.usuarioService.save(usuario);
     }
 
+    update(id: number, usuario: Usuario): { success: boolean; message: string } 
+    {
+        return this.usuarioService.update(id, usuario);
+    }
+
     deleteById(id: number): boolean
     {
         return this.usuarioService.deleteById(id);

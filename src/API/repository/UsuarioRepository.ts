@@ -41,6 +41,20 @@ export class UsuarioRepository implements RepositoryInterface<Usuario>
         return true;
     }
 
+    update(id: number, usuario: Usuario): boolean
+    {
+        const usuariosActual = this.findAll();
+        const index = usuariosActual.findIndex(u => u.id === id);
+
+        if (index === -1) 
+            return false;
+
+        usuariosActual[index] = usuario;
+        this.storage.guardar(usuariosActual);
+
+        return true;
+    }
+
     deleteById(id: number): boolean 
     {
         const usuariosActual = this.findAll();
