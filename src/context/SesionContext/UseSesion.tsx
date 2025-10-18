@@ -1,11 +1,10 @@
 import { createContext, useContext } from "react";
 import type { Sesion } from "../../model/Sesion";
-import type { Usuario } from "../../model/Usuario";
 
 export interface SesionContextType 
 {
   sesion: Sesion;
-  sesionLogin: (usuario: Usuario) => void;
+  sesionLogin: (id: number) => void;
   sesionLogout: () => void;
 }
 

@@ -1,6 +1,8 @@
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { useSesion } from "../../../context/SesionContext/UseSesion";
 import { Navigate } from "react-router-dom";
+import type { Usuario } from "../../../model/Usuario";
+import { UsuarioApiService } from "../../../services/UsuarioApiService";
 
 interface LoginSecurityProps 
 {
@@ -11,12 +13,13 @@ interface LoginSecurityProps
 export function LoginSecurity({ children, invitado = false }: LoginSecurityProps) 
 {
     const { sesion } = useSesion();
-    const usuarioActivo = sesion.getUsuarioActivo();
 
-    if (!usuarioActivo && !invitado)
+    const idUsuarioActivo = sesion.getIdUsuarioActivo();
+
+    if (!idUsuarioActivo && !invitado)
         return <Navigate to="/login" replace />;
 
-    if (usuarioActivo && invitado)
+    if (idUsuarioActivo && invitado)
         return <Navigate to="/" replace />;
 
     return <>{children}</>;

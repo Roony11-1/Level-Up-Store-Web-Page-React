@@ -3,15 +3,37 @@ import "../../../assets/css/Header/LoginStatus/loginstatus.css"
 import { useSesion } from "../../../context/SesionContext/UseSesion"
 import { Boton } from "../../Boton/Boton";
 import { ProfilePhoto } from "../../ProfilePhoto/ProfilePhoto";
+import { UsuarioApiService } from "../../../services/UsuarioApiService";
+import { useEffect, useState } from "react";
+import type { Usuario } from "../../../model/Usuario";
 
 export function LoginStatus()
 {
     const { sesion, sesionLogout } = useSesion();
+    const [usuario, setUsuario] = useState<Usuario | null>(null);
 
-    const usuarioActivo = sesion.getUsuarioActivo();
+    const usuarioService = new UsuarioApiService();
+
+    useEffect(() => 
+    {
+        const fetchUsuario = async () => 
+        {
+            const idUsuarioActivo = sesion.getIdUsuarioActivo();
+
+            if (idUsuarioActivo !== null)
+            {
+                const datos = await usuarioService.fetchById(idUsuarioActivo);
+                setUsuario(datos);
+            }
+            else
+                setUsuario(null);
+        };
+
+        fetchUsuario();
+    }, [sesion]);
 
     // No esta Logeado
-    if (!usuarioActivo)
+    if (!usuario)
         return(
             <div className="sesion-header">
                 <div>
@@ -30,11 +52,11 @@ export function LoginStatus()
         <div className="sesion-header">
             <div>
                 <ProfilePhoto
-                    profilePhoto={usuarioActivo.getProfilePhoto()} />
+                    profilePhoto={usuario.getProfilePhoto()} />
             </div>
             <div className="sesion-panel">
                 {/* Atajos a paneles de administración */}
-                {usuarioActivo.isAdmin() &&
+                {usuario.isAdmin() &&
                     <div>
                         <h2>Panel de Administración</h2>
                         <Link to={'/admin-usuario'}><h3>Administrar Usuarios</h3></Link> 

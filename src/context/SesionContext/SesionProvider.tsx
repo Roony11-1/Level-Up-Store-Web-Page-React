@@ -1,7 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { SesionContext } from "./UseSesion";
 import { Sesion } from "../../model/Sesion";
-import { Usuario } from "../../model/Usuario";
 
 export function SesionProvider({ children }: { children: ReactNode }) 
 {
@@ -14,19 +13,8 @@ export function SesionProvider({ children }: { children: ReactNode })
 
             const sesionInicial = new Sesion();
 
-            if (datos.usuarioActivo) 
-            {
-                const u = new Usuario();
-                u.setEmail(datos.usuarioActivo.email);
-                u.setNombreUsuario(datos.usuarioActivo.nombreUsuario);
-                u.setTelefono(datos.usuarioActivo.telefono);
-                u.setRegion(datos.usuarioActivo.region);
-                u.setComuna(datos.usuarioActivo.comuna);
-                u.setTipo(datos.usuarioActivo.tipo);
-                u.setProfilePhoto(datos.usuarioActivo.profilePhoto);
-
-                sesionInicial.setUsuarioActivo(u);
-            }
+            if (datos.idUsuarioActivo != null)
+                sesionInicial.setIdUsuarioActivo(datos.idUsuarioActivo);
 
             return sesionInicial;
         }
@@ -34,10 +22,10 @@ export function SesionProvider({ children }: { children: ReactNode })
         return new Sesion();
     });
 
-    const sesionLogin = (usuario: Usuario) => 
+    const sesionLogin = (id: number) => 
     {
         const nuevaSesion = new Sesion();
-        nuevaSesion.setUsuarioActivo(usuario);
+        nuevaSesion.setIdUsuarioActivo(id);
         localStorage.setItem("sesion", JSON.stringify(nuevaSesion));
         setSesion(nuevaSesion);
     };

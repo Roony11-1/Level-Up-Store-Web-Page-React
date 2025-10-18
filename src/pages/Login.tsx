@@ -64,7 +64,7 @@ export function Login()
                 password: ""
             });
 
-            sesionLogin(resultado.usuario);
+            sesionLogin(resultado.usuario.getId());
         }
 
         alert(resultado.message);

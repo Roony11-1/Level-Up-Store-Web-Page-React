@@ -1,16 +1,15 @@
 import { ModeloBase } from "./ModeloBase";
-import type { Usuario } from "./Usuario";
 
 export class Sesion extends ModeloBase
 {
-    private usuarioActivo: Usuario | null;
+    private idUsuarioActivo: number | null;
 
     constructor()
     {
         super();
-        this.usuarioActivo = null;
+        this.idUsuarioActivo = null;
     }
 
-    setUsuarioActivo(usuarioActivo: Usuario | null) { this.usuarioActivo = usuarioActivo;; return this; }
-    getUsuarioActivo() { return this.usuarioActivo; }
+    setIdUsuarioActivo(idUsuarioActivo: number | null) { this.idUsuarioActivo = idUsuarioActivo;; return this; }
+    getIdUsuarioActivo() { return this.idUsuarioActivo; }
 }
