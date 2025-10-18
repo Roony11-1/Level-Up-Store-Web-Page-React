@@ -18,7 +18,7 @@ export function SesionProvider({ children }: { children: ReactNode })
             {
                 const u = new Usuario();
                 u.setEmail(datos.usuarioActivo.email);
-                u.setNombreUsuario(datos.usuarioActivo.nombre);
+                u.setNombreUsuario(datos.usuarioActivo.nombreUsuario);
                 u.setTelefono(datos.usuarioActivo.telefono);
                 u.setRegion(datos.usuarioActivo.region);
                 u.setComuna(datos.usuarioActivo.comuna);
