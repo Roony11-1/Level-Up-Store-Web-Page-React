@@ -78,7 +78,7 @@ export function Registro()
             errores.push("Las contraseñas no coinciden.");
 
         if (formData.telefono)
-            if (!/^\d{8}$/.test(formData.telefono))
+            if (!/^\d{9}$/.test(formData.telefono))
                 errores.push("El teléfono debe tener 9 dígitos.");
 
         if (!formData.region)
