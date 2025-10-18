@@ -63,16 +63,16 @@ export function PanelUsuario()
                                 region={usuario.getRegion()}
                                 comuna={usuario.getComuna()}
                                 onClick={clickModificar} />) :
-                                (<EditInfo
-                                    id={usuario.getId()}
-                                    nombre={usuario.getNombreUsuario()}
-                                    email={usuario.getEmail()}
-                                    contraseña={usuario.getContraseña()}
-                                    telefono={usuario.getTelefono()}
-                                    region={usuario.getRegion()}
-                                    comuna={usuario.getComuna()}
-                                    setUsuario={setUsuario}
-                                    onClick={clickModificar} />)
+                            (<EditInfo
+                                id={usuario.getId()}
+                                nombre={usuario.getNombreUsuario()}
+                                email={usuario.getEmail()}
+                                contraseña={usuario.getContraseña()}
+                                telefono={usuario.getTelefono()}
+                                region={usuario.getRegion()}
+                                comuna={usuario.getComuna()}
+                                setUsuario={setUsuario}
+                                onClick={clickModificar} />)
                                 
                     }
                 </>
