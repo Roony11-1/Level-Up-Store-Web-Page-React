@@ -3,12 +3,11 @@ import { useState } from "react";
 import '../assets/css/home/home.css';
 import type { Producto } from "../model/Producto";
 import { ProductoApiService } from "../services/ProductoApiService";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Boton } from "../components/Boton/Boton";
 import { Blog } from "../model/Blog";
 import { BlogApiService } from "../services/BlogApiService";
-import { DisplayMarkedProduct } from "../components/Home/DisplayMarkedProduct/DisplayMarkedProduct";
-import { DisplayMarkedBlogs } from "../components/Home/DisplayMarkedBlog/DisplayMarkedBlog";
+import { CarruselDestacado } from "../components/CarruselDestacado/CarruselDestacado";
 
 export function Home() 
 {
@@ -42,20 +41,20 @@ export function Home()
           Nuestro catálogo ofrece productos de la mejor calidad y precio.
           Descubre nuestras guías y productos exclusivos disponibles ahora.
         </p>
-        <NavLink to="/catalogo"><Boton>Ver Productos</Boton></NavLink>
+        <Link to="/catalogo"><Boton>Ver Productos</Boton></Link>
       </div>
       <div className="blogs-container">
         <h1>Noticias de esta semana</h1>
         <div className="blogs">
-          {blogs[0] && <DisplayMarkedBlogs blog={blogs[0]} />}
+          {blogs[0] && <CarruselDestacado item={blogs} interval={6000} />}
         </div>
-        <NavLink to="/blogs"><Boton>Ver Blogs</Boton></NavLink>
+        <Link to="/blogs"><Boton>Ver Blogs</Boton></Link>
       </div>
     </div>
-    <div className="imagenes-home">
+    <div className="destacado-home">
       <h1>Productos Destacados</h1>
       <div className="destacados">
-        {productosDestacados[0] && <DisplayMarkedProduct producto={productosDestacados[0]} />}
+        {productosDestacados[0] && <CarruselDestacado item={productosDestacados} interval={3000} />}
       </div>
     </div>
   </div>
