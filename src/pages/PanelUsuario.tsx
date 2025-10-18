@@ -253,7 +253,7 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onC
     return(
         <>
             <form onSubmit={handleSubmit}>
-                <div className='formularioContainer'>
+                <div>
                     <FormInput 
                         name='nombreUsuario'
                         label='Nombre de Usuario'
@@ -297,22 +297,25 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onC
                         value={formData.comuna}
                         options={comunas.map(c => ({ value: c, label: c }))}
                         onChange={handleSelectChange} />
-                    <Boton
-                        className='formulario'
-                        onClick={async (e) => 
-                        {
-                            const enviadoCorrecto = await handleSubmit(e);
-                            if (enviadoCorrecto && onClick) onClick(e);
-                        }}
-                        type="submit">
-                            Guardar
-                    </Boton>
+                    <div>
+                        <Boton
+                            className='formulario'
+                            onClick={async (e) => 
+                            {
+                                const enviadoCorrecto = await handleSubmit(e);
+                                if (enviadoCorrecto && onClick) onClick(e);
+                            }}
+                            type="submit">
+                                Guardar
+                        </Boton>
+
+                        <Boton
+                            onClick={onClick}>
+                                Cancelar
+                        </Boton>
+                    </div>
                 </div>
             </form>
-            <Boton
-                onClick={onClick}>
-                    Cancelar
-            </Boton>
         </>
     );
 }
