@@ -34,6 +34,11 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
       return this.controller.save(entity);
   }
 
+  async update(id: number, entity: T): Promise<{ success: boolean; message: string }>
+  {
+    return this.controller.update(id, entity);
+  }
+
   async deleteById(id: number): Promise<boolean>
   {
     return this.controller.deleteById(id);
