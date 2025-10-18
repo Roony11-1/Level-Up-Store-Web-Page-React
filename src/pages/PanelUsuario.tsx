@@ -184,13 +184,13 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onC
         if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email))
             errores.push("El correo electrónico no es válido.");
 
-        if (formData.email !== formData.confirmarEmail)
+        if (formData.confirmarEmail && formData.email !== formData.confirmarEmail)
             errores.push("Los correos no coinciden.");
 
         if (formData.contraseña.length < 6)
             errores.push("La contraseña debe tener al menos 6 caracteres.");
 
-        if (formData.contraseña !== formData.confirmarContraseña)
+        if (formData.confirmarContraseña && formData.contraseña !== formData.confirmarContraseña)
             errores.push("Las contraseñas no coinciden.");
 
         if (formData.telefono)
