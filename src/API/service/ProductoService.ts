@@ -61,13 +61,36 @@ export class ProductoService
         return productosUnicos;
     }
 
-    save(usuario: Producto): boolean
+    save(usuario: Producto): { success: boolean; message: string }
     {
-        return this.productoRepository.save(usuario);
+        const resultado = this.productoRepository.save(usuario);
+
+        if (resultado)
+            return { success: true, message: "Se ha registrado el producto" }; 
+
+        return { success: false, message: "No se ha podido registrar el producto" }; 
     }
 
-    deleteById(id: number): boolean
+    update(id: number, producto: Producto): { success: boolean; message: string }
     {
-        return this.productoRepository.deleteById(id);
+        const productoUpdatear = this.findById(id)
+
+        if (!productoUpdatear)
+                return { success: false, message: "No se ha encotnrado el producto" };
+
+        if (this.productoRepository.update(id, producto))
+            return { success: true, message: "Producto actualizado correctamente" };
+
+        return { success: false, message: "No se ha podido actualizar el producto" };
+    }
+
+    deleteById(id: number): { success: boolean; message: string }
+    {
+        const resultado = this.productoRepository.deleteById(id);
+
+        if (resultado)
+            return { success: true, message: "Se ha borrado el producto" }; 
+
+        return { success: false, message: "No se ha podido borrar el producto" }; 
     }
 }
