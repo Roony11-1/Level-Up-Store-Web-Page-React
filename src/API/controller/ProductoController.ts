@@ -45,12 +45,17 @@ export class ProductoController
         return this.productoService.findProducto(filtro);
     }
 
-    save(usuario: Producto): boolean
+    save(usuario: Producto): { success: boolean; message: string } 
     {
         return this.productoService.save(usuario);
     }
 
-    deleteById(id: number): boolean
+    update(id: number, producto: Producto): { success: boolean; message: string }
+    {
+        return this.productoService.update(id, producto);
+    }
+
+    deleteById(id: number): { success: boolean; message: string }
     {
         return this.productoService.deleteById(id);
     }

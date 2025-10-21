@@ -4,14 +4,37 @@
     width: 100%;
     align-items: center;
     justify-items: center;
+    gap: 30px   ;
 }
 
 .usuarios {
     display: flex;
     flex-wrap: wrap;
-    gap: 2px;
+    justify-content: center; /* Centra los ítems horizontalmente */
+    align-items: flex-start; /* Alinea los ítems arriba */
+    gap: 10px; /* Espaciado más amplio y armonioso */
+  
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
 }
 
 .usuario {
-    gap: 5px;
+    gap: 50px;
+}
+
+.boton-admin-editar{
+    background-color: #1e90ff;
+}
+.boton-admin-editar:hover{
+    background-color: #0f6cd4;
+    transform: scale(1.02);
+}
+
+.boton-admin-borrar{
+    background-color: #f70000;
+}
+.boton-admin-borrar:hover{
+    background-color: #ff0000;
+    transform: scale(1.02);
 }
