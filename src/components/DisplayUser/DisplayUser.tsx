@@ -1,6 +1,7 @@
 import { Usuario } from "../../model/Usuario";
 import "../../assets/css/DisplayUser/displayuser.css"
 import { ProfilePhoto } from "../ProfilePhoto/ProfilePhoto";
+import { Boton } from "../Boton/Boton";
 
 export function DisplayUser({ usuario }: { usuario: Usuario }) {
     return (
@@ -10,9 +11,9 @@ export function DisplayUser({ usuario }: { usuario: Usuario }) {
             <p>Contraseña: {usuario.getContraseña()}</p>
             <p>Email: {usuario.getEmail()}</p>
             <p>Tipo: {usuario.getTipo()}</p>
-            <p>Teléfono: {usuario.getTelefono()}</p>
-            <p>Región: {usuario.getRegion()}</p>
-            <p>Comuna: {usuario.getComuna()}</p>
+            <p>Teléfono: {usuario.getTelefono() || "No proporcionado"}</p>
+            <p>Región: {usuario.getRegion() || "No proporcionado"}</p>
+            <p>Comuna: {usuario.getComuna() || "No proporcionado"}</p>
             <p>Foto: {usuario.getProfilePhoto()}</p>
         </div>
     );
@@ -62,6 +63,21 @@ export function DisplayUserTable({ usuarios }: { usuarios: Usuario[] })
                         <td><p onClick={handleClick}>{u.getTelefono() || "-"}</p></td>
                         <td><p onClick={handleClick}>{u.getRegion() || "-"}</p></td>
                         <td><p onClick={handleClick}>{u.getComuna() || "-"}</p></td>
+                        {/* Acciones */}
+                        <td>
+                            <div className="contenedor-acciones">
+                                <div>
+                                    <Boton>
+                                        editar
+                                    </Boton>
+                                </div>
+                                <div>
+                                    <Boton>
+                                        borrar
+                                    </Boton>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 ))}
             </tbody>
