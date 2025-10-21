@@ -1,8 +1,6 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import { useSesion } from "../../../context/SesionContext/UseSesion";
 import { Navigate } from "react-router-dom";
-import type { Usuario } from "../../../model/Usuario";
-import { UsuarioApiService } from "../../../services/UsuarioApiService";
 
 interface LoginSecurityProps 
 {
