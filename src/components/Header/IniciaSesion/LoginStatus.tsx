@@ -64,7 +64,8 @@ export function LoginStatus()
                 {usuario.isAdmin() &&
                     <div>
                         <h2>Panel de Administración</h2>
-                        <Link to={'/admin-usuario'}><h3>Administrar Usuarios</h3></Link> 
+                        <Link to={'/admin-usuario'}><h3>Administrar Usuarios</h3></Link>
+                        <Link to={'/admin-producto'}><h3>Administrar Productos</h3></Link> 
                         <hr />
                     </div>
                 }
