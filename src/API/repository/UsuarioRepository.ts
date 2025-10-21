@@ -60,13 +60,12 @@ export class UsuarioRepository implements RepositoryInterface<Usuario>
         const usuariosActual = this.findAll();
         const indice = usuariosActual.findIndex((u: any) => u.id === id);
 
-        if (indice !== -1) 
-        {
-            usuariosActual.splice(indice, 1);
-            this.storage.guardar(usuariosActual);
-            return true;
-        }
-        
-        return false;
+        if (indice === -1)
+            return false;
+
+        usuariosActual.splice(indice, 1);
+        this.storage.guardar(usuariosActual);
+
+        return true;
     }
 }
