@@ -65,6 +65,20 @@ export class ProductoRepository implements RepositoryInterface<Producto>
         return true;
     }
 
+    update(id: number, producto: Producto): boolean
+    {
+        const productosActual = this.findAll();
+        const index = productosActual.findIndex(u => u.id === id);
+
+        if (index === -1) 
+            return false;
+
+        productosActual[index] = producto;
+        this.storage.guardar(productosActual);
+
+        return true;
+    }
+
     deleteById(id: any): boolean 
     {
         const productosActual = this.findAll();

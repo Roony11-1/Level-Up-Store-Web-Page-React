@@ -35,6 +35,20 @@ export class BlogRepository implements RepositoryInterface<Blog>
         return true;
     }
 
+    update(id: number, blog: Blog): boolean
+    {
+        const blogsActuales = this.findAll();
+        const index = blogsActuales.findIndex(u => u.id === id);
+
+        if (index === -1) 
+            return false;
+
+        blogsActuales[index] = blog;
+        this.storage.guardar(blogsActuales);
+
+        return true;
+    }
+
     deleteById(id: number): boolean 
     {
         const usuariosActual = this.findAll();
