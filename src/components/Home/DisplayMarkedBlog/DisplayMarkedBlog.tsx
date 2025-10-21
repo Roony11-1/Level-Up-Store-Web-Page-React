@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import type { Blog } from "../../../model/Blog";
 
 import "../../../assets/css/Home/DisplayMarked/blog.css"
