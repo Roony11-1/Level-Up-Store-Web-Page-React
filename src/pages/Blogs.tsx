@@ -27,7 +27,7 @@ export function Blogs()
     return(
         <div>
           {blogs.map((p) => (
-            <DisplayBlog blog={p} />
+            <DisplayBlog key={p.getId()} blog={p} />
           ))}
         </div>
     )
