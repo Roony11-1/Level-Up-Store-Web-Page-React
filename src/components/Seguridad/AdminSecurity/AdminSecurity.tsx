@@ -37,7 +37,7 @@ export function AdminSecurity({ children }: AdminSecurityProps)
         fetchUsuario();
     }, [sesion]);
 
-    if (loading) return <p>Cargando...</p>;
+    if (loading) return <p>Cargando Sesión...</p>;
 
     if (!isAdmin) 
         return <Navigate to="/" replace />;
