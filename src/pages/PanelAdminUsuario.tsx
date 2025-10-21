@@ -55,7 +55,13 @@ export function PanelAdminUsuario()
             return
         }
 
-        usuarioService.deleteById(id);
+        const confirmar = confirm("¿Estás seguro de que quieres borrar este usuario?");
+        if (!confirmar)
+            return;
+
+        const resultado = await usuarioService.deleteById(id);
+
+        alert(resultado.message);
     }
 
     if (loading) return <p>Cargando usuarios...</p>;
