@@ -9,6 +9,8 @@ import { FormInput } from "../components/Formularios/FormInput/FormInput";
 import { FormSelect } from "../components/Formularios/FormSelect/FormSelect";
 import { UbicacionService } from "../utilities/RegionComuna";
 
+import "../assets/css/PanelUsuario/panelusuario.css"
+
 export function PanelUsuario()
 {
     const { sesion } = useSesion();
@@ -71,6 +73,8 @@ export function PanelUsuario()
                                 telefono={usuario.getTelefono()}
                                 region={usuario.getRegion()}
                                 comuna={usuario.getComuna()}
+                                profilePhoto={usuario.getProfilePhoto()}
+                                tipo={usuario.getTipo() || "usuario"}
                                 setUsuario={setUsuario}
                                 onClick={clickModificar} />)
                                 
@@ -96,18 +100,20 @@ function DisplayInfo({nombre, email, contraseña, telefono, region, comuna, onCl
 {
     return(
         <>
-            <div>
+            <div className="panel-usuario-editar">
                 <p><strong>Nombre de Usuario:</strong> {nombre || "No proporcionado"}</p>
                 <p><strong>Email:</strong> {email || "No proporcionado"}</p>
                 <p><strong>Contraseña:</strong> {contraseña || "No proporcionado"}</p>
                 <p><strong>Teléfono:</strong> {telefono || "No proporcionado"}</p>
                 <p><strong>Región:</strong> {region || "No proporcionado"}</p>
                 <p><strong>Comuna:</strong> {comuna || "No proporcionado"}</p>
+
+                <Boton
+                    className="boton-panel"
+                    onClick={onClick}>
+                    Modificar
+                </Boton>
             </div>
-            <Boton
-                onClick={onClick}>
-                Modificar
-            </Boton>
         </>
     );
 }
@@ -121,11 +127,13 @@ interface EditInfo
     telefono: (string | null);
     region: (string | null);
     comuna: (string | null);
+    profilePhoto: string;
+    tipo: string;
     setUsuario: (usuario: Usuario) => void;
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onClick, setUsuario}: EditInfo)
+function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, profilePhoto, tipo, onClick, setUsuario}: EditInfo)
 {
     const [formData, setFormData] = useState({
         nombreUsuario: nombre  || "No proporcionado",
@@ -197,11 +205,14 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onC
             if (!/^\d{9}$/.test(formData.telefono))
                 errores.push("El teléfono debe tener 9 dígitos.");
 
-        if (!formData.region)
-            errores.push("Debes seleccionar una región!")
+        if (tipo !== "admin")
+        {
+            if (!formData.region)
+                errores.push("Debes seleccionar una región!")
 
-        if (!formData.comuna)
-            errores.push("Debes seleccionar una comuna!")
+            if (!formData.comuna)
+                errores.push("Debes seleccionar una comuna!")
+        }
 
         return errores;
     }
@@ -226,7 +237,9 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onC
             .setContraseña(formData.contraseña)
             .setTelefono(formData.telefono)
             .setRegion(formData.region)
-            .setComuna(formData.comuna);
+            .setComuna(formData.comuna)
+            .setProfilePhoto(profilePhoto)
+            .setTipo(tipo);
 
         const resultado = await usuarioService.update(id, usuario);
 
@@ -253,7 +266,7 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onC
     return(
         <>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className="panel-usuario-editar">
                     <FormInput 
                         name='nombreUsuario'
                         label='Nombre de Usuario'
@@ -310,6 +323,7 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, onC
                         </Boton>
 
                         <Boton
+                            className="boton-cancelar"
                             onClick={onClick}>
                                 Cancelar
                         </Boton>
