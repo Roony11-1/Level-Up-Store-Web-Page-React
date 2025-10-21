@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useSesion } from "../../../context/SesionContext/UseSesion";
 import { Navigate } from "react-router-dom";
 import { UsuarioApiService } from "../../../services/UsuarioApiService";
+import { NotFound } from "../../../pages/NotFound";
 
 interface AdminSecurityProps 
 {
@@ -40,7 +41,7 @@ export function AdminSecurity({ children }: AdminSecurityProps)
     if (loading) return <p>Cargando Sesión...</p>;
 
     if (!isAdmin) 
-        return <Navigate to="/" replace />;
+        return <NotFound />
 
     return <>{children}</>;
 }
