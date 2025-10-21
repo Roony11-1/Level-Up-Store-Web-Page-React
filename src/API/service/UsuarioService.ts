@@ -61,9 +61,14 @@ export class UsuarioService
         return { success: false, message: "No se ha podido actualizar el usuario" };
     }
 
-    deleteById(id: number): boolean
+    deleteById(id: number): { success: boolean; message: string }
     {
-        return this.usuarioRepository.deleteById(id);
+        const borrado = this.usuarioRepository.deleteById(id);
+        
+        if (borrado)
+            return { success: true, message: "Se borro el usuario con id: "+id };
+
+        return { success: false, message: "No se ha podido borrar el usuario" };
     }
     
     login(email: string, password: string): { success: boolean; message: string; usuario?: Usuario } 

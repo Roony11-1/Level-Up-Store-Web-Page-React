@@ -30,7 +30,7 @@ export class UsuarioController
         return this.usuarioService.update(id, usuario);
     }
 
-    deleteById(id: number): boolean
+    deleteById(id: number): { success: boolean; message: string } 
     {
         return this.usuarioService.deleteById(id);
     }
