@@ -11,7 +11,6 @@ export class Producto extends ModeloBase
     precio: number;
     cantidad: number;
     imagen: string
-    listaImagen: string[];
     destacado: boolean;
 
     constructor()
@@ -26,7 +25,6 @@ export class Producto extends ModeloBase
         this.precio = 0;
         this.cantidad = 0;
         this.imagen = "../../public/productos/istockphoto-1396814518-612x612.jpg";
-        this.listaImagen = [];
         this.destacado = false;
     }
 
@@ -39,7 +37,6 @@ export class Producto extends ModeloBase
     setPrecio(precio: number) { this.precio = precio; return this; }
     setCantidad(cantidad: number) { this.cantidad = cantidad; return this; }
     setImagen(imagen: string) { this.imagen = imagen; return this; }
-    setListaImagen(listaImagen: string[]) { this.listaImagen = listaImagen; return this; }
     setDestacado(destacado: boolean) { this.destacado = destacado; return this; }
 
     getId(): number { return this.id; }
@@ -51,6 +48,5 @@ export class Producto extends ModeloBase
     getPrecio(): number { return this.precio; }
     getCantidad(): number { return this.cantidad; }
     getImagen(): string { return this.imagen; }
-    getListaImagen(): string[] { return this.listaImagen; }
     getDestacado(): boolean { return this.destacado; }
 }

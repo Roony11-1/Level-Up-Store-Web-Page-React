@@ -126,7 +126,6 @@ export function ProductosFalsos()
             .setPrecio(99990)
             .setDestacado(true)
             .setImagen("/productos/cohette.jpg")
-            .setListaImagen(["../../../public/productos/cohette-monster.jpg", "../../../public/productos/cohette-spell.jpg", "../../../public/productos/cohette-extra.jpg"])
             .setCantidad(1)
             .setMarca("Propia"),
 
