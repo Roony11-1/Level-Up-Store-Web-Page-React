@@ -21,3 +21,12 @@ tbody td p {
 tbody td p:hover {
     background-color: #d3d3d3;
 }
+
+.contenedor-acciones {
+    display: flex;
+    gap: 2px;
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+}

@@ -1,4 +1,17 @@
 .contenedor-admin {
     display: flex;
+    flex-direction: column;
     width: 100%;
+    align-items: center;
+    justify-items: center;
+}
+
+.usuarios {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2px;
+}
+
+.usuario {
+    gap: 5px;
 }
