@@ -78,8 +78,8 @@ export function PanelAdminUsuario()
                         {usuarios.map((u: Usuario) => (
                             <div className="usuario">
                                 <DisplayUser usuario={u} />
-                                <Boton onClick={() => clickBorrar(u.getId())}>Borrar</Boton>
-                                <Boton>Editar</Boton>
+                                <Boton className="boton-admin-borrar" onClick={() => clickBorrar(u.getId())}>Borrar</Boton>
+                                <Boton className="boton-admin-editar">Editar</Boton>
                             </div>
                         ))}
                     </div>

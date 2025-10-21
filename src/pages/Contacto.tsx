@@ -1,3 +1,5 @@
+import { Boton } from '../components/Boton/Boton';
+import { FormInput } from '../components/Formularios/FormInput/FormInput';
 import '../css/contacto.css'
 import {useState} from "react";
 export function Contacto() {
@@ -9,26 +11,37 @@ export function Contacto() {
     const enviarForm=(e: React.FormEvent<HTMLFormElement>) =>{
         e.preventDefault()
         console.log(mensaje)
-        setRespuesta(mensaje)
+        setRespuesta(`¡Gracias por tu mensaje ${nombre}, de igual forma no haremos caso!`)
     }
     return (
         
         <form onSubmit={enviarForm}>
+        <div className='contacto'>   
             <h1>FORMULARIO DE CONTACTO</h1>
-            <label htmlFor="nombre">Nombre:</label>
-            <input type="text" name='nombre' id='nombre' 
-            value={nombre} onChange={(e)=>setNombre(e.target.value)}/>
-
-            <label htmlFor="correo">Correo:</label>
-            <input type="text" name='correo' id='correo'
-            value={correo} onChange={(e)=>setCorreo(e.target.value)}/>
-
-            <label htmlFor="mensaje">Mensaje:</label>
-            <input type="text" name='mensaje' id='mensaje' 
-            value={mensaje} onChange={(e)=>setMensaje(e.target.value)}/>
-            <input type="submit" value="enviar" />
+            <img src="/public/Logo_level-Up-sin-fondo.png" alt="" />
+            <FormInput
+                name='nombre'
+                value={nombre}
+                onChange={(e)=>setNombre(e.target.value)}
+                label='nombre'
+             />   
+            <FormInput
+                name='correo'
+                value={correo}
+                onChange={(e)=>setCorreo(e.target.value)}
+                label='correo'
+             /> 
+            <FormInput
+                name='mensaje'
+                value={mensaje}
+                onChange={(e)=>setMensaje(e.target.value)}
+                label='mensaje'
+             /> 
+            <Boton className='boton-enviar'>Enviar</Boton>
+        </div>
             {respuesta && <p role="alert">{respuesta}</p>}
         </form>
+
 
 
     )
