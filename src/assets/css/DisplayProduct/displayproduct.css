@@ -62,3 +62,7 @@
 .producto p:hover {
     background: #f0f0f0;
 }
+
+.producto-agotado {
+    color: red;
+}

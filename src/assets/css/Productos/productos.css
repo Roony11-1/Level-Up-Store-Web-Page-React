@@ -19,3 +19,7 @@
     border-radius: 10px;
     background-color: #d3d3d3;
 }
+
+.producto-agotado {
+    color: red;
+}
