@@ -1,0 +1,31 @@
+.panel-usuario-editar {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-items: center;
+
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+
+    gap: 10px;
+}
+
+button.boton-panel {
+    background-color: #1e90ff;
+}
+
+button.boton-panel:hover {
+    background-color: #0f6cd4;
+    transform: scale(1.02);
+}
+
+button.boton-cancelar {
+    background-color: red;
+}
+
+button.boton-cancelar:hover {
+    background-color: rgb(153, 0, 0);
+    transform: scale(0.98);
+}
