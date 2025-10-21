@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
 import "../assets/css/PanelAdmin/paneladmin.css"
 
-import { UsuarioApiService } from "../services/UsuarioApiService";
-
 import { Usuario } from "../model/Usuario";
 import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
 import { AdminSecurity } from "../components/Seguridad/AdminSecurity/AdminSecurity";
 import { DisplayUser } from "../components/DisplayUser/DisplayUser";
 import { Boton } from "../components/Boton/Boton";
 import { useSesion } from "../context/SesionContext/UseSesion";
+import { useUsuarioService } from "../context/UsuarioServiceContext/UseUsuarioService";
 
 export function PanelAdminUsuario()
 {
@@ -17,7 +16,7 @@ export function PanelAdminUsuario()
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [loading, setLoading] = useState(true);
 
-    const usuarioService = new UsuarioApiService();
+    const { usuarioService } = useUsuarioService();
 
     useEffect(() => 
     {
@@ -76,7 +75,7 @@ export function PanelAdminUsuario()
                     </Boton>
                     <div className="usuarios">
                         {usuarios.map((u: Usuario) => (
-                            <div className="usuario">
+                            <div key={u.getId()} className="usuario">
                                 <DisplayUser usuario={u} />
                                 <Boton className="boton-admin-borrar" onClick={() => clickBorrar(u.getId())}>Borrar</Boton>
                                 <Boton className="boton-admin-editar">Editar</Boton>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import "../assets/css/Formulario/formulario.css"
-import { UsuarioApiService } from '../services/UsuarioApiService';
 import { FormSelect } from '../components/Formularios/FormSelect/FormSelect';
 import { FormInput } from '../components/Formularios/FormInput/FormInput';
 
@@ -8,9 +7,12 @@ import { UbicacionService } from "../utilities/RegionComuna"
 import { Usuario } from '../model/Usuario';
 import { Boton } from '../components/Boton/Boton';
 import { LoginSecurity } from '../components/Seguridad/LoginSecurity/LoginSecurity';
+import { useUsuarioService } from '../context/UsuarioServiceContext/UseUsuarioService';
 
 export function Registro() 
 {
+    const { usuarioService } = useUsuarioService();
+
     const [formData, setFormData] = useState({
         nombreUsuario: "",
         email: "",
@@ -102,7 +104,6 @@ export function Registro()
             return;
         }
 
-        const usuarioService = new UsuarioApiService();
         const usuario = new Usuario().setNombreUsuario(formData.nombreUsuario)
             .setEmail(formData.email)
             .setContraseña(formData.contraseña)

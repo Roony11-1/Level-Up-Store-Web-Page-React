@@ -8,9 +8,12 @@ import "../assets/css/Formulario/formulario.css"
 import { FormInput } from "../components/Formularios/FormInput/FormInput";
 import { Boton } from "../components/Boton/Boton";
 import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
+import { useUsuarioService } from "../context/UsuarioServiceContext/UseUsuarioService";
 
 export function Login() 
 {
+    const { usuarioService } = useUsuarioService();
+
     const [formData, setFormData] = useState({
         email: "",
         password: ""
@@ -53,7 +56,6 @@ export function Login()
         }
 
         const loginRequest: LoginRequest = new LoginRequest(formData.email, formData.password);
-        const usuarioService = new UsuarioApiService();
 
         const resultado = await usuarioService.login(loginRequest);
 

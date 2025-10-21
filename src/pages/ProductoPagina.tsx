@@ -1,11 +1,11 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
-import { ProductoApiService } from "../services/ProductoApiService";
 import { Producto } from "../model/Producto";
 
 import "../assets/css/ProductoPagina/productopagina.css"
 import { Boton } from "../components/Boton/Boton";
 import { RelatedProduct } from "../components/RelatedProduct/RelatedProduct";
+import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
 
 export function ProductoPagina()
 {
@@ -13,7 +13,7 @@ export function ProductoPagina()
     const [productosRelacionados, setProductosRelacionados] = useState<Producto[]>();
     const [loading, setLoading] = useState(true);
 
-    const productoService = useMemo(() => new ProductoApiService(), []);
+    const { productoService } = useProductoService();
 
     const [searchParams] = useSearchParams();
     const nombre = searchParams.get("nombre");
@@ -63,7 +63,7 @@ export function ProductoPagina()
                         </Boton>
                         <span>Cantidad: {producto.getCantidad()}</span>
                     </div>) : 
-                    <h2>Agotado</h2>}
+                    <h2 className="producto-agotado">Agotado</h2>}
                     
                 </div>
             </div>

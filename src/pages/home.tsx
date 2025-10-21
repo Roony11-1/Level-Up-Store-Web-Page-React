@@ -2,12 +2,12 @@ import { useEffect } from "react";
 import { useState } from "react";
 import '../assets/css/home/home.css';
 import type { Producto } from "../model/Producto";
-import { ProductoApiService } from "../services/ProductoApiService";
 import { Link } from "react-router-dom";
 import { Boton } from "../components/Boton/Boton";
 import { Blog } from "../model/Blog";
 import { BlogApiService } from "../services/BlogApiService";
 import { CarruselDestacado } from "../components/CarruselDestacado/CarruselDestacado";
+import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
 
 export function Home() 
 {
@@ -15,7 +15,7 @@ export function Home()
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const productoService = new ProductoApiService();
+  const { productoService } = useProductoService();
   const blogService = new BlogApiService();
 
   useEffect(() => {

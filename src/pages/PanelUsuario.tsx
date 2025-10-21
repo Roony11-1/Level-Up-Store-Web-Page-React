@@ -10,6 +10,7 @@ import { FormSelect } from "../components/Formularios/FormSelect/FormSelect";
 import { UbicacionService } from "../utilities/RegionComuna";
 
 import "../assets/css/PanelUsuario/panelusuario.css"
+import { useUsuarioService } from "../context/UsuarioServiceContext/UseUsuarioService";
 
 export function PanelUsuario()
 {
@@ -18,7 +19,7 @@ export function PanelUsuario()
     const [editando, setEditando] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    const usuarioService = new UsuarioApiService();
+    const { usuarioService } = useUsuarioService();
 
     useEffect(() => 
     {
