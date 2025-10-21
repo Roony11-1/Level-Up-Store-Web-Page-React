@@ -42,7 +42,9 @@ export function PanelAdminUsuario()
             .setEmail(randomName.toLowerCase() + "@mail.com")
             .setContraseña("123456");
 
-        await usuarioService.save(usuario);
+        const resultado = await usuarioService.save(usuario);
+
+        alert(resultado.message);
     };
 
     const clickBorrar = async (id: number) =>
