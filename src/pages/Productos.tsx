@@ -1,19 +1,18 @@
 import { Producto } from "../model/Producto";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import { DisplayProduct } from "../components/DisplayProduct/DisplayProduct";
-import { ProductoApiService } from "../services/ProductoApiService"; 
 
 import "../assets/css/Productos/productos.css"
 import { Link, useSearchParams } from "react-router-dom";
-
+import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
 
 export function Productos() 
 {
   const [productos, setProductos] = useState<Producto[]>([])
   const [loading, setLoading] = useState(true);
 
-  const productoService = useMemo(() => new ProductoApiService(), []);
+  const { productoService } = useProductoService();
 
   const [searchParams] = useSearchParams();
   const categoria = searchParams.get("filtro");
