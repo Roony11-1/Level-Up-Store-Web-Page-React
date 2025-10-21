@@ -84,13 +84,11 @@ export class ProductoRepository implements RepositoryInterface<Producto>
         const productosActual = this.findAll();
         const indice = productosActual.findIndex((u: any) => u.id === id);
 
-        if (indice !== -1) 
-        {
-            productosActual.splice(indice, 1);
-            this.storage.guardar(productosActual);
-            return true;
-        }
+        if (indice === -1) 
+            return false;
         
-        return false;
+        productosActual.splice(indice, 1);
+        this.storage.guardar(productosActual);
+        return true;
     }
 }
