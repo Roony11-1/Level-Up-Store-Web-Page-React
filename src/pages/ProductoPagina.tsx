@@ -56,10 +56,15 @@ export function ProductoPagina()
                     <p>${producto.getPrecio().toLocaleString("es-CL")}</p>
                 </div>
                 <div className="info-footer">
-                    <Boton>
-                        Añadir al carrito
-                    </Boton>
-                    <span>Cantidad: {producto.getCantidad()}</span>
+                    {producto.getCantidad() > 0 ?
+                    (<div>
+                        <Boton>
+                            Añadir al carrito
+                        </Boton>
+                        <span>Cantidad: {producto.getCantidad()}</span>
+                    </div>) : 
+                    <h2>Agotado</h2>}
+                    
                 </div>
             </div>
             <div className="displayer-parecidos">

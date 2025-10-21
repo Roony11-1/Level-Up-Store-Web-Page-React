@@ -22,7 +22,7 @@ export function ProductosFalsos()
             .setCategoria("Juegos de Mesa")
             .setPrecio(24990)
             .setImagen("/productos/carcassonne.png")
-            .setCantidad(10)
+            .setCantidad(0)
             .setMarca("Hans im Glueck"),
 
         new Producto()

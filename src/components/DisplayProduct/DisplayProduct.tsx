@@ -9,6 +9,7 @@ export function DisplayProduct({ producto }: { producto: Producto }) {
         <div className="producto">
             <Link to={`/producto?nombre=${producto.getNombre()}`}><img src={producto.getImagen()} alt={producto.getNombre()}/></Link>
             <Link to={`/producto?nombre=${producto.getNombre()}`}><h1>{producto.getNombre()}</h1></Link>
+            {producto.getCantidad()> 0 ? <h1></h1> : <h1>Agotado</h1>}
             <p>${producto.getPrecio().toLocaleString("es-CL")}</p>
         </div>
     );
