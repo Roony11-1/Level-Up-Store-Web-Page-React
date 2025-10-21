@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
 import type { Sesion } from "../../model/Sesion";
 
-export interface SesionContextType 
+interface SesionContextType 
 {
   sesion: Sesion;
   sesionLogin: (id: number) => void;
