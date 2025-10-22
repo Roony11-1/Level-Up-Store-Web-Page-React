@@ -7,6 +7,7 @@ import type { itemsType } from "../model/Carrito";
 
 import "../assets/css/Carrito/carrito.css"
 import { CarritoItem } from "../components/Carrito/CarritoItem/CarritoItem";
+import { Link } from "react-router-dom";
 
 export function Carrito()
 {
@@ -33,7 +34,13 @@ export function Carrito()
   const listaProductos = carrito.getItems();
 
   if (listaProductos.length === 0)
-    return <>Carrito Vacío</>
+    return (
+      <>
+        <strong>Carrito Vacío</strong>
+        <br />
+        <Link to={"/catalogo"}><Boton>Ir a el catálogo!</Boton></Link>
+      </>
+    );
 
   if (loading) return <p>Cargando...</p>;
 
@@ -58,8 +65,6 @@ export function Carrito()
 
     return acumulado + subtotal;
   }, 0);
-
-  carrito.setTotal(total);
 
   const handlePagar = () =>
   {
