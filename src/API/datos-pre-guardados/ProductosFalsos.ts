@@ -395,7 +395,8 @@ export function ProductosFalsos()
             .setPrecio(24990)
             .setImagen("/productos/sudaderaGamer.png")
             .setCantidad(10)
-            .setMarca("Propia"),
+            .setMarca("Propia")
+            .setOferta(0.3),
 
         new Producto()
             .setId(36 )
@@ -406,7 +407,8 @@ export function ProductosFalsos()
             .setPrecio(59990)
             .setImagen("/productos/linkFigura.png")
             .setCantidad(8)
-            .setMarca("Nintendo"),
+            .setMarca("Nintendo")
+            .setOferta(0.5),
 
             ];
 }
