@@ -1,14 +1,14 @@
 .catalogo-container {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 5px;
 }
 
 .contenedor-productos {
     display: flex; 
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 5px;
 }
 
 .contenedor-filtros {
