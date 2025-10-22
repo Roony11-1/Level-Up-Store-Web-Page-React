@@ -6,6 +6,7 @@ import "../assets/css/ProductoPagina/productopagina.css"
 import { Boton } from "../components/Boton/Boton";
 import { RelatedProduct } from "../components/RelatedProduct/RelatedProduct";
 import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
+import { useCarrito } from "../context/CarritoContext/useCarrito";
 
 export function ProductoPagina()
 {
@@ -33,6 +34,7 @@ export function ProductoPagina()
         });
     }, [nombre, productoService]);
 
+
     if (loading) return <p>Cargando Producto...</p>;
 
     if (!producto)
@@ -56,15 +58,8 @@ export function ProductoPagina()
                     <p>${producto.getPrecio().toLocaleString("es-CL")}</p>
                 </div>
                 <div className="info-footer">
-                    {producto.getCantidad() > 0 ?
-                    (<div>
-                        <Boton>
-                            Añadir al carrito
-                        </Boton>
-                        <span>Cantidad: {producto.getCantidad()}</span>
-                    </div>) : 
-                    <h2 className="producto-agotado">Agotado</h2>}
-                    
+                    <InfoFooter 
+                        producto={producto} />
                 </div>
             </div>
             <div className="displayer-parecidos">
@@ -82,9 +77,50 @@ export function ProductoPagina()
                     </div>
                 </div>
             </div>
-            <div className="displayer-imagenes">
-                <h1>Lista Imagenes Producto</h1>
-            </div>
         </div>
     );
+}
+
+interface InfoFooterProps {
+    producto: Producto;
+}
+
+// Para manejar el estado diferente
+function InfoFooter({ producto }: InfoFooterProps) 
+{
+    const { carrito, agregarUnidad,  eliminarUnidad } = useCarrito();
+
+    const enCarrito = carrito.existeEnElCarrito(producto.getId());
+
+    if (enCarrito) 
+    {
+        const itemEnCarrito = carrito.getItems().find(p => p.productoId === producto.getId());
+        const cantidad = itemEnCarrito?.cantidad ?? 0;
+
+        // Parece raro sabes pero la aplicacion hace esto dos veces y no me voy a perder viendo porque
+        // le sumo 1/2 y se acabo sabes! ahora suma 1
+        return (
+            <>
+                <h2>Cantidad en carrito: {cantidad}</h2>
+                <Boton onClick={() => agregarUnidad(producto.getId(), 1/2)}>Añadir Unidad</Boton>
+                <Boton onClick={() => eliminarUnidad(producto.getId(), 1/2)}>Quitar Unidad</Boton>
+                <Boton onClick={() => eliminarUnidad(producto.getId(), cantidad)}>Eliminar del Carrito</Boton>
+            </>
+        );
+    }
+
+    if (producto.getCantidad() > 0) 
+    {
+
+        return (
+            <div>
+                <Boton onClick={() => agregarUnidad(producto.getId(), 1)}>
+                    Añadir al carrito
+                </Boton>
+                <p>Cantidad: {producto.getCantidad()}</p>
+            </div>
+        );
+    } 
+    else
+        return <h2 className="producto-agotado">Agotado</h2>;
 }
