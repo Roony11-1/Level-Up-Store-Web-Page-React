@@ -1,0 +1,31 @@
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    background-color: #d3d3d3;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.contenedor-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 10px;
+}
+
+.item-carrito {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 10px;
+    padding: 5px;
+    max-width: 290px;
+    height: auto;
+}
+
+.item-carrito-btn {
+    display: flex;
+    gap: 5px;
+    margin-top: 10px;
+}

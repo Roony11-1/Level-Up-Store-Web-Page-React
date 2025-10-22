@@ -42,8 +42,8 @@
     flex-direction: column;
     flex-wrap: wrap;
     gap: 10px;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
     margin-top: 20px;
 }
 
@@ -52,11 +52,6 @@
     flex-direction: row;
     gap: 15px;
     flex-wrap: wrap;
-}
-
-.displayer-imagenes {
-    grid-column: span 3;
-    grid-row-start: 5;
 }
 
 @media (max-width: 1200px) {
