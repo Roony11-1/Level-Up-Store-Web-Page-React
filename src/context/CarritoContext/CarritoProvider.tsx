@@ -85,8 +85,6 @@ export function CarritoProvider( {children}: CarritoProviderProps )
                 nuevo.setItems(itemsActualizados);
             }
 
-            nuevo.setTotal(prev.getTotal())
-
             return nuevo;
         });
     }
@@ -100,8 +98,7 @@ export function CarritoProvider( {children}: CarritoProviderProps )
     {
         localStorage.setItem("carrito", JSON.stringify({
             id: carrito.getId(),
-            items: carrito.getItems(),
-            total: carrito.getTotal(),}));
+            items: carrito.getItems(),}));
         setLoading(false);
     }, [carrito]);
 
