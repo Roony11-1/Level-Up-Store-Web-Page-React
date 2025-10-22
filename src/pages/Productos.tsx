@@ -36,7 +36,16 @@ export function Productos()
 
     if (loading) return <p>Cargando...</p>;
 
-    if (productos.length === 0) return <p>No hay productos disponibles.</p>;
+    if (productos.length === 0) 
+      return(
+        <div>
+          <div className="contenedor-filtros">
+              <h1>Filtros</h1>
+              <Link to={"/catalogo"}>Quitar Filtros</Link>
+          </div>
+          <p>No hay productos disponibles.</p>
+        </div>
+      );
 
     return (
       <div className="catalogo-container">
