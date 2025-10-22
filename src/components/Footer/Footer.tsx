@@ -27,49 +27,29 @@ export function Footer() {
   }
 
   return (
+    <footer className="Footer">
+      <div className="footer-col">
+        <h3>Level-Up Store © 2025</h3>
+        <p>Tu tienda de confianza para todo lo relacionado con videojuegos.</p>
+        <Link to="nosotros">Nosotros</Link>
+        <Link to="contactos">Contacto</Link>
+      </div>
 
-    <footer>
-      <div className="Footer">
-        <div className="div2">
-        <Link to="nosotros" ><h2>Nosotros</h2></Link>
-        <Link to="contactos" ><h2>Contacto</h2></Link>
-        {/* Columna izquierda: Título y descripción */}
-        <div className="footer-col">
-          <h3 className="footer-title">Level-Up Store © 2025</h3>
-          <p className="footer-text">
-            Tu tienda de confianza para todo lo relacionado con videojuegos.
-          </p>
-        </div>
-        </div>
+      <div className="footer-col">
+        <p>Categorías: Consolas, Juegos, Accesorios, Merchandising</p>
+      </div>
 
-        <div className="div3">
-        
-
-        {/* Columna central: Categorías y enlaces */}
-        <div className="footer-col">
-          <p className="footer-text">
-            Categorías: Consolas, Juegos, Accesorios, Merchandising
-          </p>
-        </div>
-
-          {/* Columna derecha: Newsletter */}
-          <div className="footer-col">
-            <p className="footer-text">Contacto:</p>
-            <p className="footer-text">Suscríbete a nuestra newsletter</p>
-            <label className="footer-text">
-              Tu Email:
-              <input type="email" placeholder="email@example.com" className="footer-input"
-               value={email} onChange={handleEmailChange}  onKeyDown={handleKeyPress}/>
-            </label>
-            {isSubscribed && (
-              <p className="subscription-message">¡Te has suscrito a nuestra  newsletter!</p>
-            )}
-          </div>
-          </div>
-          </div>
-
-     
-
+      <div className="footer-col">
+        <p>Suscríbete a nuestra newsletter</p>
+        <input
+          type="email"
+          placeholder="email@example.com"
+          value={email}
+          onChange={handleEmailChange}
+          onKeyDown={handleKeyPress}
+        />
+        {isSubscribed && <p>¡Te has suscrito!</p>}
+      </div>
     </footer>
   )
 }

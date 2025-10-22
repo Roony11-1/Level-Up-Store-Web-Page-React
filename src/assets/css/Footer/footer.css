@@ -1,83 +1,74 @@
 footer {
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    padding: 5px;
-    text-align: center;
-    margin-top: 5px;
-    border: 1px solid #000;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  padding: 10px;
+  text-align: center;
+  margin-top: 5px;
+  border: 1px solid #000;
+  color: #fff;
 }
 
-
-.Footer {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 8px;
-}
-
-.div2 {
-    display: flex; /*tipo de display que quiero que tenga*/
-    flex-direction: row; /*sirev para dar direccion del flex*/
-    padding:10px ;/* sirve que tan alejado quiero que este de los margenes*/
-    gap: 50px; /*sirve para dar la distancia que quiero entre botones*/
-}
-
-.Footer h2 {
-    font-size: 1.2rem;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
-    padding: 10px 16px;
-    border-radius: 12px;
-    border: 1px solid #fff; 
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    width: 70%;
-}
-/* Nueva estructura en fila */
+/* Contenedor principal en fila */
 .footer-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  
-  /* Columnas individuales dentro del footer */
-  .footer-col {
-    flex: 1;
-    min-width: 250px;
-  }
-  
-  /* Estilo de títulos e información */
-  .footer-title {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 0 0 8px 0;
-  }
-  
-  .footer-text {
-    font-size: 14px;
-    color: #e0e0e0;
-    margin: 4px 0;
-  }
-  
-  /* Input de email */
-  .footer-input {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-    margin-left: 10px;
-    font-size: 14px;
-    width: 180px;
-  }
-  .div3{
-    display: flex;
-    flex-direction: row
-    ;
-  }
-  .subscription-message {
-    color: rgb(14, 13, 13);
-    font-size: 1.2em;
-    margin-top: 10px;
-    font-weight: bold;
-  }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+}
 
-        
+/* Columnas individuales */
+.footer-col {
+  flex: 1;
+  min-width: 250px;
+}
+
+/* Títulos */
+.footer-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+/* Texto */
+.footer-text {
+  font-size: 14px;
+  color: #e0e0e0;
+  margin: 4px 0;
+}
+
+/* Inputs */
+.footer-input {
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 10px;
+  font-size: 14px;
+  width: 180px;
+}
+
+/* Suscripción */
+.subscription-message {
+  color: #000;
+  font-size: 1.1em;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Botones de navegación (Nosotros, Contacto) */
+.Footer h2 {
+  font-size: 1.2rem;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  width: 70%;
+  cursor: pointer;
+}
+
+.div2, .div3 {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
