@@ -15,6 +15,6 @@ main {
     padding: 20px;
     text-align: center;
     align-items: center;
-    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    background: linear-gradient(180deg, red, blue);
     min-height: 100%;
 }
