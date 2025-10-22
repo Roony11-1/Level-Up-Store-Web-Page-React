@@ -10,7 +10,7 @@ import { CarritoItem } from "../components/Carrito/CarritoItem/CarritoItem";
 
 export function Carrito()
 {
-  const { carrito, eliminarUnidad } = useCarrito();
+  const { carrito } = useCarrito();
 
   const { productoService } = useProductoService();
 
@@ -37,7 +37,37 @@ export function Carrito()
 
   if (loading) return <p>Cargando...</p>;
 
-  let total = 0;
+  /**
+   * Calcula el total 
+   */
+  const total = listaProductos.reduce((acumulado, item) => 
+  {
+    const producto = productos.find((p: Producto) => p.id === item.productoId);
+
+    if (!producto)
+    { 
+      // quitamos ese elemento de listaProductos lo hago aca y que pasa que pereza compita aaaaaaa  
+      carrito.setItems(listaProductos.splice(item.productoId, 1));
+      return acumulado;
+    }
+      
+
+    const precio = producto.getPrecio();
+    const descuento = producto.getOferta() ?? 0;
+    const subtotal = descuento === 0 ? (precio * item.cantidad) : (precio * (1 - descuento) * item.cantidad);
+
+    return acumulado + subtotal;
+  }, 0);
+
+  carrito.setTotal(total);
+
+  const handlePagar = () =>
+  {
+    if (carrito.getItems().length === 0)
+      alert("Primero agrega productos al carrito we")
+    else
+      alert("Pagaste pa")
+  }
 
   return (
     <div className="contenedor">
@@ -45,20 +75,12 @@ export function Carrito()
         {listaProductos.map((item: itemsType) => 
         {
           const producto = productos.find((p: Producto) => p.id === item.productoId);
-
-          const precio = producto?.getPrecio() || 0;
-          const descuento = producto?.getOferta() || 1;
-          
-          if (descuento === 1)
-            total = total + precio*1*item.cantidad;
-          else
-            total = total + precio*(1-descuento)*item.cantidad;
-
-          return (<CarritoItem producto={producto || null} />);
+          return <CarritoItem key={item.productoId} producto={producto || null} />;
         })}
       </div>
       <hr />
-      <Boton>Ir a Pagar</Boton>
+      <Boton
+        onClick={handlePagar}>Ir a Pagar</Boton>
       <h2>Total: ${total.toLocaleString("es-CL")}</h2>
     </div>
   );

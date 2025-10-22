@@ -27,7 +27,7 @@ export class Producto extends ModeloBase
         this.cantidad = 0;
         this.imagen = "../../public/productos/istockphoto-1396814518-612x612.jpg";
         this.destacado = false;
-        this.oferta = 1
+        this.oferta = 0;
     }
 
     setId(id: number) { this.id = id; return this; }
@@ -53,5 +53,5 @@ export class Producto extends ModeloBase
     getImagen(): string { return this.imagen; }
     getDestacado(): boolean { return this.destacado; }
     getOferta(): number { return this.oferta; }
-    isOferta(): boolean { return this.oferta !== 1; }
+    isOferta(): boolean { return this.oferta !== 0; }
 }

@@ -9,7 +9,7 @@ interface CarritoProviderProps
 
 export function CarritoProvider( {children}: CarritoProviderProps )
 {
-    const [loading, setLoading] = useState(true) 
+    const [loading, setLoading] = useState(true)
     const [carrito, setCarrito] = useState(() =>
     {
         const datosGuardados = localStorage.getItem("carrito");
@@ -85,6 +85,8 @@ export function CarritoProvider( {children}: CarritoProviderProps )
                 nuevo.setItems(itemsActualizados);
             }
 
+            nuevo.setTotal(prev.getTotal())
+
             return nuevo;
         });
     }
@@ -98,7 +100,8 @@ export function CarritoProvider( {children}: CarritoProviderProps )
     {
         localStorage.setItem("carrito", JSON.stringify({
             id: carrito.getId(),
-            items: carrito.getItems(),}));
+            items: carrito.getItems(),
+            total: carrito.getTotal(),}));
         setLoading(false);
     }, [carrito]);
 

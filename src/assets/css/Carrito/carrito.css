@@ -29,3 +29,9 @@
     gap: 5px;
     margin-top: 10px;
 }
+
+.item-carrito-btn button {
+    flex: 1;
+    min-width: 0;
+    word-break: break-word;
+}

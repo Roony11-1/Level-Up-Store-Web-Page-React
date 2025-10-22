@@ -127,7 +127,8 @@ export function ProductosFalsos()
             .setDestacado(true)
             .setImagen("/productos/cohette.jpg")
             .setCantidad(1)
-            .setMarca("Propia"),
+            .setMarca("Propia")
+            .setOferta(1),
 
         new Producto()
             .setId(12)
@@ -138,7 +139,8 @@ export function ProductosFalsos()
             .setPrecio(27990)
             .setImagen("/productos/dixit.png")
             .setCantidad(10)
-            .setMarca("Libellud"),
+            .setMarca("Libellud")
+            .setOferta(0.9),
 
         new Producto()
             .setId(13)

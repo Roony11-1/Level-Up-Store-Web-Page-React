@@ -41,16 +41,16 @@ export function CarritoItem({producto}: CarritoItemProps)
                     <div className="item-carrito-btn">
                         <Boton
                             onClick={() => agregarUnidad(item.productoId, 1/2)}>
-                                +1 Unidad
+                                +1
                         </Boton>
                         <Boton
                             onClick={() => eliminarUnidad(item.productoId, item.cantidad)}>
-                                Eliminar de el Carrito
+                                Quitar
                         </Boton>
                         {item.cantidad > 1 && 
                             <Boton
                                 onClick={() => eliminarUnidad(item.productoId, 1/2)}>
-                                    -1 Unidad
+                                    -1
                             </Boton>
                         }
  

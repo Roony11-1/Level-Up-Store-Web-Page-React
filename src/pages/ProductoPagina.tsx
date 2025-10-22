@@ -42,6 +42,9 @@ export function ProductoPagina()
             <h1>No hay productos asociados a ese nombre</h1>
     );
 
+    const enOferta = producto.isOferta();
+    const oferta = (producto.getOferta());
+
     return (
         <div className="displayer-producto">
             <div className="displayer-imagen">
@@ -51,11 +54,29 @@ export function ProductoPagina()
             <div className="displayer-info">
                 <div className="info-header">
                     <strong>{producto.getNombre()}</strong><br />
-                    <strong>{producto.getMarca()}</strong>
+                    <strong>{producto.getMarca()}</strong><br /><br /><hr />
+                    {enOferta && <strong>Oferta: {oferta*100}%<hr /></strong>}
                 </div>
                 <div className="info-body">
                     <p>{producto.getDescripcion()}</p>
-                    <p>${producto.getPrecio().toLocaleString("es-CL")}</p>
+                                <p>
+                {enOferta ? (
+                    <div>
+                        <span
+                            style={{
+                            textDecoration: "line-through",
+                            marginLeft: "5px",
+                            color: "#888"}}>
+                                [${producto.precio.toLocaleString("es-CL")}]
+                        </span>
+                        <strong>${(producto.precio*(1-oferta)).toLocaleString("es-CL")}</strong>
+                    </div>
+                ) : (
+                    <span>
+                        ${producto.precio.toLocaleString("es-CL")}
+                    </span>
+                )}
+            </p>
                 </div>
                 <div className="info-footer">
                     <InfoFooter 
