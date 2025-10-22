@@ -11,6 +11,7 @@ export function UserPanel()
           <NavLink to="/" className={({ isActive }) => isActive ? "seleccionada" : ""}><h2>Inicio</h2></NavLink>
           <NavLink to="/catalogo" className={({ isActive }) => isActive ? "seleccionada" : ""}><h2>Catálogo</h2></NavLink>
           <NavLink to="/blogs" className={({ isActive }) => isActive ? "seleccionada" : ""}><h2>Blogs</h2></NavLink>
+          <NavLink to="/carrito" className={({ isActive }) => isActive ? "seleccionada" : ""}><h2>Carrito</h2></NavLink>
         </div>
         <NavLink to="/app" className={({ isActive }) => isActive ? "seleccionada" : ""}><h2>App</h2></NavLink>
         <NavLink to="/testapi" className={({ isActive }) => isActive ? "seleccionada" : ""}><h2>Test</h2></NavLink>
