@@ -6,12 +6,16 @@ import { UserPanel } from '../UserPanel/UserPanel';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { useState } from 'react';
 import { Boton } from '../Boton/Boton';
+import { Link } from 'react-router-dom';
+import { useCarrito } from '../../context/CarritoContext/useCarrito';
 
 export function Header() 
 {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
+
+  const { carrito } = useCarrito();
 
   return(
     <header>
@@ -30,6 +34,9 @@ export function Header()
           </div>
 
           <div className={`derecha ${menuAbierto ? 'abierto' : ''}`}>
+            <div>
+              <Link to={"carrito"}><img src='/carrito/cart-shopping-svgrepo-com.svg' width={50} height={50} /> [{carrito.getCantidadItems()}]</Link>
+            </div>
             <LoginStatus />
           </div>
       </div>
