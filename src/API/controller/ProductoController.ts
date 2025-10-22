@@ -45,6 +45,16 @@ export class ProductoController
         return this.productoService.findProducto(filtro);
     }
 
+    getMarcas(): string[]
+    {
+        return this.productoService.getMarcas();
+    }
+
+    getCategorias(): string[]
+    {
+        return this.productoService.getCategorias();
+    }
+
     save(usuario: Producto): { success: boolean; message: string } 
     {
         return this.productoService.save(usuario);

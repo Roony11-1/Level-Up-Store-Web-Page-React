@@ -17,7 +17,7 @@ export function DisplayProduct({ producto }: { producto: Producto })
                 ? <h1></h1> 
                 : <h2 className="producto-agotado">Agotado</h2>
             }
-            <p>
+            <div>
                 {enOferta ? (
                     <div>
                         <span
@@ -34,7 +34,7 @@ export function DisplayProduct({ producto }: { producto: Producto })
                         ${producto.precio.toLocaleString("es-CL")}
                     </span>
                 )}
-            </p>
+            </div>
         </div>
     );
 }

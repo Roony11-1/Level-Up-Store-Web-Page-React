@@ -61,6 +61,26 @@ export class ProductoService
         return productosUnicos;
     }
 
+    getMarcas(): string[] 
+    {
+        const productos = this.productoRepository.findAll();
+
+        const marcas = productos.map(p => p.marca);
+        const marcasUnicas = Array.from(new Set(marcas));
+
+        return marcasUnicas;
+    }
+
+    getCategorias(): string[]
+    {
+        const productos = this.productoRepository.findAll();
+
+        const categorias = productos.map(p => p.categoria);
+        const categoriasUnicas = Array.from(new Set(categorias));
+
+        return categoriasUnicas;
+    }
+
     save(usuario: Producto): { success: boolean; message: string }
     {
         const resultado = this.productoRepository.save(usuario);

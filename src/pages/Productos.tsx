@@ -6,6 +6,7 @@ import { DisplayProduct } from "../components/DisplayProduct/DisplayProduct";
 import "../assets/css/Productos/productos.css"
 import { Link, useSearchParams } from "react-router-dom";
 import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
+import { Filtro } from "../assets/css/Productos/Filtro/Filtro";
 
 export function Productos() 
 {
@@ -39,20 +40,14 @@ export function Productos()
     if (productos.length === 0) 
       return(
         <div>
-          <div className="contenedor-filtros">
-              <h1>Filtros</h1>
-              <Link to={"/catalogo"}>Quitar Filtros</Link>
-          </div>
+          <Filtro />
           <p>No hay productos disponibles.</p>
         </div>
       );
 
     return (
       <div className="catalogo-container">
-        <div className="contenedor-filtros">
-            <h1>Filtros</h1>
-            <Link to={"/catalogo"}>Quitar Filtros</Link>
-        </div>
+        <Filtro />
         <div className="contenedor-productos">
           {productos.map((p) => <DisplayProduct key={p.id} producto={p} />)}
         </div>

@@ -64,4 +64,14 @@ export class ProductoApiService extends BaseApiService<Producto>
 
       return { producto, relacionados };
   }
+
+  getMarcas(): string[]
+  {
+    return this.controller.getMarcas();
+  }
+
+  getCategorias(): string[]
+  {
+    return this.controller.getCategorias();
+  }
 }
