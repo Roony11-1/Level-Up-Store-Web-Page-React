@@ -1,73 +1,65 @@
+import { useEffect, useState } from "react";
+import { useCarrito } from "../context/CarritoContext/useCarrito";
+import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
+import type { Producto } from "../model/Producto";
+import { Boton } from "../components/Boton/Boton";
+import type { itemsType } from "../model/Carrito";
 
-import { Link } from "react-router-dom";
-import { CarritoContext, useCarrito } from "../context/useCarrito";
-import { CarritoProvider } from "../context/CarritoProvider";
+import "../assets/css/Carrito/carrito.css"
+import { CarritoItem } from "../components/Carrito/CarritoItem/CarritoItem";
 
-import "../css/carrito.css"
+export function Carrito()
+{
+  const { carrito, eliminarUnidad } = useCarrito();
 
-export const CarritoPage: React.FC = () => {
-  const carritoContext = useCarrito();
+  const { productoService } = useProductoService();
 
-  if (!carritoContext) {
-    return <p>Error al cargar el carrito 😢</p>;
-  }
+  const [productos, setProductos] = useState<Producto[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  const { carrito, eliminarDelCarrito, getTotal, limpiarCarrito } = carritoContext;
+  useEffect(() => 
+  {
+    const fetchProductos = async () => 
+    {
+      const datos = await productoService.fetchAll();
 
+      setProductos(datos);
+      setLoading(false)
+      };
+            
+    fetchProductos();
+  }, [carrito, productoService]);
 
+  const listaProductos = carrito.getItems();
 
+  if (listaProductos.length === 0)
+    return <>Carrito Vacío</>
+
+  if (loading) return <p>Cargando...</p>;
+
+  let total = 0;
 
   return (
-    <div className="carrito-page-container">
-    <h1>🛒 Carrito de Compras</h1>
+    <div className="contenedor">
+      <div className="contenedor-items">
+        {listaProductos.map((item: itemsType) => 
+        {
+          const producto = productos.find((p: Producto) => p.id === item.productoId);
 
-    {carrito.length === 0 ? (
-      <div className="carrito-vacio">
-        <p>No hay productos en el carrito</p>
-        <Link to="/catalogo" className="btn-volver">Ir al catálogo</Link>
+          const precio = producto?.getPrecio() || 0;
+          const descuento = producto?.getOferta() || 1;
+          
+          if (descuento === 1)
+            total = total + precio*1*item.cantidad;
+          else
+            total = total + precio*(1-descuento)*item.cantidad;
+
+          return (<CarritoItem producto={producto || null} />);
+        })}
       </div>
-    ) : (
-      <>
-        <table className="tabla-carrito">
-          <thead>
-            <tr>
-              <th>Imagen</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Cantidad</th>
-              <th>Subtotal</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {carrito.map((p) => (
-              <tr key={p.id}>
-                <td><img src={p.imagen} alt={p.nombre} width="70" /></td>
-                <td>{p.nombre}</td>
-                <td>${p.precio.toLocaleString("es-CL")}</td>
-                <td>{p.cantidad}</td>
-                <td>${(p.precio * p.cantidad).toLocaleString("es-CL")}</td>
-                <td>
-                  <button className="btn-eliminar" onClick={() => (p.id)}>
-                    
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
-        <div className="carrito-total">
-          <h2>Total: ${getTotal().toLocaleString("es-CL")}</h2>
-          <div className="carrito-botones">
-            <button className="btn-limpiar" onClick={limpiarCarrito}>Vaciar Carrito</button>
-            <button className="btn-pagar" onClick={carritoContext.eliminarDelCarrito(carritoContext.carrito.id) => alert("Gracias por tu compra ")}>
-              Pagar
-            </button>
-          </div>
-        </div>
-      </>
-    )}
-  </div>
+      <hr />
+      <Boton>Ir a Pagar</Boton>
+      <h2>Total: ${total.toLocaleString("es-CL")}</h2>
+    </div>
   );
-};
+}
