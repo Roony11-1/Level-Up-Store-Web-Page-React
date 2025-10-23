@@ -1,7 +1,7 @@
 import "../../../assets/css/Carrito/carrito.css"
 import { useCarrito } from "../../../context/CarritoContext/useCarrito";
 import type { Producto } from "../../../model/Producto";
-import { Boton } from "../../Boton/Boton";
+import { BotonesCarrito } from "../BotonesCarrito/BotonesCarrito";
 
 interface CarritoItemProps
 {
@@ -38,23 +38,11 @@ export function CarritoItem({producto}: CarritoItemProps)
                         )}
                     </span>
                     <hr />
-                    <div className="item-carrito-btn">
-                        <Boton
-                            onClick={() => agregarUnidad(item.productoId, 1/2)}>
-                                +1
-                        </Boton>
-                        <Boton
-                            onClick={() => eliminarUnidad(item.productoId, item.cantidad)}>
-                                Quitar
-                        </Boton>
-                        {item.cantidad > 1 && 
-                            <Boton
-                                onClick={() => eliminarUnidad(item.productoId, 1/2)}>
-                                    -1
-                            </Boton>
-                        }
- 
-                    </div>
+                    <BotonesCarrito
+                        itemId={item.productoId}
+                        cantidad={item.cantidad}
+                        agregarUnidad={agregarUnidad}
+                        eliminarUnidad={eliminarUnidad} />
                 </div>
             );
     }
