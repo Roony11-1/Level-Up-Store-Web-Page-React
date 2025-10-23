@@ -27,6 +27,23 @@
     border-radius: 10px;
 }
 
+.usuario {
+    width: auto;
+    height: auto;
+    gap: 50px;
+    padding: 10px;
+    background-color: #d32c2c;
+    border-radius: 10px;
+}
+.producto {
+    width: 750px;
+    height: 1000px;
+    gap: 50px;
+    padding: 10px;
+    background-color: #d32c2c;
+    border-radius: 10px;
+}
+
 .producto img {
     height: 300px;
     width: 300px;
