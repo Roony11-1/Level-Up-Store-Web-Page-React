@@ -6,11 +6,11 @@ describe('testin de formulario',()=>{
     test('render',()=>{
         render(<Contacto/>)
         const titulo=screen
-        .getByRole('heading',{name:/Formulario de Contacto/})
+        .getByRole('heading',{name:/FoRMULARIO DE CONTACTO/})
         expect(titulo).toBeInTheDocument()
     });
     test('simular ingreso',async()=>{
-        render(Contacto)
+        render(<Contacto/>)
         const usuario=userEvent.setup()
 
         const mensaje=screen.getByRole('textbox',{name:/mensaje:/})
