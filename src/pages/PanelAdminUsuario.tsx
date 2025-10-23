@@ -4,7 +4,7 @@ import "../assets/css/PanelAdmin/paneladmin.css"
 import { Usuario } from "../model/Usuario";
 import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
 import { AdminSecurity } from "../components/Seguridad/AdminSecurity/AdminSecurity";
-import { DisplayUser } from "../components/DisplayUser/DisplayUser";
+import { DisplayUser, EditUser } from "../components/DisplayUser/DisplayUser";
 import { Boton } from "../components/Boton/Boton";
 import { useSesion } from "../context/SesionContext/UseSesion";
 import { useUsuarioService } from "../context/UsuarioServiceContext/UseUsuarioService";
@@ -15,20 +15,21 @@ export function PanelAdminUsuario()
     // Carguemos los usuarios
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [loading, setLoading] = useState(true);
+    const [editUserId, setEditUserId] = useState<number | null>(null);
 
     const { usuarioService } = useUsuarioService();
 
+    const fetchUsuarios = async () => 
+    {
+        const datos = await usuarioService.fetchAll();
+        setUsuarios(datos);
+        setLoading(false);
+    };
+
     useEffect(() => 
     {
-        const fetchUsuarios = async () => 
-        {
-            const datos = await usuarioService.fetchAll();
-            setUsuarios(datos);
-            setLoading(false)
-        };
-
         fetchUsuarios();
-    }, [usuarios]);
+    }, []);
 
     const clickAddUserRandom = async (e: React.MouseEvent<HTMLButtonElement>) => 
     {
@@ -42,6 +43,7 @@ export function PanelAdminUsuario()
             .setContraseña("123456");
 
         const resultado = await usuarioService.save(usuario);
+        await fetchUsuarios();
 
         alert(resultado.message);
     };
@@ -59,6 +61,7 @@ export function PanelAdminUsuario()
             return;
 
         const resultado = await usuarioService.deleteById(id);
+        await fetchUsuarios();
 
         alert(resultado.message);
     }
@@ -74,13 +77,28 @@ export function PanelAdminUsuario()
                         Agregar Usuario
                     </Boton>
                     <div className="usuarios">
-                        {usuarios.map((u: Usuario) => (
-                            <div key={u.getId()} className="usuario">
-                                <DisplayUser usuario={u} />
-                                <Boton className="boton-admin-borrar" onClick={() => clickBorrar(u.getId())}>Borrar</Boton>
-                                <Boton className="boton-admin-editar">Editar</Boton>
-                            </div>
-                        ))}
+                    {usuarios.map((u: Usuario) => (
+                        <div key={u.getId()} className="usuario">
+                        {editUserId === u.getId() ? (
+                            <EditUser usuario={u} />
+                        ) : (
+                            <DisplayUser usuario={u} />
+                        )}
+
+                        <Boton className="boton-admin-borrar" onClick={() => clickBorrar(u.getId())}>
+                            Borrar
+                        </Boton>
+
+                        <Boton
+                            className="boton-admin-editar"
+                            onClick={() =>
+                            setEditUserId(editUserId === u.getId() ? null : u.getId())
+                            }
+                        >
+                            {editUserId === u.getId() ? "Cancelar" : "Editar"}
+                        </Boton>
+                        </div>
+                    ))}
                     </div>
                 </div>
             </AdminSecurity>

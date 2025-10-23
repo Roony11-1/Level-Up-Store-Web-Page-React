@@ -1,11 +1,17 @@
 import { Usuario } from "../../model/Usuario";
 import "../../assets/css/DisplayUser/displayuser.css"
-import { ProfilePhoto } from "../ProfilePhoto/ProfilePhoto";
+import { FormInput } from "../Formularios/FormInput/FormInput";
+import { FormSelect } from "../Formularios/FormSelect/FormSelect";
+import { useEffect, useState } from "react";
+import { UbicacionService } from "../../utilities/RegionComuna";
+import { useUsuarioService } from "../../context/UsuarioServiceContext/UseUsuarioService";
 import { Boton } from "../Boton/Boton";
 
-export function DisplayUser({ usuario }: { usuario: Usuario }) {
+export function DisplayUser({ usuario }: { usuario: Usuario }) 
+{
     return (
-        <div style={{ border: "1px solid black", margin: "10px", padding: "10px" }}>
+        <div>
+            <img src={usuario.getProfilePhoto()} width={150} height={150} />
             <p>Id: {usuario.getId()}</p>
             <p>Nombre: {usuario.getNombreUsuario()}</p>
             <p>Contraseña: {usuario.getContraseña()}</p>
@@ -19,68 +25,197 @@ export function DisplayUser({ usuario }: { usuario: Usuario }) {
     );
 }
 
+ interface EditUserProps
+ {
+    usuario: Usuario;
+ }
 
-
-export function DisplayUserTable({ usuarios }: { usuarios: Usuario[] }) 
+export function EditUser({usuario}: EditUserProps)
 {
-    const handleClick = (e: React.MouseEvent<HTMLTableCellElement>) => 
+    const [formData, setFormData] = useState({
+        nombreUsuario: usuario.getNombreUsuario()  || "No proporcionado",
+        email: usuario.getEmail()  || "No proporcionado",
+        confirmarEmail: "",
+        contraseña: usuario.getContraseña()  || "No proporcionado",
+        confirmarContraseña: "",
+        telefono: usuario.getTelefono()  || "",
+        region: usuario.getRegion() || "",
+        comuna: usuario.getComuna() || ""
+    });
+
+    const [regiones, setRegiones] = useState<string[]>([]);
+    const [comunas, setComunas] = useState<string[]>([]);
+
+    const { usuarioService } = useUsuarioService()
+
+    useEffect(() => 
     {
-        const celda = e.currentTarget;
-        console.log("Texto:", celda.textContent);
-        console.log("Elemento:", celda);
+        setRegiones(UbicacionService.getRegiones());
+    }, []);
+
+    useEffect(() => 
+    {
+        if (formData.region) 
+            setComunas(UbicacionService.getComunas(formData.region));
+        else
+            setComunas([]);
+    }, [formData.region]);
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => 
+    {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    if (!(usuarios.length > 0))
-        return(
-            <h1>No hay usuarios que mostrar!</h1>
-        );
-    return (
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Imagen</th>
-                    <th>Nombre</th>
-                    <th>Contraseña</th>
-                    <th>Email</th>
-                    <th>Tipo</th>
-                    <th>Teléfono</th>
-                    <th>Región</th>
-                    <th>Comuna</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {usuarios.map((u) => 
-                (
-                    <tr key={u.getId()}>
-                        <td>{u.getId()}</td>
-                        <td><ProfilePhoto profilePhoto={u.getProfilePhoto()}/></td>
-                        <td><p onClick={handleClick}>{u.getNombreUsuario()}</p></td>
-                        <td><p onClick={handleClick}>{u.getContraseña()}</p></td>
-                        <td><p onClick={handleClick}>{u.getEmail()}</p></td>
-                        <td><p onClick={handleClick}>{u.getTipo()}</p></td>
-                        <td><p onClick={handleClick}>{u.getTelefono() || "-"}</p></td>
-                        <td><p onClick={handleClick}>{u.getRegion() || "-"}</p></td>
-                        <td><p onClick={handleClick}>{u.getComuna() || "-"}</p></td>
-                        {/* Acciones */}
-                        <td>
-                            <div className="contenedor-acciones">
-                                <div>
-                                    <Boton>
-                                        editar
-                                    </Boton>
-                                </div>
-                                <div>
-                                    <Boton>
-                                        borrar
-                                    </Boton>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
+    const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => 
+    {
+        const { name, value } = e.target;
+
+        setFormData((prev) => 
+        {
+            // Reiniciamos el valor de comuna
+            if (name === "region")
+                return { ...prev, region: value, comuna: "" };
+
+            return { ...prev, [name]: value };
+        });
+    };
+
+    function validarFormRegistro(formData: any): string[] 
+    {
+        const errores: string[] = [];
+
+        if (!formData.nombreUsuario.trim())
+            errores.push("El nombre de usuario es obligatorio.");
+
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email))
+            errores.push("El correo electrónico no es válido.");
+
+        if (formData.confirmarEmail && formData.email !== formData.confirmarEmail)
+            errores.push("Los correos no coinciden.");
+
+        if (formData.contraseña.length < 6)
+            errores.push("La contraseña debe tener al menos 6 caracteres.");
+
+        if (formData.confirmarContraseña && formData.contraseña !== formData.confirmarContraseña)
+            errores.push("Las contraseñas no coinciden.");
+
+        if (formData.telefono)
+            if (!/^\d{9}$/.test(formData.telefono))
+                errores.push("El teléfono debe tener 9 dígitos.");
+
+        if (usuario.getTipo() !== "admin")
+        {
+            if (!formData.region)
+                errores.push("Debes seleccionar una región!")
+
+            if (!formData.comuna)
+                errores.push("Debes seleccionar una comuna!")
+        }
+
+        return errores;
+    }
+
+    const handleSubmit = async (e: React.FormEvent) => 
+    {
+        e.preventDefault();
+
+        const errores = validarFormRegistro(formData);
+
+        if (errores.length > 0) 
+        {
+            alert("Errores:\n" + errores.join("\n"));
+            return;
+        }
+
+        
+        const usuarioNuevo = new Usuario()
+            .setId(usuario.getId())
+            .setNombreUsuario(formData.nombreUsuario)
+            .setEmail(formData.email)
+            .setContraseña(formData.contraseña)
+            .setTelefono(formData.telefono)
+            .setRegion(formData.region)
+            .setComuna(formData.comuna)
+            .setProfilePhoto(usuario.getProfilePhoto())
+            .setTipo(usuario.getTipo() || "usuario");
+
+        const resultado = await usuarioService.update(usuario.getId(), usuarioNuevo);
+
+        if (resultado.success)
+        {
+            setFormData({
+                nombreUsuario: usuarioNuevo.getNombreUsuario()  || "No proporcionado",
+                email: usuarioNuevo.getEmail()  || "No proporcionado",
+                confirmarEmail: "",
+                contraseña: usuarioNuevo.getContraseña()  || "No proporcionado",
+                confirmarContraseña: "",
+                telefono: usuarioNuevo.getTelefono()  || "",
+                region: usuarioNuevo.getRegion() || "",
+                comuna: usuarioNuevo.getComuna() || ""
+            });
+        }
+
+        alert(resultado.message);
+        return resultado.success;
+    };
+
+    return(
+        <>
+            <form onSubmit={handleSubmit}>
+                <div className="panel-usuario-editar">
+                    <FormInput 
+                        name='nombreUsuario'
+                        label='Nombre de Usuario'
+                        onChange={handleChange}
+                        value={formData.nombreUsuario} />
+                    <FormInput 
+                        name='email'
+                        label='Correo'
+                        onChange={handleChange}
+                        value={formData.email} />
+                    <FormInput 
+                        name='confirmarEmail'
+                        label='Confirmar Correo'
+                        onChange={handleChange}
+                        value={formData.confirmarEmail} />
+                    <FormInput 
+                        name='contraseña'
+                        label='Contraseña'
+                        onChange={handleChange}
+                        value={formData.contraseña} />
+                    <FormInput 
+                        name='confirmarContraseña'
+                        label='Confirmar Contraseña'
+                        onChange={handleChange}
+                        value={formData.confirmarContraseña} />
+                    <FormInput
+                        name='telefono'
+                        label='Telefono (Opcional)'
+                        placeholder='9XXXXXXXX'
+                        onChange={handleChange}
+                        value={formData.telefono} />
+                    <FormSelect
+                        name="region"
+                        label='Región'
+                        value={formData.region}
+                        options={regiones.map(r => ({ value: r, label: r }))}
+                        onChange={handleSelectChange} />
+                    <FormSelect
+                        name="comuna"
+                        label='Comuna'
+                        value={formData.comuna}
+                        options={comunas.map(c => ({ value: c, label: c }))}
+                        onChange={handleSelectChange} />
+                    <div>
+                        <Boton
+                            className='formulario'
+                            type="submit">
+                                Guardar
+                        </Boton> 
+                    </div>
+                </div>
+            </form>
+        </>
     );
 }
