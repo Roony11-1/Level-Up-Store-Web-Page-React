@@ -45,7 +45,7 @@ export function PanelAdminProducto()
                                     <p>Precio: ${p.getPrecio().toLocaleString("es-CL")}</p>
                                     <p>Cantidad: {p.getCantidad()}</p>
                                     <p>Destacado: {p.getDestacado() ? "Si" : "No"}</p>
-                                    <p>Oferta: {p.getOferta()*100}%</p>
+                                    <p>Oferta: {p.getOferta()}</p>
                                 </div>
                             </div>
                         ))}
