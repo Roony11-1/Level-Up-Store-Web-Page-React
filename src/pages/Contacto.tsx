@@ -20,6 +20,7 @@ export function Contacto() {
             <h1>FORMULARIO DE CONTACTO</h1>
             <img src="/public/Logo_level-Up-sin-fondo.png" alt="" />
             <FormInput
+                role="nombre"
                 name='nombre'
                 value={nombre}
                 onChange={(e)=>setNombre(e.target.value)}
@@ -32,6 +33,7 @@ export function Contacto() {
                 label='correo'
              /> 
             <FormInput
+                role="mensaje"
                 name='mensaje'
                 value={mensaje}
                 onChange={(e)=>setMensaje(e.target.value)}

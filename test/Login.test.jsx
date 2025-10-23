@@ -4,6 +4,7 @@ import Login from "../src/pages/Login.tsx";
 import { describe, expect, test } from "vitest";
 import { UsuarioService } from "../src/API/service/UsuarioService.ts";
 import { UsuarioServiceProvider } from '../src/context/UsuarioServiceContext/UsuarioServiceProvider'; 
+import { SesionProvider } from '../src/context/SesionContext/SesionProvider';
 
 describe('Login', () =>{
 
