@@ -1,25 +1,39 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, test, vi, beforeEach } from "vitest";
 import { Registro } from "../src/pages/Registro";
 import { useUsuarioService } from "../src/context/UsuarioServiceContext/UseUsuarioService";
 import { UbicacionService } from "../src/utilities/comunas-regiones.json";
+import { MemoryRouter } from "react-router-dom"; // Importa MemoryRouter
 
-//  Mocks necesarios
+// Mocks necesarios
 vi.mock("../src/context/UsuarioServiceContext/UseUsuarioService", () => ({
   useUsuarioService: vi.fn(),
 }));
-
-vi.mock("../src/utilities/comunas-regiones.json", () => ({
-  UbicacionService: {
-    getRegiones: vi.fn(() => ["Región 1", "Región 2"]),
-    getComunas: vi.fn((region) =>
-      region === "Región 1" ? ["Comuna A", "Comuna B"] : ["Comuna C"]
-    ),
-  },
+vi.mock("../src/context/SesionContext/UseSesion.tsx", () => ({
+  useSesion: vi.fn(() => ({
+    sesion: {
+      getIdUsuarioActivo: () => "123", // mock del método que espera el componente
+    },
+    setSesion: vi.fn(),
+    cerrarSesion: vi.fn(),
+  })),
 }));
+/*vi.mock("../src/utilities/comunas-regiones.json", async (importOriginal) => {
+  const actual = await importOriginal();
+  return {
+    ...actual,
+    default: {},
+    UbicacionService: {
+      getRegiones: vi.fn(() => ["Región 1", "Región 2"]),
+      getComunas: vi.fn((region) =>
+        region === "Región 1" ? ["Comuna A", "Comuna B"] : ["Comuna C"]
+      ),
+    },
+  };
+});*/
 
-//  Setup antes de cada test
+// Setup antes de cada test
 beforeEach(() => {
   useUsuarioService.mockReturnValue({
     usuarioService: {
@@ -32,22 +46,27 @@ beforeEach(() => {
   vi.spyOn(window, "alert").mockImplementation(() => {}); // evitar alert real
 });
 
+// Helper para render con router
+const renderConRouter = (ui) => {
+  return render(<MemoryRouter>{ui}</MemoryRouter>);
+};
+
 describe("Tests del formulario de Registro", () => {
   test("Renderiza el título correctamente", () => {
-    render(<Registro />);
+    renderConRouter(<Registro />);
     const titulo = screen.getByRole("heading", { name: /página de registro/i });
     expect(titulo).toBeInTheDocument();
   });
 
   test("Carga regiones al renderizar", () => {
-    render(<Registro />);
+    renderConRouter(<Registro />);
     const selectRegion = screen.getByLabelText(/región/i);
     expect(selectRegion).toBeInTheDocument();
     expect(UbicacionService.getRegiones).toHaveBeenCalled();
   });
 
   test("Simula ingreso de datos y envío exitoso", async () => {
-    render(<Registro />);
+    renderConRouter(<Registro />);
     const usuario = userEvent.setup();
 
     const inputNombre = screen.getByLabelText(/nombre de usuario/i);
@@ -80,7 +99,7 @@ describe("Tests del formulario de Registro", () => {
   });
 
   test("Muestra errores si faltan campos obligatorios", async () => {
-    render(<Registro />);
+    renderConRouter(<Registro />);
     const usuario = userEvent.setup();
 
     const boton = screen.getByRole("button", { name: /registrarse/i });
