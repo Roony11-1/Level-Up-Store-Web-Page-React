@@ -21,6 +21,7 @@ import { PanelUsuario } from "./pages/PanelUsuario.tsx";
 import { PanelAdminUsuario } from "./pages/PanelAdminUsuario.tsx";
 import { ProductoPagina } from "./pages/ProductoPagina.tsx";
 import { Carrito } from "./pages/Carrito.tsx";
+import { PanelAdminProducto } from "./pages/PanelAdminProducto.tsx";
 
 
 
@@ -46,6 +47,7 @@ createRoot(document.getElementById("root")!).render(
           <Route path="gato" element={<SingingCat />} />
           <Route path="panel-usuario" element={<PanelUsuario />} />
           <Route path="admin-usuario" element={<PanelAdminUsuario />} />
+          <Route path="admin-producto" element={<PanelAdminProducto />} />
           </Route>
         </Routes>
       </BrowserRouter>
