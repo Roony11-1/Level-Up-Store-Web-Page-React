@@ -18,15 +18,6 @@
     border-radius: 8px;
 }
 
-.usuario, .producto {
-    width: 750px;
-    height: 1000px;
-    gap: 50px;
-    padding: 10px;
-    background-color: #d32c2c;
-    border-radius: 10px;
-}
-
 .usuario {
     width: auto;
     height: auto;
@@ -35,16 +26,16 @@
     background-color: #d32c2c;
     border-radius: 10px;
 }
-.producto {
-    width: 750px;
-    height: 1000px;
+.producto-admin {
+    width: 500px;
+    height: 700px;
     gap: 50px;
     padding: 10px;
     background-color: #d32c2c;
     border-radius: 10px;
 }
 
-.producto img {
+.producto-admin img {
     height: 300px;
     width: 300px;
 }

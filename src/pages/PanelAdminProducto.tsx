@@ -5,7 +5,7 @@ import "../assets/css/PanelAdmin/paneladmin.css"
 import type { Producto } from "../model/Producto";
 import { useEffect, useState } from "react";
 import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
-import { DisplayProduct } from "../components/DisplayProduct/DisplayProduct";
+import { Boton } from "../components/Boton/Boton";
 
 export function PanelAdminProducto()
 {
@@ -34,7 +34,7 @@ export function PanelAdminProducto()
                 <div className="contenedor-admin">
                     <div className="productos" >
                         {productos.map((p: Producto) => (
-                            <div className="producto">
+                            <div className="producto-admin">
                                 <img src={p.getImagen()} />
                                 <div>
                                     <p>Nombre: {p.getNombre()}</p>
@@ -45,8 +45,9 @@ export function PanelAdminProducto()
                                     <p>Precio: ${p.getPrecio().toLocaleString("es-CL")}</p>
                                     <p>Cantidad: {p.getCantidad()}</p>
                                     <p>Destacado: {p.getDestacado() ? "Si" : "No"}</p>
-                                    <p>Oferta: {p.getOferta()}</p>
+                                    <p>Oferta: {p.getOferta()*100}%</p>
                                 </div>
+                                <Boton>Editar</Boton>
                             </div>
                         ))}
                     </div>
