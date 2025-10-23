@@ -7,6 +7,7 @@ import { Boton } from "../components/Boton/Boton";
 import { RelatedProduct } from "../components/RelatedProduct/RelatedProduct";
 import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
 import { useCarrito } from "../context/CarritoContext/useCarrito";
+import { BotonesCarrito } from "../components/Carrito/BotonesCarrito/BotonesCarrito";
 
 export function ProductoPagina()
 {
@@ -123,9 +124,11 @@ function InfoFooter({ producto }: InfoFooterProps)
         return (
             <>
                 <h2>Cantidad en carrito: {cantidad}</h2>
-                <Boton onClick={() => agregarUnidad(producto.getId(), 1/2)}>Añadir Unidad</Boton>
-                <Boton onClick={() => eliminarUnidad(producto.getId(), 1/2)}>Quitar Unidad</Boton>
-                <Boton onClick={() => eliminarUnidad(producto.getId(), cantidad)}>Eliminar del Carrito</Boton>
+                <BotonesCarrito
+                    itemId={producto.getId()}
+                    cantidad={cantidad}
+                    agregarUnidad={agregarUnidad}
+                    eliminarUnidad={eliminarUnidad} />
             </>
         );
     }

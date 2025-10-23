@@ -20,6 +20,11 @@ export class UsuarioController
         return this.usuarioService.findById(id);
     }
 
+    findByEmail(email: string): any | null
+    {
+        return this.usuarioService.findByEmail(email);
+    }
+
     save(usuario: Usuario): { success: boolean; message: string } 
     {
         return this.usuarioService.save(usuario);

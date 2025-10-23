@@ -39,6 +39,11 @@
     margin-top: 10px;
 }
 
+.item-carrito-btn img {
+    height: 35px;
+    width: 35px;
+}
+
 .item-carrito-btn button {
     flex: 1;
     min-width: 0;

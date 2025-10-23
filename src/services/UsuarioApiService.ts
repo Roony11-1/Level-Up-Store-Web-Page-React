@@ -25,4 +25,9 @@ export class UsuarioApiService extends BaseApiService<Usuario>
       usuario: usuarioInstancia
     };
   }
+
+  async fetchByEmail(email: string)
+  {
+    return this.controller.findByEmail(email);
+  }
 }

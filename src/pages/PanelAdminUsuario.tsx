@@ -66,6 +66,12 @@ export function PanelAdminUsuario()
         alert(resultado.message);
     }
 
+    const closeEdit = async () =>
+    {
+        setEditUserId(null);
+        await fetchUsuarios();
+    }
+
     if (loading) return <p>Cargando usuarios...</p>;
 
     return(
@@ -79,24 +85,21 @@ export function PanelAdminUsuario()
                     <div className="usuarios">
                     {usuarios.map((u: Usuario) => (
                         <div key={u.getId()} className="usuario">
-                        {editUserId === u.getId() ? (
-                            <EditUser usuario={u} />
-                        ) : (
-                            <DisplayUser usuario={u} />
-                        )}
+                            {editUserId === u.getId() ? (
+                                <EditUser usuario={u} onCloseEdit={closeEdit} />
+                            ) : (
+                                <DisplayUser usuario={u} />
+                            )}
 
-                        <Boton className="boton-admin-borrar" onClick={() => clickBorrar(u.getId())}>
-                            Borrar
-                        </Boton>
+                            <Boton className="boton-admin-borrar" onClick={() => clickBorrar(u.getId())}>
+                                Borrar
+                            </Boton>
 
-                        <Boton
-                            className="boton-admin-editar"
-                            onClick={() =>
-                            setEditUserId(editUserId === u.getId() ? null : u.getId())
-                            }
-                        >
-                            {editUserId === u.getId() ? "Cancelar" : "Editar"}
-                        </Boton>
+                            <Boton
+                                className="boton-admin-editar"
+                                onClick={() => setEditUserId(editUserId === u.getId() ? null : u.getId())}>
+                                    {editUserId === u.getId() ? "Cancelar" : "Editar"}
+                            </Boton>
                         </div>
                     ))}
                     </div>

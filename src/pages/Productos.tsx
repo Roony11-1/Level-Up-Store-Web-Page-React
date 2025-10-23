@@ -4,7 +4,7 @@ import { useState } from "react";
 import { DisplayProduct } from "../components/DisplayProduct/DisplayProduct";
 
 import "../assets/css/Productos/productos.css"
-import { Link, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useProductoService } from "../context/ProductoServiceContext/UseProductoService";
 import { Filtro } from "../assets/css/Productos/Filtro/Filtro";
 
