@@ -26,7 +26,6 @@
     padding: 5px;
 
     border-radius: 10px;
-    background: linear-gradient(135deg, red, blue);
 }
 
 .producto-agotado {
@@ -36,7 +35,8 @@
 .contenedor-marcas, .contenedor-categorias{
     display: flex;
     flex-direction: column;
-    background: linear-gradient(135deg, blue, red);
+    
+    border: 1px solid black ;
 
     max-height: 120px;
     overflow-y: auto;
