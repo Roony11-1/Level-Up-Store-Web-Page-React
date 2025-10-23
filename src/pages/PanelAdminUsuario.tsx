@@ -66,6 +66,12 @@ export function PanelAdminUsuario()
         alert(resultado.message);
     }
 
+    const closeEdit = async () =>
+    {
+        setEditUserId(null);
+        await fetchUsuarios();
+    }
+
     if (loading) return <p>Cargando usuarios...</p>;
 
     return(
@@ -80,7 +86,7 @@ export function PanelAdminUsuario()
                     {usuarios.map((u: Usuario) => (
                         <div key={u.getId()} className="usuario">
                             {editUserId === u.getId() ? (
-                                <EditUser usuario={u} onCloseEdit={() => setEditUserId(null)} />
+                                <EditUser usuario={u} onCloseEdit={closeEdit} />
                             ) : (
                                 <DisplayUser usuario={u} />
                             )}
