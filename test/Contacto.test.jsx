@@ -50,4 +50,10 @@ describe('Contacto', () => {
       expect(correoInput.value).toBe("victor@example.com");
       expect(mensajeInput.value).toBe("Hola desde los tests");
     });
+
+    test("no muestra la respuesta antes de enviar", () => {
+      render(<Contacto />);
+      const alert = screen.queryByRole("alert");
+      expect(alert).toBeNull();
+    });
   })
