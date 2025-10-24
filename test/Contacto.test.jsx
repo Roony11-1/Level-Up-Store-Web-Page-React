@@ -30,12 +30,16 @@ describe('Contacto', () => {
       expect(alerta).toHaveTextContent('¡Gracias por tu mensaje Juan, de igual forma no haremos caso!')
     })
 
+
+    
     function findInput(container, name) {
       return (
         screen.queryByLabelText(new RegExp(name, "i")) ||
         container.querySelector(`input[name="${name}"], textarea[name="${name}"]`)
       );
     }
+
+
 
     test("permite ingresar texto en nombre, correo y mensaje", async () => {
       const { container } = render(<Contacto />);
@@ -53,6 +57,8 @@ describe('Contacto', () => {
       expect(correoInput.value).toBe("victor@example.com");
       expect(mensajeInput.value).toBe("Hola desde los tests");
     });
+
+
 
     test("no muestra la respuesta antes de enviar", () => {
       render(<Contacto />);
