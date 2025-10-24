@@ -1,8 +1,11 @@
-import{render,screen, fireEvent} from "@testing-library/react";
+import{render,screen, fireEvent, waitFor} from "@testing-library/react";
 import Contacto from "../src/pages/Contacto";
 import userEvent from "@testing-library/user-event";
 import{describe,expect,test} from "vitest";
 import React from "react";
+import { act } from "react-dom/test-utils";
+
+
 
 describe('Contacto', () => {
     test('renderiza y funciona el formulario correctamente', () => {
@@ -55,5 +58,29 @@ describe('Contacto', () => {
       render(<Contacto />);
       const alert = screen.queryByRole("alert");
       expect(alert).toBeNull();
+    });
+
+
+
+    test("permite enviar con campos vacíos (sin validaciones)", async () => {
+      const originalLog = console.log;
+      console.log = vi.fn();
+
+      render(<Contacto />);
+      const user = userEvent.setup();
+      const boton = screen.getByRole("button", { name: /enviar/i });
+
+      await user.click(boton);
+
+      expect(console.log).toHaveBeenCalledWith("");
+
+      await act(async () => {
+        const alert = screen.getByRole("alert");
+        expect(alert).toHaveTextContent(
+          /¡Gracias por tu mensaje , de igual forma no haremos caso!/i
+        );
+      });
+
+      console.log = originalLog;
     });
   })

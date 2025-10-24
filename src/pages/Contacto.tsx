@@ -39,7 +39,7 @@ export function Contacto() {
                 onChange={(e)=>setMensaje(e.target.value)}
                 label='mensaje'
              /> 
-            <Boton className='boton-enviar'>Enviar</Boton>
+            <Boton type="submit" className='boton-enviar'>Enviar</Boton>
         </div>
             {respuesta && <p role="alert">{respuesta}</p>}
         </form>
