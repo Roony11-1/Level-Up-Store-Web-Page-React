@@ -1,27 +1,27 @@
-import { AdminPanelBase } from "./AdminPanelBase";
+import { AdminPanelBase, type AdminBaseView } from "./AdminPanelBase";
 import { Usuario } from "../../model/Usuario";
 import { useUsuarioService } from "../../context/UsuarioServiceContext/UseUsuarioService";
 import { EditItem } from "../EditItem/EditItem";
 import { editUsuarioConfig } from "../EditItem/editUsuarioConfig";
 import { AdminPanelBotones } from "./AdminPanelBotones";
 
-function AdminUsuarioView({usuario,onEdit,onDelete,}: {usuario: Usuario;onEdit: () => void;onDelete: () => void;}) 
+function AdminUsuarioView({entity, onEdit, onDelete}: AdminBaseView<Usuario>) 
 {
     return (
         <div className="item-admin">
-            <img src={usuario.getProfilePhoto()} width={150} height={150}  />
+            <img src={entity.getProfilePhoto()} width={150} height={150}  />
             <div>
                 <hr />
-                <p>id: {usuario.getId()}</p>
+                <p>id: {entity.getId()}</p>
                 <hr />
-                <p>Nombre de usuario: {usuario.getNombreUsuario()}</p>
-                <p>Correo Electrónico: {usuario.getEmail()}</p>
-                <p>Contraseña: {usuario.getContraseña()}</p>
+                <p>Nombre de usuario: {entity.getNombreUsuario()}</p>
+                <p>Correo Electrónico: {entity.getEmail()}</p>
+                <p>Contraseña: {entity.getContraseña()}</p>
                 <hr />
-                <p>Teléfono: {usuario.getTelefono()}</p>
-                <p>Región: {usuario.getRegion()}</p>
-                <p>Comuna: {usuario.getComuna()}</p>
-                <p>Tipo: {usuario.getTipo()}</p>
+                <p>Teléfono: {entity.getTelefono()}</p>
+                <p>Región: {entity.getRegion()}</p>
+                <p>Comuna: {entity.getComuna()}</p>
+                <p>Tipo: {entity.getTipo()}</p>
                 <hr />
             </div>
             <AdminPanelBotones onDelete={onDelete} onEdit={onEdit} />
@@ -52,7 +52,7 @@ export function AdminPanelUsuario()
         <AdminPanelBase<Usuario>
             title="Usuarios"
             service={usuarioService}
-            renderItem={(p, onEdit, onDelete) => (<AdminUsuarioView usuario={p} onEdit={onEdit} onDelete={onDelete} />)}
+            renderItem={(p, onEdit, onDelete) => (<AdminUsuarioView entity={p} onEdit={onEdit} onDelete={onDelete} />)}
             renderEditor={(p, onCloseEdit) => (<EditItem item={p} config={editUsuarioConfig} service={usuarioService} onCloseEdit={onCloseEdit} />)}
             onAddRandom={crearUsuarioRandom} />
     );
