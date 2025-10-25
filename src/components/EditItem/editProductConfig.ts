@@ -14,7 +14,7 @@ export const editProductConfig: EditItemConfig<Producto> =
         precio: p.getPrecio(),
         cantidad: p.getCantidad(),
         destacado: p.getDestacado(),
-        oferta: p.getOferta(),
+        oferta: p.getOferta()*100,
         imagen: p.getImagen(),
     }),
     buildEntity: (data, p) =>
@@ -28,90 +28,87 @@ export const editProductConfig: EditItemConfig<Producto> =
             .setPrecio(data.precio)
             .setCantidad(data.cantidad)
             .setDestacado(data.destacado)
-            .setOferta(data.oferta)
+            .setOferta(Number((data.oferta / 100).toFixed(2)))
             .setImagen(data.imagen),
-    fields: [
-    { 
-        name: "nombre", label: "Nombre", validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "codigo", 
-        label: "Código", 
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "marca", 
-        label: "Marca", 
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "descripcion", 
-        label: "Descripción", 
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "categoria", 
-        label: "Categoría", 
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "precio", 
-        label: "Precio", 
-        type: "number",
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "cantidad", 
-        label: "Cantidad", 
-        type: "number",
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "oferta", 
-        label: "Oferta", 
-        type: "number"
-    },
-    { 
-        name: "imagen", 
-        label: "Imagen", 
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    },
-    { 
-        name: "destacado", 
-        label: "Destacado", 
-        type: "checkbox"
-    },
-    { 
-        name: "tipo", 
-        label: "Tipo", 
-        validate: (v) => 
-            (
-                ValidacionesFormulario.obligatorio(v)
-            )
-    }
+    fields: 
+    [
+        { 
+            name: "nombre", label: "Nombre", validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "codigo", 
+            label: "Código", 
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "marca", 
+            label: "Marca", 
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "descripcion", 
+            label: "Descripción", 
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "categoria", 
+            label: "Categoría", 
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "precio", 
+            label: "Precio", 
+            type: "number",
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "cantidad", 
+            label: "Cantidad", 
+            type: "number",
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "oferta", 
+            label: "Oferta", 
+            type: "number",
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.numeroPorcentaje(v)
+                )
+        },
+        { 
+            name: "imagen", 
+            label: "Imagen", 
+            validate: (v) => 
+                (
+                    ValidacionesFormulario.obligatorio(v)
+                )
+        },
+        { 
+            name: "destacado", 
+            label: "Destacado", 
+            type: "checkbox"
+        }
     ]
 };
