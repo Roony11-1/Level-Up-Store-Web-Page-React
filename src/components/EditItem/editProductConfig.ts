@@ -14,7 +14,7 @@ export const editProductConfig: EditItemConfig<Producto> =
         precio: p.getPrecio(),
         cantidad: p.getCantidad(),
         destacado: p.getDestacado(),
-        oferta: p.getOferta()*100,
+        oferta: (p.getOferta()*100),
         imagen: p.getImagen(),
     }),
     buildEntity: (data, p) =>
@@ -28,7 +28,7 @@ export const editProductConfig: EditItemConfig<Producto> =
             .setPrecio(data.precio)
             .setCantidad(data.cantidad)
             .setDestacado(data.destacado)
-            .setOferta(Number((data.oferta / 100).toFixed(2)))
+            .setOferta(((data.oferta / 100)))
             .setImagen(data.imagen),
     fields: 
     [
