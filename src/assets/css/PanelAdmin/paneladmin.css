@@ -1,56 +1,70 @@
+.panel-admin-general {
+    display: flex;
+    flex: 1;
+    background: #fff;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.menu-lateral {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+    padding: 20px;
+
+    background: linear-gradient(90deg, #d3d3d3, #fff);
+
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+
+    gap: 10px   ;
+}
+
 .contenedor-admin {
     display: flex;
     flex-direction: column;
+    gap: 10px;
+    background-color: red;
     width: 100%;
-    align-items: center;
-    justify-items: center;
-    gap: 30px;
 }
 
-.usuarios, .productos {
+.contenedor-admin-header {
+    height: 150px;
+    width: 100%;
+    background: linear-gradient(180deg, #d3d3d3, #fff);
+}
+
+.contenedor-admin-body {
     display: flex;
     flex-wrap: wrap;
+
+    align-items: center;
     justify-content: center;
-    align-items: flex-start;
-    gap: 10px;
-  
-    padding: 20px;
-    border-radius: 8px;
-}
 
-.usuario {
-    width: auto;
-    height: auto;
-    gap: 50px;
-    padding: 10px;
-    background-color: #d32c2c;
-    border-radius: 10px;
-}
+    gap: 5px;
+    padding: 5px;
 
-.producto-item {
-    height: auto;
-    width: 350px;
-    display: flex;
     background: #fff;
 }
 
-.producto-admin img {
-    height: 300px;
-    width: 300px;
+.item-admin, .form-edit {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    height: auto;
+    width: 475px;
+
+    padding: 15px;
+    gap: 10px;
+
+    background-color: #d3d3d3;
+    border-radius: 5%;
 }
 
-.boton-admin-editar{
-    background-color: #1e90ff;
-}
-.boton-admin-editar:hover{
-    background-color: #0f6cd4;
-    transform: scale(1.02);
-}
-
-.boton-admin-borrar{
-    background-color: #f70000;
-}
-.boton-admin-borrar:hover{
-    background-color: #ff0000;
-    transform: scale(1.02);
+.admin-panel-btns, .panel-admin-btns-edit {
+    display: flex;
+    flex-direction: row;
 }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../assets/css/PanelAdmin/paneladmin.css"
+import "../assets/css/PanelAdmin/paneladmin.css";
 
 import { Usuario } from "../model/Usuario";
 import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
@@ -9,34 +9,36 @@ import { Boton } from "../components/Boton/Boton";
 import { useSesion } from "../context/SesionContext/UseSesion";
 import { useUsuarioService } from "../context/UsuarioServiceContext/UseUsuarioService";
 
-export function PanelAdminUsuario()
-{
+/**
+ * Panel administrativo genérico para gestionar usuarios.
+ * Usa el mismo patrón reutilizable que otros PanelAdmin (como productos, pedidos, etc.)
+ */
+export function PanelAdminUsuario() {
     const { sesion } = useSesion();
-    // Carguemos los usuarios
+    const { usuarioService } = useUsuarioService();
+
     const [usuarios, setUsuarios] = useState<Usuario[]>([]);
     const [loading, setLoading] = useState(true);
     const [editUserId, setEditUserId] = useState<number | null>(null);
 
-    const { usuarioService } = useUsuarioService();
-
-    const fetchUsuarios = async () => 
-    {
-        const datos = await usuarioService.fetchAll();
-        setUsuarios(datos);
-        setLoading(false);
+    // --- Cargar datos ---
+    const fetchUsuarios = async () => {
+        setLoading(true);
+        try {
+            const datos = await usuarioService.fetchAll();
+            setUsuarios(datos);
+        } finally {
+            setLoading(false);
+        }
     };
 
-    useEffect(() => 
-    {
+    useEffect(() => {
         fetchUsuarios();
     }, []);
 
-    const clickAddUserRandom = async (e: React.MouseEvent<HTMLButtonElement>) => 
-    {
-        e.preventDefault();
-
+    // --- Agregar usuario de prueba ---
+    const handleAddUser = async () => {
         const randomName = "Usuario" + Math.floor(Math.random() * 1000);
-
         const usuario = new Usuario()
             .setNombreUsuario(randomName)
             .setEmail(randomName.toLowerCase() + "@mail.com")
@@ -48,60 +50,67 @@ export function PanelAdminUsuario()
         alert(resultado.message);
     };
 
-    const clickBorrar = async (id: number) =>
-    {
-        if (sesion.getIdUsuarioActivo() === id)
-        {
-            alert("No puedes borrar tu misma sesion crack ;)")
-            return
+    // --- Borrar usuario ---
+    const handleDeleteUser = async (id: number) => {
+        if (sesion.getIdUsuarioActivo() === id) {
+            alert("No puedes borrar tu propia sesión 😉");
+            return;
         }
 
         const confirmar = confirm("¿Estás seguro de que quieres borrar este usuario?");
-        if (!confirmar)
-            return;
+        if (!confirmar) return;
 
         const resultado = await usuarioService.deleteById(id);
         await fetchUsuarios();
 
         alert(resultado.message);
-    }
+    };
 
-    const closeEdit = async () =>
-    {
+    // --- Cerrar modo edición ---
+    const handleCloseEdit = async () => {
         setEditUserId(null);
         await fetchUsuarios();
-    }
+    };
 
+    // --- Renderizado ---
     if (loading) return <p>Cargando usuarios...</p>;
 
-    return(
+    return (
         <LoginSecurity>
             <AdminSecurity>
                 <div className="contenedor-admin">
-                    <Boton
-                        onClick={clickAddUserRandom}>
-                        Agregar Usuario
-                    </Boton>
-                    <div className="usuarios">
-                    {usuarios.map((u: Usuario) => (
-                        <div key={u.getId()} className="usuario">
-                            {editUserId === u.getId() ? (
-                                <EditUser usuario={u} onCloseEdit={closeEdit} />
-                            ) : (
-                                <DisplayUser usuario={u} />
-                            )}
+                    <h2>Gestión de Usuarios</h2>
 
-                            <Boton className="boton-admin-borrar" onClick={() => clickBorrar(u.getId())}>
-                                Borrar
-                            </Boton>
+                    <Boton onClick={handleAddUser}>Agregar Usuario</Boton>
 
-                            <Boton
-                                className="boton-admin-editar"
-                                onClick={() => setEditUserId(editUserId === u.getId() ? null : u.getId())}>
-                                    {editUserId === u.getId() ? "Cancelar" : "Editar"}
-                            </Boton>
-                        </div>
-                    ))}
+                    <div className="admin-lista">
+                        {usuarios.map((u: Usuario) => (
+                            <div key={u.getId()} className="admin-item">
+                                {editUserId === u.getId() ? (
+                                    <EditUser usuario={u} onCloseEdit={handleCloseEdit} />
+                                ) : (
+                                    <DisplayUser usuario={u} />
+                                )}
+
+                                <div className="acciones">
+                                    <Boton
+                                        className="boton-admin-borrar"
+                                        onClick={() => handleDeleteUser(u.getId())}
+                                    >
+                                        Borrar
+                                    </Boton>
+
+                                    <Boton
+                                        className="boton-admin-editar"
+                                        onClick={() =>
+                                            setEditUserId(editUserId === u.getId() ? null : u.getId())
+                                        }
+                                    >
+                                        {editUserId === u.getId() ? "Cancelar" : "Editar"}
+                                    </Boton>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </AdminSecurity>

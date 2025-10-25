@@ -18,5 +18,14 @@ export function UsuariosFalsos()
                     .setTipo("usuario")
                     .setComuna("Santiago")
                     .setRegion("Metropolitana")
-                    .setTelefono("987654321")];
+                    .setTelefono("987654321"),
+                new Usuario()
+                    .setId(3)
+                    .setNombreUsuario("User")
+                    .setEmail("user2@levelup.com")
+                    .setContraseña("123456")
+                    .setTipo("usuario")
+                    .setComuna("Santiago")
+                    .setRegion("Metropolitana")
+                    .setTelefono("985645321")];
 }

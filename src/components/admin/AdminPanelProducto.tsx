@@ -1,0 +1,64 @@
+import { Producto } from "../../model/Producto";
+import { useProductoService } from "../../context/ProductoServiceContext/UseProductoService";
+import { AdminPanelBase } from "./AdminPanelBase";
+import { EditItem } from "../EditItem/EditItem";
+import { editProductConfig } from "../EditItem/editProductConfig";
+import { AdminPanelBotones } from "./AdminPanelBotones";
+
+function AdminProductView({producto,onEdit,onDelete,}: {producto: Producto;onEdit: () => void;onDelete: () => void;}) 
+{
+    return (
+        <div className="item-admin">
+            <img src={producto.getImagen()} width={150} height={150} />
+            <div>
+                <hr />
+                <p>Id: {producto.getId()}</p>
+                <p>Codigo: {producto.getCodigo()}</p>
+                <p>Nombre: {producto.getNombre()}</p>
+                <p>Marca: {producto.getMarca()}</p>
+                <p>Categoría: {producto.getCategoria()}</p>
+                <hr />
+                <p>Descripción: {producto.getDescripcion()}</p>
+                <hr />
+                <p>Precio: ${producto.getPrecio().toLocaleString("es-CL")}</p>
+                <p>Cantidad: {producto.getCantidad()}</p>
+                <p>Oferta: {producto.getOferta() === 0 ? "No" : (producto.getOferta()*100)+"%"}</p>
+                <p>Destacado: {producto.getDestacado() ? "Si" : "No"}</p>
+                <hr />
+            </div>
+            <AdminPanelBotones onDelete={onDelete} onEdit={onEdit} />
+        </div>
+    );
+}
+
+export function AdminPanelProducto() 
+{
+    const { productoService } = useProductoService();
+
+    const crearProductoRandom = async (addItem: (p: Producto) => Promise<void>) => 
+    {
+        const randomName = "Producto" + Math.floor(Math.random() * 1000);
+        const nuevo = new Producto()
+        .setNombre(randomName)
+        .setCodigo("COD-" + Math.floor(Math.random() * 10000))
+        .setMarca("MarcaX")
+        .setDescripcion("Generado automáticamente")
+        .setCategoria("General")
+        .setPrecio(Math.floor(Math.random() * 50000) + 1000)
+        .setCantidad(Math.floor(Math.random() * 50) + 1)
+        .setDestacado(false)
+        .setOferta(0)
+        .setImagen("https://picsum.photos/200");
+
+        await addItem(nuevo);
+    };
+
+    return (
+        <AdminPanelBase<Producto>
+            title="Productos"
+            service={productoService}
+            renderItem={(p, onEdit, onDelete) => (<AdminProductView producto={p} onEdit={onEdit} onDelete={onDelete} />)}
+            renderEditor={(p, onCloseEdit) => (<EditItem item={p} config={editProductConfig} service={productoService} onCloseEdit={onCloseEdit} />)}
+            onAddRandom={crearProductoRandom} />
+    );
+}

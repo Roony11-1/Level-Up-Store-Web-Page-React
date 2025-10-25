@@ -7,7 +7,7 @@ interface BotonProps
     children: ReactNode;
     className?: string;
     onClick?: React.MouseEventHandler<HTMLButtonElement>;
-    type?: "submit";
+    type?: "submit" | "button";
 }
 
 export function Boton( {children, className="", onClick, type}:BotonProps )
