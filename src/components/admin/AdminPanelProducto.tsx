@@ -47,8 +47,7 @@ export function AdminPanelProducto()
         .setPrecio(Math.floor(Math.random() * 50000) + 1000)
         .setCantidad(Math.floor(Math.random() * 50) + 1)
         .setDestacado(false)
-        .setOferta(0)
-        .setImagen("https://picsum.photos/200");
+        .setOferta(0);
 
         await addItem(nuevo);
     };
