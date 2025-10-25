@@ -2,6 +2,13 @@ import { useEffect, useState } from "react";
 import { Boton } from "../Boton/Boton";
 import "../../assets/css/PanelAdmin/paneladmin.css";
 
+export interface AdminBaseView<T>
+{
+    entity: T;
+    onEdit?: () => void;
+    onDelete?: () => void;
+}
+
 export interface AdminPanelBaseProps<T>
 {
     service:
@@ -15,7 +22,7 @@ export interface AdminPanelBaseProps<T>
     onAddRandom?: (addItem: (item: T) => Promise<void>) => Promise<void>;
 
     renderItem: (item: T, onEdit: () => void, onDelete: () => void) => JSX.Element;
-    renderEditor: (item: T, onCloseEdit: () => void) => JSX.Element;
+    renderEditor?: (item: T, onCloseEdit: () => void) => JSX.Element;
     title: string;
 }
 
