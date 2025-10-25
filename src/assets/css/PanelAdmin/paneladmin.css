@@ -50,16 +50,22 @@
     justify-content: center;
 
     height: auto;
+    min-height: 600px;
     width: 475px;
 
-    padding: 15px;
+    padding: 5px;
     gap: 10px;
 
     background-color: #d3d3d3;
     border-radius: 5%;
 }
 
+.item-admin img {
+    border-radius: 5px;
+}
+
 .admin-panel-btns, .panel-admin-btns-edit {
     display: flex;
     flex-direction: row;
+    gap: 20px;
 }
