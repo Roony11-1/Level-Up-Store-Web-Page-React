@@ -9,6 +9,9 @@ import { ProductoController } from "./controller/ProductoController";
 import { BlogRepository } from "./repository/BlogRepository";
 import { BlogService } from "./service/BlogService";
 import { BlogController } from "./controller/BlogController";
+import { VentaRepository } from "./repository/VentaRepository";
+import { VentaService } from "./service/VentaService";
+import { VentaController } from "./controller/VentaController";
 
 const usuarioRepository = new UsuarioRepository();
 const usuarioService = new UsuarioService(usuarioRepository);
@@ -21,3 +24,7 @@ export const productoController = new ProductoController(productoService);
 const blogRepository = new BlogRepository();
 const blogService = new BlogService(blogRepository);
 export const blogController = new BlogController(blogService);
+
+const ventaRepository = new VentaRepository();
+const ventaService = new VentaService(ventaRepository);
+export const ventaController = new VentaController(ventaService);

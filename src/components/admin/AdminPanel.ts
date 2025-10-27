@@ -2,6 +2,7 @@ import { AdminPanelProducto } from "./AdminPanelProducto";
 import { AdminPanelUsuario } from "./AdminPanelUsuario";
 import type { AdminPanel } from "../../model/AdminPanel";
 import { AdminPanelHome } from "./AdminPanelHome";
+import { AdminPanelVenta } from "./AdminPanelVenta";
 
 export const adminPanels: AdminPanel[] = 
 [
@@ -19,5 +20,10 @@ export const adminPanels: AdminPanel[] =
         id: "productos",
         nombre: "Productos",
         componente: AdminPanelProducto
+    },
+    {
+        id: "ventas",
+        nombre: "Ventas",
+        componente: AdminPanelVenta
     }
 ];

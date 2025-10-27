@@ -80,13 +80,25 @@ export function CarritoProvider( {children}: CarritoProviderProps )
                 existente.cantidad -= cantidad;
 
                 // Sabi ni perra idea pero funca
-                const itemsActualizados = items.filter(i => i.cantidad > 1/2);
+                const itemsActualizados = items.filter(i => i.cantidad > 0);
 
                 nuevo.setItems(itemsActualizados);
             }
 
             return nuevo;
         });
+    }
+
+    function limpiarCarrito()
+    {
+        const nuevoCarrito = new Carrito();
+        nuevoCarrito.setid(carrito.getId());
+
+        // Actualiza el estado
+        setCarrito(nuevoCarrito);
+
+        // Limpia el localStorage manualmente
+        localStorage.removeItem("carrito");
     }
 
     /**
@@ -106,7 +118,7 @@ export function CarritoProvider( {children}: CarritoProviderProps )
         return <h2>cargando...</h2>
 
     return(
-        <CarritoContext.Provider value={ {carrito, agregarUnidad, eliminarUnidad} }>
+        <CarritoContext.Provider value={ {carrito, agregarUnidad, eliminarUnidad, limpiarCarrito} }>
             {children}
         </CarritoContext.Provider>
     );

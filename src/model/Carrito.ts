@@ -11,7 +11,7 @@ export class Carrito
     constructor()
     {
         this.id = 1;
-        this.items = [{productoId: 1, cantidad: 1}, {productoId: 2, cantidad: 1}, {productoId: 200, cantidad: 500}];
+        this.items = [];
     }
 
     getId(): number { return this.id; }

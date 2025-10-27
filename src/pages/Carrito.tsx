@@ -8,10 +8,16 @@ import type { itemsType } from "../model/Carrito";
 import "../assets/css/Carrito/carrito.css"
 import { CarritoItem } from "../components/Carrito/CarritoItem/CarritoItem";
 import { Link } from "react-router-dom";
+import { useSesion } from "../context/SesionContext/UseSesion";
+import { Venta } from "../model/Venta";
+import { VentaApiService } from "../services/VentaApiService";
 
 export function Carrito()
 {
-  const { carrito } = useCarrito();
+  const { carrito, limpiarCarrito } = useCarrito();
+  const { sesion } = useSesion();
+
+  const ventaApiService = new VentaApiService();
 
   const { productoService } = useProductoService();
 
@@ -68,10 +74,27 @@ export function Carrito()
 
   const handlePagar = () =>
   {
+    if (!sesion.getIdUsuarioActivo())
+    {
+      alert("Para proceder al pago debes estar logeado!");
+      return;
+    }
+
     if (carrito.getItems().length === 0)
-      alert("Primero agrega productos al carrito we")
+    {
+      alert("Primero agrega productos al carrito we");
+      return;
+    }
+      
+    const venta = new Venta().setIdCliente(sesion.getIdUsuarioActivo()).setProductos(carrito.getItems()).setTotal(total);
+    ventaApiService.save(venta);
+    if (confirm(`Vas a pagar $${total.toLocaleString("es-CL")}`))
+    {
+      alert("Buena, confío que me pagaste. Toma tus productos =) Te llegan en 45 días hábiles.");
+      limpiarCarrito();
+    }
     else
-      alert("Pagaste pa")
+      alert("Si no quieres no te obligo che");
   }
 
   return (

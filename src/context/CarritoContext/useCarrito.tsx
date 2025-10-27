@@ -6,6 +6,7 @@ export interface CarritoContextType
     carrito: Carrito;
     agregarUnidad: (productoId: number, cantidad: number) => void;
     eliminarUnidad: (productoId: number, cantidad: number) => void;
+    limpiarCarrito: () => void;
 }
 
 export const CarritoContext = createContext<CarritoContextType | undefined>(undefined);
