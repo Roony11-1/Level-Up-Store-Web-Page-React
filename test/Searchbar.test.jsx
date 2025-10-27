@@ -74,4 +74,23 @@ describe("SearchBar", () => {
     const locationDisplay = screen.getByTestId("location-display");
     expect(locationDisplay).toHaveTextContent("/");
   });
+
+  test("envío mediante la tecla Enter en el input funciona (submit por teclado)", async () => {
+    const texto = "auriculares";
+
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Routes>
+          <Route path="/" element={<SearchBar />} />
+          <Route path="/catalogo/search" element={<LocationDisplay />} />
+        </Routes>
+      </MemoryRouter>
+    );
+
+    const input = screen.getByPlaceholderText("Buscar productos")
+    await userEvent.type(input, texto + "{enter}");
+
+    const locationDisplay = await screen.findByTestId("location-display");
+    expect(locationDisplay).toHaveTextContent(`/catalogo/search?filtro=${encodeURIComponent(texto)}`);
+  });
 });
