@@ -52,4 +52,16 @@ describe("Footer", () => {
   });
 
 
+  test('Renderiza correctamente el contenido principal', () => {
+    render(
+      <BrowserRouter>
+        <Footer />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText(/Level-Up Store © 2025/i)).toBeInTheDocument();
+    expect(screen.getByText(/Nosotros/i)).toBeInTheDocument();
+    expect(screen.getByText(/Contacto/i)).toBeInTheDocument();
+  });
+
 });
