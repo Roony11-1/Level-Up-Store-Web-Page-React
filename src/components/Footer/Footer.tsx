@@ -31,8 +31,10 @@ export function Footer() {
       <div className="footer-col">
         <h3>Level-Up Store © 2025</h3>
         <p>Tu tienda de confianza para todo lo relacionado con videojuegos.</p>
-        <Link to="nosotros">Nosotros</Link>
-        <Link to="contactos">Contacto</Link>
+        <div className="footer-link">
+          <Link to="nosotros">Nosotros</Link>
+          <Link to="contactos">Contacto</Link>
+        </div>
       </div>
 
       <div className="footer-col">
