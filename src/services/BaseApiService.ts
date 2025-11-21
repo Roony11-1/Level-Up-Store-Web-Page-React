@@ -3,7 +3,6 @@ import { type ServiceApiInterface } from "./ServiceApiInterface";
 
 export abstract class BaseApiService<T> implements ServiceApiInterface<T> 
 {
-  protected apiStrategy: any;
   protected endpoint: string;
   protected modelClass: { fromJSON(json: any): T };
   protected baseUrl: string = "http://localhost:8001/api";
