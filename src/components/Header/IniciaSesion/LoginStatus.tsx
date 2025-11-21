@@ -24,7 +24,6 @@ export function LoginStatus()
             if (idUsuarioActivo !== null)
             {
                 const datos = await usuarioService.fetchById(idUsuarioActivo);
-                console.log("Usuario cargado:", datos);
                 setUsuario(datos);
             }
             else

@@ -18,16 +18,32 @@ export function Home()
   const { productoService } = useProductoService();
   const blogService = new BlogApiService();
 
-  useEffect(() => {
+  useEffect(() => 
+  {
     const fetchDestacados = async () => 
     {
-      const productosD = await productoService.fetchByDestacado();
-      setProductosDestacados(productosD);
-      const blogsD = await blogService.fetchAll();
-      setBlogs(blogsD);
+      try 
+      {
+        const productosD = await productoService.fetchByDestacado();
+        setProductosDestacados(productosD);
 
-      setLoading(false)
+        try 
+        {
+          const blogsD = await blogService.fetchAll();
+          setBlogs(blogsD);
+        } 
+        catch (e) 
+        {
+          console.warn("Blogs no disponibles aún");
+          setBlogs([]);
+        }
+      }
+      finally 
+      {
+        setLoading(false);
+      }
     };
+
     fetchDestacados();
   }, []);
 

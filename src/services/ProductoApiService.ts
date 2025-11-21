@@ -1,18 +1,18 @@
+import axios from "axios";
 import { Producto } from "../model/Producto";
-import { productoController } from "../API/Api";
 import { BaseApiService } from "./BaseApiService";
 
 export class ProductoApiService extends BaseApiService<Producto> 
 {
   constructor() 
   {
-    super(productoController, Producto);
+    super("productos", Producto);
   }
 
   async fetchByDestacado(): Promise<Producto[]>
   {
-    const datos = await this.controller.findByDestacado();
-    return datos ? datos.map((d: any) => this.modelClass.fromJSON(d)) : [];
+    const res = await axios.get(`${this.url}/getDestacados`);
+    return res.data ? res.data.map((d: any) => this.modelClass.fromJSON(d)) : [];
   }
 
   async fetchByCategoria(categoria: string): Promise<Producto[]>
@@ -39,39 +39,43 @@ export class ProductoApiService extends BaseApiService<Producto>
     return datos ? datos.map((d: any) => this.modelClass.fromJSON(d)) : [];
   }
 
-  async fetchProductoConRelacionados(nombre: string): Promise<{producto: Producto | null, relacionados: Producto[]}> 
+  async fetchProductoConRelacionados(nombre: string): Promise<{ producto: Producto | null, relacionados: Producto[] }> 
   {
-    const producto = await this.fetchByNombre(nombre);
+    const res = await axios.get(`${this.url}/con-relacionados/${nombre}`);
 
-    if (!producto) 
-      return { producto: null, relacionados: [] };
+    const data = res.data;
 
-    const porCategoria = await this.fetchByCategoria(producto.getCategoria());
-    const porMarca = await this.fetchByMarca(producto.getMarca());
-
-    let relacionados = [...porCategoria, ...porMarca];
-
-    // Filtrar duplicados y producto actual
-    const idsVistos = new Set<number>();
-    relacionados = relacionados.filter(p => {
-      if (p.getId() === producto.getId()) 
-        return false;
-      if (idsVistos.has(p.getId())) 
-        return false;
-      idsVistos.add(p.getId());
-      return true;
-    });
-
-      return { producto, relacionados };
+    return {
+      producto: data.producto ? this.modelClass.fromJSON(data.producto) : null,
+      relacionados: data.relacionados
+        ? data.relacionados.map((p: any) => this.modelClass.fromJSON(p))
+        : []
+    };
   }
 
-  getMarcas(): string[]
+  async getMarcas(): Promise<string[]>
   {
-    return this.controller.getMarcas();
+    try 
+    {
+      const res = await axios.get(`${this.url}/getMarcas`);
+      return res.data ?? [];
+    } 
+    catch 
+    {
+      return [];
+    }
   }
 
-  getCategorias(): string[]
+  async getCategorias(): Promise<string[]>
   {
-    return this.controller.getCategorias();
+    try 
+    {
+      const res = await axios.get(`${this.url}/getCategorias`);
+      return res.data ?? [];
+    } 
+    catch 
+    {
+      return [];
+    }
   }
 }
