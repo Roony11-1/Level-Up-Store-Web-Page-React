@@ -1,14 +1,14 @@
 export class LoginRequest
 {
     private email: string;
-    private password: string;
+    private contraseña: string;
 
-    constructor(email: string, password: string)
+    constructor(email: string, contraseña: string)
     {
         this.email = email;
-        this.password = password;
+        this.contraseña = contraseña;
     }
 
     getEmail(): string { return this.email; }
-    getPassword(): string { return this.password; }
+    getContraseña(): string { return this.contraseña; }
 }

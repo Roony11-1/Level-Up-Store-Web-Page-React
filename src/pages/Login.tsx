@@ -58,14 +58,14 @@ export function Login()
 
         const resultado = await usuarioService.login(loginRequest);
 
-        if (resultado.success && resultado.usuario) 
+        if (resultado.success && resultado.entity) 
         {
             setFormData({
                 email: "",
                 password: ""
             });
 
-            sesionLogin(resultado.usuario.getId());
+            sesionLogin(resultado.entity.getId());
         }
 
         alert(resultado.message);

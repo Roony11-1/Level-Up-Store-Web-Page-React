@@ -3,9 +3,9 @@ import "../../../assets/css/Header/LoginStatus/loginstatus.css"
 import { useSesion } from "../../../context/SesionContext/UseSesion"
 import { Boton } from "../../Boton/Boton";
 import { ProfilePhoto } from "../../ProfilePhoto/ProfilePhoto";
-import { UsuarioApiService } from "../../../services/UsuarioApiService";
 import { useEffect, useState } from "react";
 import type { Usuario } from "../../../model/Usuario";
+import { useUsuarioService } from "../../../context/UsuarioServiceContext/UseUsuarioService";
 
 export function LoginStatus()
 {
@@ -13,7 +13,7 @@ export function LoginStatus()
     const [usuario, setUsuario] = useState<Usuario | null>(null);
     const [loading, setLoading] = useState(true);
 
-    const usuarioService = new UsuarioApiService();
+    const { usuarioService } = useUsuarioService();
 
     useEffect(() => 
     {
@@ -24,6 +24,7 @@ export function LoginStatus()
             if (idUsuarioActivo !== null)
             {
                 const datos = await usuarioService.fetchById(idUsuarioActivo);
+                console.log("Usuario cargado:", datos);
                 setUsuario(datos);
             }
             else
@@ -33,7 +34,7 @@ export function LoginStatus()
         };
 
         fetchUsuario();
-    }, [sesion]);
+    }, [sesion.getIdUsuarioActivo()]);
 
     if (loading) return <p>Cargando estado...</p>;
 
