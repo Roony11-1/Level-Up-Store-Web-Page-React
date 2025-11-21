@@ -15,28 +15,30 @@ export class ProductoApiService extends BaseApiService<Producto>
     return res.data ? res.data.map((d: any) => this.modelClass.fromJSON(d)) : [];
   }
 
-  async fetchByCategoria(categoria: string): Promise<Producto[]>
+  async fetchByCategoria(categoria: string): Promise<Producto[]> 
   {
-    const datos = await this.controller.findByCategoria(categoria);
-    return datos ? datos.map((d: any) => this.modelClass.fromJSON(d)) : [];
+    const res = await axios.get(`${this.url}/categoria/${categoria}`);
+    return res.data ? res.data.map((d: any) => this.modelClass.fromJSON(d)) : [];
   }
 
-  async fetchByMarca(marca: string): Promise<Producto[]>
+  async fetchByMarca(marca: string): Promise<Producto[]> 
   {
-    const datos = await this.controller.findByMarca(marca);
-    return datos ? datos.map((d: any) => this.modelClass.fromJSON(d)) : [];
+    const res = await axios.get(`${this.url}/marca/${marca}`);
+    return res.data ? res.data.map((d: any) => this.modelClass.fromJSON(d)) : [];
   }
 
-  async fetchByNombre(nombre: string): Promise<Producto | null>
+  async fetchByNombre(nombre: string): Promise<Producto | null> 
   {
-    const datos = await this.controller.findByNombre(nombre);
+    const res = await axios.get(`${this.url}/nombre/${nombre}`);
+    const datos = res.data;
     return datos && datos.length > 0 ? this.modelClass.fromJSON(datos[0]) : null;
   }
 
-  async fetchByFiltro(filtro: string): Promise<Producto[]>
+  async fetchByFiltro(filtro: string): Promise<Producto[]> 
   {
-    const datos = await this.controller.findProducto(filtro);
-    return datos ? datos.map((d: any) => this.modelClass.fromJSON(d)) : [];
+    const res = await axios.get(`${this.url}/buscar/${filtro}`);
+    console.log(res.data)
+    return res.data ? res.data.map((d: any) => this.modelClass.fromJSON(d)) : [];
   }
 
   async fetchProductoConRelacionados(nombre: string): Promise<{ producto: Producto | null, relacionados: Producto[] }> 
