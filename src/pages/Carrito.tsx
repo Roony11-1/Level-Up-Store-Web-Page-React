@@ -86,7 +86,9 @@ export function Carrito()
       return;
     }
       
-    const venta = new Venta().setIdCliente(sesion.getIdUsuarioActivo()).setProductos(carrito.getItems()).setTotal(total);
+    const venta = new Venta().setIdCliente(sesion.getIdUsuarioActivo())
+      .setVentaProductos(carrito.getItems()).setTotal(total);
+      
     ventaApiService.save(venta);
     if (confirm(`Vas a pagar $${total.toLocaleString("es-CL")}`))
     {

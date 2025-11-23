@@ -1,11 +1,10 @@
 import { AdminPanelBase, type AdminBaseView } from "./AdminPanelBase";
 import { AdminPanelBotones } from "./AdminPanelBotones";
-import { Venta } from "../../model/Venta";
+import { Venta, VentaProductoRequest } from "../../model/Venta";
 import { VentaApiService } from "../../services/VentaApiService";
 import type { Producto } from "../../model/Producto";
 import { useEffect, useState } from "react";
 import { useProductoService } from "../../context/ProductoServiceContext/UseProductoService";
-import type { itemsType } from "../../model/Carrito";
 import { VentaItem } from "../VentaItem/VentaItem";
 
 function AdminVentaView({entity}: AdminBaseView<Venta>) 
@@ -13,7 +12,7 @@ function AdminVentaView({entity}: AdminBaseView<Venta>)
     const [loading, setLoading] = useState(true);
     const [productos, setProductos] = useState<Producto[]>([]);
     const { productoService } = useProductoService();
-    const listaProductos = entity.getProductos();
+    const listaProductos = entity.getVentaProductos();
 
     useEffect(() => 
     {
@@ -36,10 +35,10 @@ function AdminVentaView({entity}: AdminBaseView<Venta>)
                 <p>ID: {entity.getId()}</p>
                 <p>ID cliente: {entity.getIdCliente()}</p>
                 <div>
-                    {listaProductos.map((item: itemsType) => 
+                    {listaProductos.map((item: VentaProductoRequest) => 
                     {
-                    const producto = productos.find((p: Producto) => p.id === item.productoId);
-                    return <VentaItem key={item.productoId} producto={producto || null} cantidad={item.cantidad} />;
+                    const producto = productos.find((p: Producto) => p.id === item.producto.id);
+                    return <VentaItem key={item.producto.id} producto={producto || null} cantidad={item.cantidad} />;
                     })}
                 </div>
                 <hr />

@@ -1,11 +1,23 @@
 import type { itemsType } from "./Carrito";
 import { ModeloBase } from "./ModeloBase";
 
+export class VentaProductoRequest
+{
+    producto: { id: number };
+    cantidad: number;
+
+    constructor(productoId: number, cantidad: number)
+    {
+        this.producto = { id: productoId };
+        this.cantidad = cantidad;
+    }
+}
+
 export class Venta extends ModeloBase
 {
     id: number;
     idCliente: number;
-    productos: itemsType[];
+    ventaProductos: VentaProductoRequest[];
     total: number;
 
     constructor()
@@ -13,17 +25,21 @@ export class Venta extends ModeloBase
         super();
         this.id = 0;
         this.idCliente = 0;
-        this.productos = [];
+        this.ventaProductos = [];
         this.total = 0;
     }
 
     setId(id: number) { this.id = id; return this; }
     setIdCliente(idCliente: number) { this.idCliente = idCliente; return this; }
-    setProductos(productos: itemsType[]) { this.productos = productos; return this; }
+    setVentaProductos(items: itemsType[])
+    {
+        this.ventaProductos = items.map(item => new VentaProductoRequest(item.productoId, item.cantidad));
+        return this;
+    }
     setTotal(total: number) { this.total = total; return this; }
 
-    getId(): number { return this.id; }
-    getIdCliente(): number { return this.idCliente; }
-    getProductos(): itemsType[] { return this.productos; }
-    getTotal(): number { return this.total; }
+    getId() { return this.id; }
+    getIdCliente() { return this.idCliente; }
+    getVentaProductos() { return this.ventaProductos; }
+    getTotal() { return this.total; }
 }
