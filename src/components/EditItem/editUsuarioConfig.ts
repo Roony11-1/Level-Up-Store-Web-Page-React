@@ -9,7 +9,6 @@ export const editUsuarioConfig: EditItemConfig<Usuario> =
     ({
         nombre: u.getNombreUsuario(),
         email: u.getEmail(),
-        contraseña: u.getContraseña(),
         telefono: u.getTelefono(),
         region: u.getRegion(),
         comuna: u.getComuna(),
@@ -20,7 +19,6 @@ export const editUsuarioConfig: EditItemConfig<Usuario> =
             .setId(p.getId())
             .setNombreUsuario(data.nombre)
             .setEmail(data.email)
-            .setContraseña(data.contraseña)
             .setTelefono(data.telefono)
             .setRegion(data.region)
             .setComuna(data.comuna)
@@ -41,11 +39,6 @@ export const editUsuarioConfig: EditItemConfig<Usuario> =
                     ValidacionesFormulario.validarEmail(v)
                 )
         },
-        { name: "contraseña", label: "Contraseña",
-            validate: (v) => 
-                (
-                    ValidacionesFormulario.obligatorio(v)
-                )},
         { name: "telefono", label: "Teléfono" },
         { 
             name: "region", label: "Región", type: "select",

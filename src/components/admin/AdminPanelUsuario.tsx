@@ -16,7 +16,6 @@ function AdminUsuarioView({entity, onEdit, onDelete}: AdminBaseView<Usuario>)
                 <hr />
                 <p>Nombre de usuario: {entity.getNombreUsuario()}</p>
                 <p>Correo Electrónico: {entity.getEmail()}</p>
-                <p>Contraseña: {entity.getContraseña()}</p>
                 <hr />
                 <p>Teléfono: {entity.getTelefono()}</p>
                 <p>Región: {entity.getRegion()}</p>

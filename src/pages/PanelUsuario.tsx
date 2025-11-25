@@ -62,7 +62,6 @@ export function PanelUsuario()
                             (<DisplayInfo 
                                 nombre={usuario.getNombreUsuario()}
                                 email={usuario.getEmail()}
-                                contraseña={usuario.getContraseña()}
                                 telefono={usuario.getTelefono()}
                                 region={usuario.getRegion()}
                                 comuna={usuario.getComuna()}
@@ -91,21 +90,19 @@ interface displayInfoProps
 {
     nombre: (string | null);
     email: (string | null);
-    contraseña: (string | null);
     telefono: (string | null);
     region: (string | null);
     comuna: (string | null);
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-function DisplayInfo({nombre, email, contraseña, telefono, region, comuna, onClick}: displayInfoProps)
+function DisplayInfo({nombre, email, telefono, region, comuna, onClick}: displayInfoProps)
 {
     return(
         <>
             <div className="panel-usuario-editar">
                 <p><strong>Nombre de Usuario:</strong> {nombre || "No proporcionado"}</p>
                 <p><strong>Email:</strong> {email || "No proporcionado"}</p>
-                <p><strong>Contraseña:</strong> {contraseña || "No proporcionado"}</p>
                 <p><strong>Teléfono:</strong> {telefono || "No proporcionado"}</p>
                 <p><strong>Región:</strong> {region || "No proporcionado"}</p>
                 <p><strong>Comuna:</strong> {comuna || "No proporcionado"}</p>
@@ -141,7 +138,7 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, pro
         nombreUsuario: nombre  || "No proporcionado",
         email: email  || "No proporcionado",
         confirmarEmail: "",
-        contraseña: contraseña  || "No proporcionado",
+        contraseña: contraseña  || "",
         confirmarContraseña: "",
         telefono: telefono  || "",
         region: region || "",
@@ -197,7 +194,7 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, pro
         if (formData.confirmarEmail && formData.email !== formData.confirmarEmail)
             errores.push("Los correos no coinciden.");
 
-        if (formData.contraseña.length < 6)
+        if (0 < formData.contraseña.length && formData.contraseña.length < 6)
             errores.push("La contraseña debe tener al menos 6 caracteres.");
 
         if (formData.confirmarContraseña && formData.contraseña !== formData.confirmarContraseña)
@@ -236,7 +233,7 @@ function EditInfo({id, nombre, email, contraseña, telefono, region, comuna, pro
             .setId(id)
             .setNombreUsuario(formData.nombreUsuario)
             .setEmail(formData.email)
-            .setContraseña(formData.contraseña)
+            .setContraseña("")
             .setTelefono(formData.telefono)
             .setRegion(formData.region)
             .setComuna(formData.comuna)
