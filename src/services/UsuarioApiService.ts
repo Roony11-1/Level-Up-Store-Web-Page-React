@@ -36,6 +36,16 @@ export class UsuarioApiService extends BaseApiService<Usuario>
     }
   }
 
+  async saveUser(entity: Usuario): Promise<ApiResponseDTO<Usuario>> 
+  {
+    const res = await axios.post(`${this.baseUrl}/auth/register`, entity);
+
+    return {
+      message: res.data.message,
+      data: this.modelClass.fromJSON(res.data)
+    }
+  }
+
   async fetchByEmail(email: string)
   {
     const res = await axios.get(`${this.url}/email/${email}`)

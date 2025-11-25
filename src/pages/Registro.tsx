@@ -111,9 +111,9 @@ export function Registro()
             .setRegion(formData.region)
             .setComuna(formData.comuna);
 
-        const resultado = await usuarioService.save(usuario);
+        const resultado = await usuarioService.saveUser(usuario);
 
-        if (resultado.success)
+        if (resultado)
         {
             setFormData({
                 nombreUsuario: "",
