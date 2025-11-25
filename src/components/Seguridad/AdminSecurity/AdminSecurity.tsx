@@ -22,10 +22,11 @@ export function AdminSecurity({ children }: AdminSecurityProps)
         const fetchUsuario = async () => 
         {
             const idUsuarioActivo = sesion.getIdUsuarioActivo();
+            const tokenUsuarioActivo = sesion.getToken();
 
-            if (idUsuarioActivo !== null) 
+            if (idUsuarioActivo && tokenUsuarioActivo) 
             {
-                const datos = await usuarioService.fetchById(idUsuarioActivo);
+                const datos = await usuarioService.findProfile(idUsuarioActivo, tokenUsuarioActivo);
                 setIsAdmin(datos?.isAdmin() || false);
             } 
             else 

@@ -2,6 +2,8 @@ import { Usuario } from "../model/Usuario";
 import { BaseApiService } from "./BaseApiService";
 import type { LoginRequest } from "../model/LoginRequest";
 import axios from "axios";
+import type { ApiResponseDTO } from "../model/dto/ApiResponseDTO";
+import type { AuthResponseDTO } from "../model/dto/AuthResponseDTO";
 
 export class UsuarioApiService extends BaseApiService<Usuario> 
 {
@@ -10,29 +12,26 @@ export class UsuarioApiService extends BaseApiService<Usuario>
     super("usuarios", Usuario);
   }
 
-  async login(loginRequest: LoginRequest): Promise<{ success: boolean; message: string; entity?: Usuario }> 
+  async login(loginRequest: LoginRequest): Promise<ApiResponseDTO<AuthResponseDTO>> 
   {
     try 
     {
-      const res = await axios.post(`${this.url}/login`, loginRequest);
-
-      let usuarioInstancia: Usuario | undefined;
-
-      if (res.data.entity)
-        usuarioInstancia = Usuario.fromJSON(res.data.entity);
+      const res = await axios.post(`${this.baseUrl}/auth/authenticate`, loginRequest);
 
       return {
-        success: res.data.success,
         message: res.data.message,
-        entity: usuarioInstancia
+        data: {
+          id: res.data.data.id,
+          token: res.data.data.token
+        }
       };
 
     } 
     catch (err: any) 
     {
       return {
-        success: false,
-        message: err.response?.data?.message ?? "Error de conexión"
+        message: err.response?.data?.message ?? 'Error al autenticarse',
+        data: null
       };
     }
   }
@@ -42,5 +41,19 @@ export class UsuarioApiService extends BaseApiService<Usuario>
     const res = await axios.get(`${this.url}/email/${email}`)
 
     return res.data; // Usuario
+  }
+
+  async findProfile(id: number, token: string) 
+  {
+    const res = await axios.get(`${this.baseUrl}/auth/profile/${id}`,
+      {
+        headers: 
+        {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+
+    return this.modelClass.fromJSON(res.data);
   }
 }

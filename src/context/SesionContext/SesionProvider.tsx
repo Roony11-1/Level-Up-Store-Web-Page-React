@@ -7,25 +7,32 @@ export function SesionProvider({ children }: { children: ReactNode })
     const [sesion, setSesion] = useState(() => 
     {
         const datosGuardados = localStorage.getItem("sesion");
+        const sesionInicial = new Sesion();
+
         if (datosGuardados) 
         {
-            const datos = JSON.parse(datosGuardados);
+            try 
+            {
+                const datos = JSON.parse(datosGuardados);
 
-            const sesionInicial = new Sesion();
-
-            if (datos.idUsuarioActivo != null)
-                sesionInicial.setIdUsuarioActivo(datos.idUsuarioActivo);
-
-            return sesionInicial;
+                if (datos.idUsuarioActivo && datos.token) 
+                    sesionInicial
+                        .setIdUsuarioActivo(datos.idUsuarioActivo)
+                        .setToken(datos.token);
+            } 
+            catch 
+            {
+                localStorage.removeItem("sesion");
+            }
         }
 
-        return new Sesion();
+        return sesionInicial;
     });
 
-    const sesionLogin = (id: number) => 
+    const sesionLogin = (id: number, token: string) => 
     {
         const nuevaSesion = new Sesion();
-        nuevaSesion.setIdUsuarioActivo(id);
+        nuevaSesion.setIdUsuarioActivo(id).setToken(token);
         localStorage.setItem("sesion", JSON.stringify(nuevaSesion));
         setSesion(nuevaSesion);
     };

@@ -8,6 +8,8 @@ import { FormInput } from "../components/Formularios/FormInput/FormInput";
 import { Boton } from "../components/Boton/Boton";
 import { LoginSecurity } from "../components/Seguridad/LoginSecurity/LoginSecurity";
 import { useUsuarioService } from "../context/UsuarioServiceContext/UseUsuarioService";
+import type { ApiResponseDTO } from "../model/dto/ApiResponseDTO";
+import type { AuthResponseDTO } from "../model/dto/AuthResponseDTO";
 
 export function Login() 
 {
@@ -56,16 +58,16 @@ export function Login()
 
         const loginRequest: LoginRequest = new LoginRequest(formData.email, formData.password);
 
-        const resultado = await usuarioService.login(loginRequest);
+        const resultado: ApiResponseDTO<AuthResponseDTO> = await usuarioService.login(loginRequest);
 
-        if (resultado.success && resultado.entity) 
+        if (resultado.data) 
         {
             setFormData({
                 email: "",
                 password: ""
             });
 
-            sesionLogin(resultado.entity.getId());
+            sesionLogin(resultado.data.id, resultado.data.token);
         }
 
         alert(resultado.message);

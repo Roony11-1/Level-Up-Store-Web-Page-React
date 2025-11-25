@@ -4,7 +4,7 @@ import type { Sesion } from "../../model/Sesion";
 interface SesionContextType 
 {
   sesion: Sesion;
-  sesionLogin: (id: number) => void;
+  sesionLogin: (id: number, token: string) => void;
   sesionLogout: () => void;
 }
 
