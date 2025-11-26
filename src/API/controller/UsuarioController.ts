@@ -42,6 +42,6 @@ export class UsuarioController
 
     login(loginRequest: LoginRequest): { success: boolean; message: string; usuario?: Usuario } 
     {
-        return this.usuarioService.login(loginRequest.getEmail(), loginRequest.getPassword());
+        return this.usuarioService.login(loginRequest.getEmail(), loginRequest.getContraseña());
     }
 }

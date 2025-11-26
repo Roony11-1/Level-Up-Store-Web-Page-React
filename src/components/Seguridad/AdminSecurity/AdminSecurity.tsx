@@ -1,6 +1,5 @@
 import { useEffect, useState, type ReactNode } from "react";
 import { useSesion } from "../../../context/SesionContext/UseSesion";
-import { UsuarioApiService } from "../../../services/UsuarioApiService";
 import { NotFound } from "../../../pages/NotFound";
 import { useUsuarioService } from "../../../context/UsuarioServiceContext/UseUsuarioService";
 

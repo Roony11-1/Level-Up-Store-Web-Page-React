@@ -61,6 +61,6 @@ export function AdminPanelVenta()
         <AdminPanelBase<Venta>
             title="Ventas"
             service={ventaApiService}
-            renderItem={(p, onDelete) => (<AdminVentaView entity={p} />)} />
+            renderItem={(p) => (<AdminVentaView entity={p} />)} />
     );
 }

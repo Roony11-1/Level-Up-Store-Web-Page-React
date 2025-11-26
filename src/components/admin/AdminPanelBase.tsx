@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, type ReactElement } from "react";
 import { Boton } from "../Boton/Boton";
 import "../../assets/css/PanelAdmin/paneladmin.css";
 
@@ -21,8 +21,8 @@ export interface AdminPanelBaseProps<T>
 
     onAddRandom?: (addItem: (item: T) => Promise<void>) => Promise<void>;
 
-    renderItem: (item: T, onEdit: () => void, onDelete: () => void) => JSX.Element;
-    renderEditor?: (item: T, onCloseEdit: () => void) => JSX.Element;
+    renderItem: (item: T, onEdit: () => void, onDelete: () => void) => ReactElement;
+    renderEditor?: (item: T, onCloseEdit: () => void) => ReactElement;
     title: string;
 }
 
@@ -87,7 +87,7 @@ export function AdminPanelBase<T>( {service, onAddRandom, renderItem, renderEdit
                 {items.map((item: any) =>
                     editId === item.getId() ? 
                     <div key={item.getId()}>
-                        {renderEditor(item, handleCloseEdit)}
+                        {renderEditor?.(item, handleCloseEdit)}
                     </div> : 
                     <div key={item.getId()}>
                         {renderItem(item, () => setEditId(item.getId()), () => handleDelete(item.getId()))}
