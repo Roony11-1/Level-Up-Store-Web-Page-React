@@ -4,9 +4,9 @@ import { BaseApiService } from "./BaseApiService";
 
 export class ProductoApiService extends BaseApiService<Producto> 
 {
-  constructor() 
+  constructor(token?: string) 
   {
-    super("productos", Producto);
+    super("productos", Producto, token);
   }
 
   async fetchByDestacado(): Promise<Producto[]>

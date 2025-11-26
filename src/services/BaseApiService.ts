@@ -25,9 +25,14 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
     return `${this.baseUrl}/${this.endpoint}`;
   }
 
+  protected get header()
+  {
+    return this.token ? { Authorization: `Bearer ${this.token}` } : {};
+  }
+
   async fetchAll(): Promise<T[]> 
   {
-    const res = await axios.get(this.url);
+    const res = await axios.get(this.url, { headers: this.header });
     return res.data.map((d: any) => this.modelClass.fromJSON(d));
   }
 
@@ -35,7 +40,7 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
   {
     try 
     {
-      const res = await axios.get(`${this.url}/id/${id}`);
+      const res = await axios.get(`${this.url}/id/${id}`, { headers: this.header });
       return this.modelClass.fromJSON(res.data);
     } 
     catch (err: any) 
@@ -49,7 +54,8 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
   async save(entity: T): Promise<{ success: boolean; message: string }> {
     try 
     {
-      const res = await axios.post(this.url, entity);
+      const res = await axios.post(this.url, entity, {headers: this.header});
+
       return {
         success: true,
         message: res.data?.message ?? "Creado correctamente"
@@ -68,7 +74,7 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
   {
     try 
     {
-      const res = await axios.put(`${this.url}/${id}`, entity);
+      const res = await axios.put(`${this.url}/${id}`, entity, {headers: this.header});
       return {
         success: true,
         message: res.data?.message ?? "Actualizado correctamente",
@@ -86,7 +92,7 @@ export abstract class BaseApiService<T> implements ServiceApiInterface<T>
   async deleteById(id: number): Promise<{ success: boolean; message: string }> {
     try 
     {
-      const res = await axios.delete(`${this.url}/${id}`);
+      const res = await axios.delete(`${this.url}/${id}`, {headers: this.header});
       return {
         success: true,
         message: res.data?.message ?? "Eliminado correctamente",

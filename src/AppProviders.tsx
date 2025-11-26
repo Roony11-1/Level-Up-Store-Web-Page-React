@@ -5,13 +5,13 @@ import { SesionProvider } from "./context/SesionContext/SesionProvider";
 import { UsuarioServiceProvider } from "./context/UsuarioServiceContext/UsuarioServiceProvider";
 
 export const AppProviders = ({ children }: { children: ReactNode }) => (
-    <UsuarioServiceProvider>
+    <SesionProvider>
         <ProductoServiceProvider>
-            <SesionProvider>
+            <UsuarioServiceProvider>
                 <CarritoProvider>
                     {children}
                 </CarritoProvider>
-            </SesionProvider>
+            </UsuarioServiceProvider>
         </ProductoServiceProvider>
-    </UsuarioServiceProvider>
+    </SesionProvider>
 );
