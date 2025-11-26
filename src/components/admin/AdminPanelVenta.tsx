@@ -6,6 +6,7 @@ import type { Producto } from "../../model/Producto";
 import { useEffect, useState } from "react";
 import { useProductoService } from "../../context/ProductoServiceContext/UseProductoService";
 import { VentaItem } from "../VentaItem/VentaItem";
+import { useSesion } from "../../context/SesionContext/UseSesion";
 
 function AdminVentaView({entity}: AdminBaseView<Venta>) 
 {
@@ -53,7 +54,8 @@ function AdminVentaView({entity}: AdminBaseView<Venta>)
 
 export function AdminPanelVenta() 
 {
-    const ventaApiService = new VentaApiService();
+    const { sesion } = useSesion();
+    const ventaApiService = new VentaApiService(sesion.getToken() ?? undefined);
 
     return (
         <AdminPanelBase<Venta>

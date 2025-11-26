@@ -17,7 +17,7 @@ export function Carrito()
   const { carrito, limpiarCarrito } = useCarrito();
   const { sesion } = useSesion();
 
-  const ventaApiService = new VentaApiService();
+  const ventaApiService = new VentaApiService(sesion.getToken() ?? undefined);
 
   const { productoService } = useProductoService();
 
@@ -89,10 +89,10 @@ export function Carrito()
     const venta = new Venta().setIdCliente(sesion.getIdUsuarioActivo())
       .setVentaProductos(carrito.getItems()).setTotal(total);
       
-    ventaApiService.save(venta);
     if (confirm(`Vas a pagar $${total.toLocaleString("es-CL")}`))
     {
       alert("Buena, confío que me pagaste. Toma tus productos =) Te llegan en 45 días hábiles.");
+      ventaApiService.save(venta);
       limpiarCarrito();
     }
     else

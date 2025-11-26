@@ -3,8 +3,8 @@ import { BaseApiService } from "./BaseApiService";
 
 export class VentaApiService extends BaseApiService<Venta>
 {
-    constructor()
+    constructor(token?: string)
     {
-        super("venta", Venta);
+        super("venta", Venta, token);
     }
 }

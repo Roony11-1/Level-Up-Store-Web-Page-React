@@ -26,11 +26,10 @@ export function PanelUsuario()
         const fetchUsuario = async () => 
         {
             const idUsuarioActivo = sesion.getIdUsuarioActivo();
-            const tokenUsuarioActivo = sesion.getToken();
 
-            if (idUsuarioActivo && tokenUsuarioActivo)
+            if (idUsuarioActivo)
             {
-                const datos = await usuarioService.findProfile(idUsuarioActivo, tokenUsuarioActivo);
+                const datos = await usuarioService.fetchById(idUsuarioActivo);
                 setUsuario(datos);
             }
             else

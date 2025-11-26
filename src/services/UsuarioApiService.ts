@@ -7,9 +7,9 @@ import type { AuthResponseDTO } from "../model/dto/AuthResponseDTO";
 
 export class UsuarioApiService extends BaseApiService<Usuario> 
 {
-  constructor() 
+  constructor(token?: string) 
   {
-    super("usuarios", Usuario);
+    super("usuarios", Usuario, token);
   }
 
   async login(loginRequest: LoginRequest): Promise<ApiResponseDTO<AuthResponseDTO>> 
@@ -25,7 +25,6 @@ export class UsuarioApiService extends BaseApiService<Usuario>
           token: res.data.data.token
         }
       };
-
     } 
     catch (err: any) 
     {
@@ -48,21 +47,14 @@ export class UsuarioApiService extends BaseApiService<Usuario>
 
   async fetchByEmail(email: string)
   {
-    const res = await axios.get(`${this.url}/email/${email}`)
+    const res = await axios.get(`${this.url}/email/${email}`, { headers: this.header })
 
     return res.data; // Usuario
   }
 
-  async findProfile(id: number, token: string) 
+  async findProfile(id: number) 
   {
-    const res = await axios.get(`${this.baseUrl}/auth/profile/${id}`,
-      {
-        headers: 
-        {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+    const res = await axios.get(`${this.baseUrl}/auth/profile/${id}`, { headers: this.header });
 
     return this.modelClass.fromJSON(res.data);
   }

@@ -16,7 +16,7 @@ export class VentaProductoRequest
 export class Venta extends ModeloBase
 {
     id: number;
-    idCliente: number;
+    idCliente: number | null;
     ventaProductos: VentaProductoRequest[];
     total: number;
 
@@ -30,7 +30,7 @@ export class Venta extends ModeloBase
     }
 
     setId(id: number) { this.id = id; return this; }
-    setIdCliente(idCliente: number) { this.idCliente = idCliente; return this; }
+    setIdCliente(idCliente: number | null) { this.idCliente = idCliente; return this; }
     setVentaProductos(items: itemsType[])
     {
         this.ventaProductos = items.map(item => new VentaProductoRequest(item.productoId, item.cantidad));

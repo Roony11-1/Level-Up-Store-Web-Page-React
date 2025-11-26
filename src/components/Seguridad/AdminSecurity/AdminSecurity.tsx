@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from "react";
 import { useSesion } from "../../../context/SesionContext/UseSesion";
 import { UsuarioApiService } from "../../../services/UsuarioApiService";
 import { NotFound } from "../../../pages/NotFound";
+import { useUsuarioService } from "../../../context/UsuarioServiceContext/UseUsuarioService";
 
 interface AdminSecurityProps 
 {
@@ -15,18 +16,17 @@ export function AdminSecurity({ children }: AdminSecurityProps)
     const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
 
-    const usuarioService = new UsuarioApiService();
+    const { usuarioService } = useUsuarioService();
 
     useEffect(() => 
     {
         const fetchUsuario = async () => 
         {
             const idUsuarioActivo = sesion.getIdUsuarioActivo();
-            const tokenUsuarioActivo = sesion.getToken();
 
-            if (idUsuarioActivo && tokenUsuarioActivo) 
+            if (idUsuarioActivo) 
             {
-                const datos = await usuarioService.findProfile(idUsuarioActivo, tokenUsuarioActivo);
+                const datos = await usuarioService.fetchById(idUsuarioActivo);
                 setIsAdmin(datos?.isAdmin() || false);
             } 
             else 
